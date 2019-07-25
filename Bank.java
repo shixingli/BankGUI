@@ -1,6 +1,6 @@
 //shizhen
 public abstract class Bank {
-  List<Customer> customers;
+  List<Customer> customers; // list of customers
   HashMap<Integer, Customer> map = new HashMap<>(); //cust id is integer
   Manager bankManager;
   Currency[] currencies;
