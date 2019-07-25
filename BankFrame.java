@@ -22,12 +22,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 public class BankFrame {
 	JFrame bankframe;
-	JPanel Customer;
-	JPanel Offcial;
-	JButton Official_click;
-	JLabel Title;
-	JLabel creator;
-
+	JPanel Official,Customer;
+	JButton Official_click,Customer_Click;
+	JLabel creator,Username_label,Title,user_passwordlabel,official_label,official_label2;
+	JTextField official_username,user_name,user_password,official_password;
 
 
 
@@ -55,26 +53,46 @@ public class BankFrame {
 		Customer = new JPanel();
 		Customer.setBorder(new EmptyBorder(0, 0, 0, 0));
 		Customer.setBackground(Color.BLACK);
-		Customer.setBounds(42, 95, 173, 143);
+		Customer.setBounds(6, 95, 210, 143);
 		bankframe.getContentPane().add(Customer);
 		Customer.setLayout(null);
 
-		JButton Customer_Click = new JButton("Customer Login in ");
+		Customer_Click = new JButton("Customer Login in ");
 		Customer_Click.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//pops out Customer frame
 			}
 		});
-		Customer_Click.setBounds(6, 53, 145, 29);
+		Customer_Click.setBounds(59, 94, 145, 29);
 		Customer.add(Customer_Click);
 
-		Offcial = new JPanel();
-		Offcial.setBackground(Color.BLACK);
-		Offcial.setBorder(new EmptyBorder(0, 0, 0, 0));
-		Offcial.setBounds(261, 95, 183, 143);
-		bankframe.getContentPane().add(Offcial);
-		Offcial.setLayout(null);
+		user_name = new JTextField();
+		user_name.setBounds(79, 15, 106, 26);
+		Customer.add(user_name);
+		user_name.setColumns(10);
+
+		Username_label = new JLabel("Username:");
+		Username_label.setForeground(Color.WHITE);
+		Username_label.setBounds(6, 20, 75, 16);
+		Customer.add(Username_label);
+
+		user_password = new JTextField();
+		user_password.setColumns(10);
+		user_password.setBounds(79, 56, 106, 26);
+		Customer.add(user_password);
+
+		user_passwordlabel = new JLabel("Password:");
+		user_passwordlabel.setForeground(Color.WHITE);
+		user_passwordlabel.setBounds(6, 61, 75, 16);
+		Customer.add(user_passwordlabel);
+
+		Official = new JPanel();
+		Official.setBorder(new EmptyBorder(0, 0, 0, 0));
+		Official.setBackground(Color.BLACK);
+		Official.setBounds(234, 95, 210, 143);
+		bankframe.getContentPane().add(Official);
+		Official.setLayout(null);
 
 		Official_click = new JButton("Official Login in ");
 		Official_click.addMouseListener(new MouseAdapter() {
@@ -84,8 +102,28 @@ public class BankFrame {
 			}
 		});
 		Official_click.setForeground(Color.BLACK);
-		Official_click.setBounds(0, 51, 142, 29);
-		Offcial.add(Official_click);
+		Official_click.setBounds(62, 94, 142, 29);
+		Official.add(Official_click);
+
+		official_label = new JLabel("Username:");
+		official_label.setForeground(Color.WHITE);
+		official_label.setBounds(6, 20, 75, 16);
+		Official.add(official_label);
+
+		official_username = new JTextField();
+		official_username.setColumns(10);
+		official_username.setBounds(75, 15, 106, 26);
+		Official.add(official_username);
+
+		official_label2 = new JLabel("Password:");
+		official_label2.setForeground(Color.WHITE);
+		official_label2.setBounds(6, 61, 75, 16);
+		Official.add(official_label2);
+
+		official_password = new JTextField();
+		official_password.setColumns(10);
+		official_password.setBounds(75, 56, 106, 26);
+		Official.add(official_password);
 
 		Title = new JLabel("Welcome to our bank");
 		Title.setForeground(Color.WHITE);
