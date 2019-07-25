@@ -1,2 +1,2 @@
-# BankGUI
-A bank GUI
+# Bank
+Focusing on the Manager and its frame.
