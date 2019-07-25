@@ -132,7 +132,7 @@ public class BankFrame {
 		Title.setBounds(59, 31, 329, 52);
 		bankframe.getContentPane().add(Title);
 
-		creator = new JLabel("Amenda, Louis, Shizhen");
+		creator = new JLabel("Amanda, Louis, Shizhen");
 		creator.setForeground(Color.WHITE);
 		creator.setHorizontalAlignment(SwingConstants.CENTER);
 		creator.setBounds(79, 256, 309, 16);
