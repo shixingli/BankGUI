@@ -61,7 +61,8 @@ public class BankFrame {
 		Customer_Click.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//pops out Customer frame
+				JOptionPane.showConfirmDialog(null, "username or password is not correct");
+				//pops out Customer frame if they correctly match the credentials
 			}
 		});
 		Customer_Click.setBounds(59, 94, 145, 29);
@@ -98,7 +99,8 @@ public class BankFrame {
 		Official_click.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//pops out Manager frame
+				JOptionPane.showConfirmDialog(null, "are you even a manager????");
+				//pops out Manager frame if the credential matches
 			}
 		});
 		Official_click.setForeground(Color.BLACK);

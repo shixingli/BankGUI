@@ -4,7 +4,7 @@ public class Bank {
   // HashMap<Integer, Customer> map = new HashMap<>(); //cust id is integer
   // Manager bankManager;
   // Currency[] currencies;
-  //
+  
   BankFrame frame;
   // CustomerFrame atm; // customer gui interactivity
   // ManagerFrame authorized; // manager gui interactivity
