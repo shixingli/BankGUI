@@ -1,6 +1,10 @@
 import java.util.*;
 
 public class Customer extends User {
+  String name;
+  String id;
+  String pwd;
+  
   Loan loan;
   List<Account> accounts;
   double totalBalance; // unnecessary?
@@ -11,16 +15,28 @@ public class Customer extends User {
   public Customer() {
     this.totalBalance = 0;
     this.collateral = false;
+    this.name = "DEFAULT";
+    this.id = "welcome";
+    this.pwd = "0000";
   }
   
-  /* adding a new account dependent on money in that account and if they can have a loan or not */
+  /* adding a default customer w/ account dependent on money in that account and if they can have a loan or not */
   public Customer(Account accAdd, boolean canHaveLoan) {
+    this();
     this.totalBalance = accAdd.view_balance();
     this.collateral = canHaveLoan;
     this.accounts.add(accAdd);
   }
   
- /* adding multiple accounts and if they can have a loan or not */ 
+  /* as above, but with name, id, and pwd */
+  public Customer(Account accAdd, boolean canHaveLoan, String name, String uid, String pwd) {
+    this(accAdd, canHaveLoan);
+    this.name = name;
+    this.id = uid;
+    this.pwd = pwd;
+  }
+  
+ /* adding default cust multiple accounts and if they can have a loan or not */ 
   public Customer(List<Account> accounts, boolean canHaveLoan) {
     double bal = 0;
     for (Account account : accounts) {
@@ -29,6 +45,14 @@ public class Customer extends User {
     }
     
     this.collateral = canHaveLoan;
+  }
+  
+  /* as above but with custom name, id, and pwd */
+  public Customer(List<Account> accounts, boolean canHaveLoan, String name, String uid, String pwd) {
+    this(accounts, canHaveLoan);
+    this.name = name;
+    this.id = uid;
+    this.pwd = pwd;
   }
  
   /* only needed if the ACCOUNT creation is dependent on the customer, if not the total amount is determined in the above constructor */
