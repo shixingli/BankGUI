@@ -61,6 +61,11 @@ public class Customer extends User {
     this.totalBalance = openAmount;
   }
 
+  /* getter for customerName */
+  public String getName() {
+    return this.name;
+  }
+  
   /* getter for Loan */
   public Loan getLoan() {
     return this.loan;
