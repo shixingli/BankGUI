@@ -4,8 +4,8 @@ import java.util.HashMap;
 public class Manager extends User {
    private static String id = "Louis";
    private static String password = "123456";
-  // methods like pass in a customer and get their information using the customer's getting methods
-    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
+
+   private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
       private ManagerFrame(){
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
@@ -13,6 +13,7 @@ public class Manager extends User {
         frame.setSize(450,250);
         frame.setLocation(200,100);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
       }
     }
 
