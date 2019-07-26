@@ -3,7 +3,7 @@ public class Customer extends User {
   Account[] accounts;
   double totalBalance; // unnecessary?
   String[] transactionHistory;
-  boolean collateral;
+  boolean collateral; // maybe this should be info about what their collateral is ???
   
   public Customer() {
   }
