@@ -22,9 +22,9 @@ public class Customer extends User {
   public void updateBalance() {
     double bal;
     for (Account account : this.accounts) {
-      bal += account.getBalance();
+//      bal += account.getBalance();
     }
-    this.totalBalance = bal;
+//    this.totalBalance = bal;
   }
   
   /* returns the total balance for all accounts for a customer */
