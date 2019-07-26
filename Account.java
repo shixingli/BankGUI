@@ -25,8 +25,9 @@ abstract class Account {
 
 
   	public static void main(String[] args) {
-
-	   }
+      AccountFrame window = new AccountFrame();
+		  window.accountframe.setVisible(true);
+    }
 
 
 

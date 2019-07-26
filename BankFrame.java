@@ -20,13 +20,17 @@ import javax.swing.JInternalFrame;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JPasswordField;
+
+
 public class BankFrame {
 	JFrame bankframe;
 	JPanel Official,Customer;
 	JButton Official_click,Customer_Click;
 	JLabel creator,Username_label,Title,user_passwordlabel,official_label,official_label2;
 	JTextField official_username,user_name,user_password,official_password;
-
+	private JPasswordField customerpwd;
+	private JPasswordField officialpwd;
 
 
 	/**
@@ -61,7 +65,7 @@ public class BankFrame {
 		Customer_Click.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showConfirmDialog(null, "username or password is not correct");
+				JOptionPane.showMessageDialog(null, "username or password is not correct");
 				//pops out Customer frame if they correctly match the credentials
 			}
 		});
@@ -78,10 +82,9 @@ public class BankFrame {
 		Username_label.setBounds(6, 20, 75, 16);
 		Customer.add(Username_label);
 
-		user_password = new JTextField();
-		user_password.setColumns(10);
-		user_password.setBounds(79, 56, 106, 26);
-		Customer.add(user_password);
+		customerpwd = new JPasswordField();
+		customerpwd.setBounds(79, 56, 107, 26);
+		Customer.add(customerpwd);
 
 		user_passwordlabel = new JLabel("Password:");
 		user_passwordlabel.setForeground(Color.WHITE);
@@ -99,7 +102,7 @@ public class BankFrame {
 		Official_click.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showConfirmDialog(null, "are you even a manager????");
+				JOptionPane.showMessageDialog(null, "are you even a manager????");
 				//pops out Manager frame if the credential matches
 			}
 		});
@@ -122,10 +125,9 @@ public class BankFrame {
 		official_label2.setBounds(6, 61, 75, 16);
 		Official.add(official_label2);
 
-		official_password = new JTextField();
-		official_password.setColumns(10);
-		official_password.setBounds(75, 56, 106, 26);
-		Official.add(official_password);
+		officialpwd = new JPasswordField();
+		officialpwd.setBounds(75, 56, 107, 26);
+		Official.add(officialpwd);
 
 		Title = new JLabel("Welcome to our bank");
 		Title.setForeground(Color.WHITE);
