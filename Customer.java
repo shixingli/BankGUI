@@ -278,7 +278,7 @@ public class Customer {
         }
       }
       if (!success) {
-        AccountDNEFrame.openFrame();
+        AccountDNEPanel.openFrame();
       }
       //if no success pop out the "account does not exist frame"
     }
