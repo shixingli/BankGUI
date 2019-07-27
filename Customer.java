@@ -262,6 +262,7 @@ public class Customer {
     return welcome;
   }
   
+  /* INCOMPLETE */
   class CheckingListener implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
       System.out.println("Open the customer's checking account, if it exists.");
@@ -269,33 +270,39 @@ public class Customer {
       boolean success = false;
       if (Customer.this.accounts != null) {
         for (Account account : Customer.this.accounts) {
-          System.out.println("zoinks");
           if (account instanceof Checking) {
             // open the checking frame
             success = true;
           }
-          // if the account is an instance of checking, pop open the checking frame
         }
       }
       if (!success) {
-        AccountDNEPanel.openFrame();
+        AccountDNEPanel dne = new AccountDNEPanel("Checking", Customer.this.name);
       }
-      //if no success pop out the "account does not exist frame"
     }
   }
   
+    /* INCOMPLETE */
     class SavingsListener implements ActionListener {
-    public void actionPerformed( ActionEvent e ) {
-      System.out.println("Open the customer's savings account, if it exists.");
+      public void actionPerformed( ActionEvent e ) {
+        System.out.println("Open the customer's savings account, if it exists.");
+        
+        boolean success = false;
+        if (Customer.this.accounts != null) {
+          for (Account account : Customer.this.accounts) {
+            if (account instanceof Savings) {
+              // open the checking frame
+              success = true;
+            }
+          }
+        }
+        if (!success) {
+          AccountDNEPanel dne = new AccountDNEPanel("Savings", Customer.this.name);
+        }
+      }
     }
+    
   }
-    // write code  for a method for Bank to call which takes in a customer and is used in the creation of the frame
-  
-//  public static void startInteraction(Customer client) {
-//    makeFrame(client);
-//  }
- 
 }
-  }
   
 

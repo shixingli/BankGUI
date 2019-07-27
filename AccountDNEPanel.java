@@ -4,8 +4,8 @@ import java.awt.event.*;
 
 public class AccountDNEPanel extends JPanel {
   
-  public AccountDNEPanel() {
-    JOptionPane.showMessageDialog(this, "Requested account does not exist for this customer", "Error", JOptionPane.ERROR_MESSAGE);
+  public AccountDNEPanel(String accType, String customer) {
+    JOptionPane.showMessageDialog(this, customer + " does not have a '" + accType + "' account", "Invalid Request", JOptionPane.ERROR_MESSAGE);
   }
   
 }
