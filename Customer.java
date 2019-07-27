@@ -156,7 +156,7 @@ public class Customer {
 
   
   /*
-   * THE FRAME  ! 
+   * THE CUSTOMER FRAME  ! 
    */
   
   public class CustomerFrame extends JFrame implements ItemListener {
@@ -179,17 +179,21 @@ public class Customer {
         
         JButton checkingSum = new JButton("Checking");
         JButton savingsSum = new JButton("Savings");
-        
-        JButton checkingW = new JButton("Checking");
-        JButton savingsW = new JButton("Savings");
-        
         JPanel summary = new JPanel();
         summary.add(checkingSum);
         summary.add(savingsSum);
-         
+        
+        JButton checkingW = new JButton("Checking");
+        JButton savingsW = new JButton("Savings");
         JPanel withdraw = new JPanel();
         withdraw.add(checkingW);
         withdraw.add(savingsW);
+        
+        JButton checkingD = new JButton("Checking");
+        JButton savingsD = new JButton("Savings");
+        JPanel deposit = new JPanel();
+        deposit.add(checkingD);
+        deposit.add(savingsD);
         
         JPanel loan = new JPanel();
         loan.add(new JLabel("Amount:"));
@@ -200,9 +204,13 @@ public class Customer {
         
         CheckingListener checkL = new CheckingListener();
         checkingSum.addActionListener(checkL); 
+        checkingW.addActionListener(checkL);
+        checkingD.addActionListener(checkL);
         
         SavingsListener savingsL = new SavingsListener();
         savingsSum.addActionListener(savingsL); 
+        savingsW.addActionListener(savingsL); 
+        savingsD.addActionListener(savingsL);
  
         
 //        JPanel withdraw = new JPanel();
@@ -224,7 +232,7 @@ public class Customer {
         options = new JPanel(new CardLayout());
         options.add(summary, "View Account Summary");
         options.add(withdraw, "Withdraw");
-        options.add(loan, "Take out a loan");
+        options.add(deposit, "Deposit");
 //        options.add(deposit, "Deposit");
 //        options.add(summary, "Create New Account"); // pop up window for this?
 //        options.add(summary, "View Transaction History"); // buttons here and then depending on which will get pop up window
@@ -301,6 +309,19 @@ public class Customer {
         }
       }
     }
+    
+    class checkingCreateListener implements ActionListener {
+      public void actionPerformed( ActionEvent e ) {
+        System.out.println("Here to create a customer's checking account!");
+      }
+    }
+    
+    class savingsCreateListener implements ActionListener {
+      public void actionPerformed( ActionEvent e ) {
+        System.out.println("Here to create a customer's savings account!");
+      }
+    }
+    
     
   }
 }
