@@ -126,6 +126,7 @@ public class CustomerFrame implements ItemListener {
 //  }
   
     public static void main(String[] args) {
+      Customer test = new Customer();
       makeFrame();
     }
 }

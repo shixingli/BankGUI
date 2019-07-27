@@ -2,6 +2,10 @@ abstract class Account {
     double balance;
     String[] txns;
     
+    public Account(double amount) {
+      this.balance = amount;
+    }
+    
     void withDraw(double amount){
       this.balance -= amount;
     }
