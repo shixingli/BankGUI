@@ -13,7 +13,7 @@ import java.util.*;
 public class CustomerFrame implements ItemListener {
     JPanel options;
      
-    public void addComponentToPane(Container pane) {
+    public void addToPane(Container pane) {
         JPanel menu = new JPanel();
         
         String banking[] = { "View Account Summary", 
@@ -32,28 +32,40 @@ public class CustomerFrame implements ItemListener {
         summary.add(new JButton("Savings"));
          
         JPanel withdraw = new JPanel();
-        withdraw.add(new JLabel("Amount:"));
-        withdraw.add(new JTextField(10));
+        withdraw.add(new JButton("Checking"));
+        withdraw.add(new JButton("Savings"));
         
-        withdraw.add(new JLabel("Currency Country Code:"));
-        withdraw.add(new JTextField(3));
+        JPanel loan = new JPanel();
+        loan.add(new JLabel("Amount:"));
+        loan.add(new JTextField(10));
         
-        // unncessary to have the same panel? //
-        JPanel deposit = new JPanel();
-        deposit.add(new JLabel("Amount:"));
-        deposit.add(new JTextField(10));
+        loan.add(new JLabel("Currency Country Code:"));
+        loan.add(new JTextField(3));
         
-        deposit.add(new JLabel("Currency Country Code:"));
-        deposit.add(new JTextField(3));
+//        JPanel withdraw = new JPanel();
+//        withdraw.add(new JLabel("Amount:"));
+//        withdraw.add(new JTextField(10));
+//        
+//        withdraw.add(new JLabel("Currency Country Code:"));
+//        withdraw.add(new JTextField(3));
+//        
+//        // unncessary to have the same panel? //
+//        JPanel deposit = new JPanel();
+//        deposit.add(new JLabel("Amount:"));
+//        deposit.add(new JTextField(10));
+//        
+//        deposit.add(new JLabel("Currency Country Code:"));
+//        deposit.add(new JTextField(3));
          
         // creating the drop down menu
         options = new JPanel(new CardLayout());
         options.add(summary, "View Account Summary");
         options.add(withdraw, "Withdraw");
-        options.add(deposit, "Deposit");
-        options.add(summary, "Create New Account"); // pop up window for this?
-        options.add(summary, "View Transaction History"); // buttons here and then depending on which will get pop up window
-        
+        options.add(loan, "Take out a loan");
+//        options.add(deposit, "Deposit");
+//        options.add(summary, "Create New Account"); // pop up window for this?
+//        options.add(summary, "View Transaction History"); // buttons here and then depending on which will get pop up window
+//        
 
       
         pane.add(menu, BorderLayout.PAGE_START);
@@ -65,25 +77,23 @@ public class CustomerFrame implements ItemListener {
         cl.show(options, (String)evt.getItem());
     }
      
-    private static void createAndShowGUI() {
-        //Create and set up the window.
+    private static void makeFrame() {
       JFrame customerFrame = new JFrame("Rich Man's Bank — " + "Client's Name" + " Financial Summary");
-        customerFrame.setLayout(new GridLayout(4, 1));
-        customerFrame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
-        
-        JLabel header = title("DEFAULT");
-        JLabel schpeel = new JLabel("How may we be of service?", JLabel.CENTER);
-        customerFrame.add(header);
-        customerFrame.add(schpeel);
-        
-        //Create and set up the content pane.
-        CustomerFrame demo = new CustomerFrame();
-        demo.addComponentToPane(customerFrame.getContentPane());
-        
-        customerFrame.setSize(450, 250);
-        customerFrame.setLocation(200, 100);
-        customerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        customerFrame.setVisible(true);
+      customerFrame.setLayout(new GridLayout(4, 1));
+      customerFrame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
+      
+      JLabel header = title(client.getName());
+      JLabel schpeel = new JLabel("How may we be of service?", JLabel.CENTER);
+      customerFrame.add(header);
+      customerFrame.add(schpeel);
+      
+      CustomerFrame frame = new CustomerFrame();
+      frame.addToPane(customerFrame.getContentPane());
+      
+      customerFrame.setSize(450, 250);
+      customerFrame.setLocation(200, 100);
+      customerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      customerFrame.setVisible(true);
     }
     
     /* creates the title and border for the frame */
@@ -108,13 +118,13 @@ public class CustomerFrame implements ItemListener {
     return welcome;
   }
    
-     
+    // write code  for a method for Bank to call which takes in a customer and is used in the creation of the frame
+  
+//  public static void startInteraction(Customer client) {
+//    makeFrame(client);
+//  }
+  
     public static void main(String[] args) {
-      createAndShowGUI();
-//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                createAndShowGUI();
-//            }
-//        });
+      makeFrame();
     }
 }

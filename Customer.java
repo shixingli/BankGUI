@@ -9,55 +9,56 @@ public class Customer extends User {
   List<Account> accounts;
   double totalBalance; // unnecessary?
   List<String> txnHistory;
-  boolean collateral; // maybe this should be info about what their collateral is ??? (like a property or business)
+  
+  List<String> collateralItems = Arrays.asList("House", "Business", "Car", "Stocks");
+  Stack<String> collateral = new Stack<String>();// make a list of strings that is collateral and each time they take out a loan you remove an item from the list 
+  // if the list is empty then we can't take out a loan
   
   /* no arg */
   public Customer() {
     this.totalBalance = 0;
-    this.collateral = false;
     this.name = "DEFAULT";
-    this.id = "welcome";
-    this.pwd = "0000";
+    this.id = "username";
+    this.pwd = "pwd";
   }
   
-  /* adding a default customer w/ account dependent on money in that account and if they can have a loan or not */
-  public Customer(Account accAdd, boolean canHaveLoan) {
+  /* adding a default customer w/ account dependent on money in that account */
+  public Customer(Account accAdd) {
     this();
     this.totalBalance = accAdd.view_balance();
-    this.collateral = canHaveLoan;
     this.accounts.add(accAdd);
+    this.collateral.addAll(collateralItems);
   }
   
   /* as above, but with name, id, and pwd */
-  public Customer(Account accAdd, boolean canHaveLoan, String name, String uid, String pwd) {
-    this(accAdd, canHaveLoan);
+  public Customer(Account accAdd, String name, String uid, String pwd) {
+    this(accAdd);
     this.name = name;
     this.id = uid;
     this.pwd = pwd;
   }
   
- /* adding default cust multiple accounts and if they can have a loan or not */ 
-  public Customer(List<Account> accounts, boolean canHaveLoan) {
+ /* adding default cust multiple accounts */ 
+  public Customer(List<Account> accounts) {
     double bal = 0;
     for (Account account : accounts) {
       this.accounts.add(account);
       bal += account.view_balance();
     }
-    
-    this.collateral = canHaveLoan;
+    this.collateral.addAll(this.collateralItems);
   }
   
   /* as above but with custom name, id, and pwd */
-  public Customer(List<Account> accounts, boolean canHaveLoan, String name, String uid, String pwd) {
-    this(accounts, canHaveLoan);
+  public Customer(List<Account> accounts, String name, String uid, String pwd) {
+    this(accounts);
     this.name = name;
     this.id = uid;
     this.pwd = pwd;
   }
  
   /* only needed if the ACCOUNT creation is dependent on the customer, if not the total amount is determined in the above constructor */
-  public Customer(List<Account> accounts, boolean canHaveLoan, double openAmount) {
-    this(accounts, canHaveLoan);
+  public Customer(List<Account> accounts, double openAmount) {
+    this(accounts);
     this.totalBalance = openAmount;
   }
 
@@ -72,8 +73,13 @@ public class Customer extends User {
   }
   
   /* setter for Loan */
-  public void setLoan(Loan moneyDue) {
-    this.loan = moneyDue;
+  public boolean setLoan(Loan moneyDue) {
+    if (collateral.isEmpty()) {
+      return false;
+    } else {
+      this.loan = moneyDue;
+      return true;
+    }
   }
   
   /* accesses the accounts for the customer and updates the total balance */
