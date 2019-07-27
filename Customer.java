@@ -22,7 +22,6 @@ public class Customer {
   List<Loan> loans;
   List<Account> accounts;
   double totalBalance; // unnecessary?
-  List<String> txnHistory;
   
   List<String> collateralItems = Arrays.asList("House", "Business", "Car", "Stocks");
   Stack<String> collateral = new Stack<String>();// make a list of strings that is collateral and each time they take out a loan you remove an item from the list 
@@ -35,8 +34,6 @@ public class Customer {
     this.id = "username";
     this.pwd = "pwd";
     this.loans = new LinkedList<Loan>();
-    this.txnHistory = new LinkedList<String>();
-    this.txnHistory.add("No recorded transactions.");
   }
   
   /* adding a default customer w/ account dependent on money in that account */
@@ -128,18 +125,16 @@ public class Customer {
     this.accounts = setAcc;
   }
   
-  public List<String> getHistoryAllAcc() {
-    List<String> txnHistory;
-    if (txnHistory == null) {
+  public List<Transaction> getHistoryAllAcc() {
+    if (this.accounts == null) {
+      return null;
     } else {
-      txnHistory.remove("No recorded transactions.");
-      
+      List<Transaction> txnHistory = new LinkedList<Transaction>();
       for (Account account : this.accounts) {
-        this.txnHistory.addAll(account.transactions.getNames());
+        txnHistory.addAll(account.view_txns());
       }
+      return txnHistory;
     }
- return this.txnHistory;
-      
   }
   
   public void makeFrame() {
