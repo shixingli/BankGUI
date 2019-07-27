@@ -12,6 +12,7 @@ import java.util.*;
 
 public class CustomerFrame implements ItemListener {
     JPanel options;
+    Customer customer;
      
     public void addToPane(Container pane) {
         JPanel menu = new JPanel();
@@ -26,14 +27,20 @@ public class CustomerFrame implements ItemListener {
         dropDown.setEditable(false);
         dropDown.addItemListener(this);
         menu.add(dropDown);
-         
+        
+        JButton checkingSum = new JButton("Checking");
+        JButton savingsSum = new JButton("Savings");
+        
+        JButton checkingW = new JButton("Checking");
+        JButton savingsW = new JButton("Savings");
+        
         JPanel summary = new JPanel();
-        summary.add(new JButton("Checking"));
-        summary.add(new JButton("Savings"));
+        summary.add(checkingSum);
+        summary.add(savingsSum);
          
         JPanel withdraw = new JPanel();
-        withdraw.add(new JButton("Checking"));
-        withdraw.add(new JButton("Savings"));
+        withdraw.add(checkingW);
+        withdraw.add(savingsW);
         
         JPanel loan = new JPanel();
         loan.add(new JLabel("Amount:"));
@@ -41,6 +48,13 @@ public class CustomerFrame implements ItemListener {
         
         loan.add(new JLabel("Currency Country Code:"));
         loan.add(new JTextField(3));
+        
+        CheckingListener checkL = new CheckingListener();
+        checkingSum.addActionListener(checkL); 
+        
+        SavingsListener savingsL = new SavingsListener();
+        savingsSum.addActionListener(savingsL); 
+ 
         
 //        JPanel withdraw = new JPanel();
 //        withdraw.add(new JLabel("Amount:"));
@@ -76,6 +90,7 @@ public class CustomerFrame implements ItemListener {
         CardLayout cl = (CardLayout)(options.getLayout());
         cl.show(options, (String)evt.getItem());
     }
+    
      
     private static void makeFrame() {
       JFrame customerFrame = new JFrame("Rich Man's Bank — " + "Client's Name" + " Financial Summary");
@@ -119,6 +134,17 @@ public class CustomerFrame implements ItemListener {
     return welcome;
   }
    
+  class CheckingListener implements ActionListener {
+    public void actionPerformed( ActionEvent e ) {
+      System.out.println( "Checking button clicked" );
+    }
+  }
+  
+    class SavingsListener implements ActionListener {
+    public void actionPerformed( ActionEvent e ) {
+      System.out.println( "Savings button clicked" );
+    }
+  }
     // write code  for a method for Bank to call which takes in a customer and is used in the creation of the frame
   
 //  public static void startInteraction(Customer client) {
