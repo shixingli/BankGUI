@@ -34,6 +34,7 @@ public class Customer {
     this.id = "username";
     this.pwd = "pwd";
     this.loans = new LinkedList<Loan>();
+    this.accounts = new LinkedList<Account>();
   }
   
   /* adding a default customer w/ account dependent on money in that account */
@@ -41,7 +42,7 @@ public class Customer {
     this();
     this.totalBalance = accAdd.view_balance();
     this.accounts.add(accAdd);
-    this.collateral.addAll(collateralItems);
+    this.collateral.addAll(this.collateralItems);
   }
   
   /* as above, but with name, id, and pwd */
@@ -54,6 +55,13 @@ public class Customer {
   
  /* adding default cust multiple accounts */ 
   public Customer(List<Account> accounts) {
+    this.accounts = new LinkedList<Account>();
+    this.totalBalance = 0;
+    this.name = "DEFAULT";
+    this.id = "username";
+    this.pwd = "pwd";
+    this.loans = new LinkedList<Loan>();
+    
     double bal = 0;
     for (Account account : accounts) {
       this.accounts.add(account);
@@ -138,7 +146,7 @@ public class Customer {
   }
   
   public void makeFrame() {
-      JFrame customerFrame = new JFrame("Rich Man's Bank — " + "Client's Name" + " Financial Summary");
+      JFrame customerFrame = new JFrame("Rich Man's Bank — " + Customer.this.name + " Financial Summary");
       customerFrame.setLayout(new GridLayout(4, 1));
       customerFrame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
       
@@ -234,7 +242,13 @@ public class Customer {
         loan.add(new JLabel("Currency Country Code:"));
         loan.add(new JTextField(3));
         }
- 
+        
+        JButton display = new JButton("Show");
+        JPanel history = new JPanel();
+        history.add(display);
+        TransactionHistoryListener historyL = new TransactionHistoryListener();
+        display.addActionListener(historyL);
+        
         
 //        JPanel withdraw = new JPanel();
 //        withdraw.add(new JLabel("Amount:"));
@@ -258,7 +272,7 @@ public class Customer {
         options.add(deposit, "Deposit");
         options.add(create, "Open a New Account");
         options.add(loan, "Take Out a Loan"); // pop up window for this?
-//        options.add(summary, "View Transaction History"); // buttons here and then depending on which will get pop up window
+        options.add(history, "View Transaction History"); // buttons here and then depending on which will get pop up window
 //        
 
       
@@ -336,6 +350,7 @@ public class Customer {
     class CheckingCreateListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to create a customer's checking account!");
+        // if it already exists you can't make it
       }
     }
     
@@ -343,6 +358,56 @@ public class Customer {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to create a customer's savings account!");
       }
+    }
+    
+    class TransactionHistoryListener implements ActionListener {
+      public void actionPerformed( ActionEvent e ) {
+        System.out.println("Here to display a customer's transaction history!");
+        TransactionHistoryFrame tf = new TransactionHistoryFrame();
+      }
+    }
+  }
+  
+  
+  /* 
+   * TRANSACTION HISTORY FRAME
+   */
+  
+  public class TransactionHistoryFrame extends JFrame {
+    public TransactionHistoryFrame() {
+      this.setTitle("Rich Man's Bank — " + Customer.this.name + " Transaction History");
+      this.setLayout(new GridLayout(2, 1));
+      this.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
+      
+      SimpleDateFormat df = new SimpleDateFormat("EEEE, MMMM d 'at' h:mm a z ");
+      Date now = new Date();
+      String curr = df.format(now);
+      JLabel schpeel = new JLabel("        Transaction history acquired " + curr + "         ", JLabel.CENTER);
+      this.add(schpeel);
+      
+      JPanel panel = new JPanel();
+      List<Transaction> history = Customer.this.getHistoryAllAcc();
+      
+      if (history == null) {
+        panel.setLayout(new GridLayout(2, 1));
+        panel.add(new JLabel("No recent transactions.", JLabel.CENTER));
+        this.add(panel);
+        
+      } else {
+        int lenList = history.size();
+        panel.setLayout(new GridLayout(1 + lenList, 2));
+        System.out.println("Here");
+        for (Transaction txn : history) {
+          System.out.println("In the loop");
+          panel.add(new JLabel(txn.getId()));
+          //panel.add(new JButton("OK-2"));
+          this.add(panel);
+        }
+      }
+      this.pack();
+      this.setLocation(650, 100);
+      this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      this.setVisible(true);
     }
   }
 }

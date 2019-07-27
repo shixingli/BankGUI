@@ -24,4 +24,8 @@ public abstract class Transaction {
     return (df.format(now));
   }
   
+  public String toString() {
+    return this.id;
+  }
+  
 }
