@@ -112,9 +112,18 @@ public class Customer {
     return this.totalBalance;
   }
   
-  /* returns all accounts belonging to customer */
+  /* getter for accounts */
   public List<Account> getAccounts() {
     return this.accounts;
+  }
+  /* add to accounts */
+  public void addAccount(Account add) {
+    this.accounts.add(add);
+  }
+  
+  /* setter for accounts */
+  public void setAccounts(List<Account> setAcc) {
+    this.accounts = setAcc;
   }
   
   public List<String> getHistoryAllAcc() {
@@ -159,7 +168,7 @@ public class Customer {
         String banking[] = { "View Account Summary", 
           "Withdraw", 
           "Deposit", 
-          "Create New Account", 
+          "Open a New Account", 
           "View Transaction History",
           "Take Out a Loan"};
         
@@ -258,17 +267,20 @@ public class Customer {
       System.out.println("Open the customer's checking account, if it exists.");
       
       boolean success = false;
-      for (Account account : Customer.this.accounts) {
-        if (account instanceof Checking) {
-          // open the checking frame
-          success = true;
+      if (Customer.this.accounts != null) {
+        for (Account account : Customer.this.accounts) {
+          System.out.println("zoinks");
+          if (account instanceof Checking) {
+            // open the checking frame
+            success = true;
+          }
+          // if the account is an instance of checking, pop open the checking frame
         }
-        // if the account is an instance of checking, pop open the checking frame
       }
       if (!success) {
-        AccountDNEFrame.open();
+        AccountDNEFrame.openFrame();
       }
-      // if no success pop out the "account does not exist frame"
+      //if no success pop out the "account does not exist frame"
     }
   }
   
