@@ -34,7 +34,9 @@ public class Customer {
     this.name = "DEFAULT";
     this.id = "username";
     this.pwd = "pwd";
-    this.loans = new LinkedList<Loan>(); 
+    this.loans = new LinkedList<Loan>();
+    this.txnHistory = new LinkedList<String>();
+    this.txnHistory.add("No recorded transactions.");
   }
   
   /* adding a default customer w/ account dependent on money in that account */
@@ -127,7 +129,17 @@ public class Customer {
   }
   
   public List<String> getHistoryAllAcc() {
-    return this.txnHistory;
+    List<String> txnHistory;
+    if (txnHistory == null) {
+    } else {
+      txnHistory.remove("No recorded transactions.");
+      
+      for (Account account : this.accounts) {
+        this.txnHistory.addAll(account.transactions.getNames());
+      }
+    }
+ return this.txnHistory;
+      
   }
   
   public void makeFrame() {
@@ -195,13 +207,6 @@ public class Customer {
         deposit.add(checkingD);
         deposit.add(savingsD);
         
-        JPanel loan = new JPanel();
-        loan.add(new JLabel("Amount:"));
-        loan.add(new JTextField(10));
-        
-        loan.add(new JLabel("Currency Country Code:"));
-        loan.add(new JTextField(3));
-        
         CheckingListener checkL = new CheckingListener();
         checkingSum.addActionListener(checkL); 
         checkingW.addActionListener(checkL);
@@ -211,6 +216,29 @@ public class Customer {
         savingsSum.addActionListener(savingsL); 
         savingsW.addActionListener(savingsL); 
         savingsD.addActionListener(savingsL);
+        
+        JButton checkingC = new JButton("Checking");
+        JButton savingsC = new JButton("Savings");
+        JPanel create = new JPanel();
+        create.add(checkingC);
+        create.add(savingsC);
+        
+        CheckingCreateListener checkCL = new CheckingCreateListener();
+        checkingC.addActionListener(checkCL); 
+        SavingsCreateListener savingsCL = new SavingsCreateListener();
+        savingsC.addActionListener(savingsCL);
+        
+        
+        JPanel loan = new JPanel();
+        if (Customer.this.collateral.isEmpty()) {
+          loan.add(new JLabel("Insufficient collateral to take out a loan."));
+        } else {
+        loan.add(new JLabel("Amount:"));
+        loan.add(new JTextField(10));
+        
+        loan.add(new JLabel("Currency Country Code:"));
+        loan.add(new JTextField(3));
+        }
  
         
 //        JPanel withdraw = new JPanel();
@@ -233,8 +261,8 @@ public class Customer {
         options.add(summary, "View Account Summary");
         options.add(withdraw, "Withdraw");
         options.add(deposit, "Deposit");
-//        options.add(deposit, "Deposit");
-//        options.add(summary, "Create New Account"); // pop up window for this?
+        options.add(create, "Open a New Account");
+        options.add(loan, "Take Out a Loan"); // pop up window for this?
 //        options.add(summary, "View Transaction History"); // buttons here and then depending on which will get pop up window
 //        
 
@@ -310,19 +338,17 @@ public class Customer {
       }
     }
     
-    class checkingCreateListener implements ActionListener {
+    class CheckingCreateListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to create a customer's checking account!");
       }
     }
     
-    class savingsCreateListener implements ActionListener {
+    class SavingsCreateListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to create a customer's savings account!");
       }
     }
-    
-    
   }
 }
   
