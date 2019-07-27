@@ -23,8 +23,8 @@ public class Manager{
            JPanel panel = new JPanel();
 
            panel.setLayout( new GridLayout(4,1));
-           panel.add(new JLabel("Seach for Customer's ID: "));
-           panel.add(new JTextField());
+           panel.add(new JLabel("Seach for Customer: "));
+           panel.add(new JTextField("Enter ID"));
            return panel;
       }
     }
