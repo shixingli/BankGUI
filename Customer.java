@@ -266,7 +266,7 @@ public class Customer {
         // if the account is an instance of checking, pop open the checking frame
       }
       if (!success) {
-        AccountFrame.open();
+        AccountDNEFrame.open();
       }
       // if no success pop out the "account does not exist frame"
     }
