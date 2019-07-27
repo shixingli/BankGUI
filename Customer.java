@@ -12,13 +12,14 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.Stack;
 import java.util.Calendar;
+import java.util.LinkedList;
 
 public class Customer {
   String name;
   String id;
   String pwd;
   
-  Loan loan;
+  List<Loan> loans;
   List<Account> accounts;
   double totalBalance; // unnecessary?
   List<String> txnHistory;
@@ -33,6 +34,7 @@ public class Customer {
     this.name = "DEFAULT";
     this.id = "username";
     this.pwd = "pwd";
+    this.loans = new LinkedList<Loan>(); 
   }
   
   /* adding a default customer w/ account dependent on money in that account */
@@ -80,17 +82,18 @@ public class Customer {
     return this.name;
   }
   
-  /* getter for Loan */
-  public Loan getLoan() {
-    return this.loan;
+  /* getter for Loans */
+  public List<Loan> getLoan() {
+    return this.loans;
   }
   
-  /* setter for Loan */
+  /* setter for Loans */
   public boolean setLoan(Loan moneyDue) {
     if (collateral.isEmpty()) {
       return false;
     } else {
-      this.loan = moneyDue;
+      this.loans.add(moneyDue);
+      this.collateral.pop();
       return true;
     }
   }
@@ -127,7 +130,7 @@ public class Customer {
 
       
       CustomerFrame frame = new CustomerFrame();
-      JLabel header = frame.title("DEFAULT");
+      JLabel header = frame.title(this.name);
       customerFrame.add(header);
             
       JLabel schpeel = new JLabel("How may we be of service?", JLabel.CENTER);
@@ -135,7 +138,7 @@ public class Customer {
       
       frame.addToPane(customerFrame.getContentPane());
       
-      customerFrame.setSize(450, 250);
+      customerFrame.setSize(450, 300);
       customerFrame.setLocation(200, 100);
       customerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       customerFrame.setVisible(true);
@@ -157,7 +160,8 @@ public class Customer {
           "Withdraw", 
           "Deposit", 
           "Create New Account", 
-          "View Transaction History" };
+          "View Transaction History",
+          "Take Out a Loan"};
         
         JComboBox dropDown = new JComboBox(banking);
         dropDown.setEditable(false);
@@ -248,16 +252,29 @@ public class Customer {
     
     return welcome;
   }
-   
+  
   class CheckingListener implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
-      System.out.println( "Checking button clicked" );
+      System.out.println("Open the customer's checking account, if it exists.");
+      
+      boolean success = false;
+      for (Account account : Customer.this.accounts) {
+        if (account instanceof Checking) {
+          // open the checking frame
+          success = true;
+        }
+        // if the account is an instance of checking, pop open the checking frame
+      }
+      if (!success) {
+        AccountFrame.open();
+      }
+      // if no success pop out the "account does not exist frame"
     }
   }
   
     class SavingsListener implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
-      System.out.println( "Savings button clicked" );
+      System.out.println("Open the customer's savings account, if it exists.");
     }
   }
     // write code  for a method for Bank to call which takes in a customer and is used in the creation of the frame
@@ -267,4 +284,6 @@ public class Customer {
 //  }
  
 }
-}
+  }
+  
+
