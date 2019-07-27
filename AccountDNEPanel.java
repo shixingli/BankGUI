@@ -5,10 +5,7 @@ import java.awt.event.*;
 public class AccountDNEPanel extends JPanel {
   
   public AccountDNEPanel() {
-    JOptionPane.showMessageDialog(this, "Could not open file", "Error", JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this, "Requested account does not exist for this customer", "Error", JOptionPane.ERROR_MESSAGE);
   }
   
-  public static void main(String[] args) {
-    AccountDNEFrame.openFrame();
-  }
 }
