@@ -1,21 +1,32 @@
+import java.util.*;
+
 abstract class Account {
     double balance;
-    String[] txns;
+    List<Transaction> txns;
+    
+    public Account(double amount) {
+      this.balance = amount;
+      this.txns = new LinkedList<Transaction>();
+    }
     
     void withDraw(double amount){
       this.balance -= amount;
+      Withdrawal w = new Withdrawal(amount);
+      this.txns.add(w);
     }
     
     void deposit(double amount){
       this.balance += amount;
+      Deposit d = new Deposit(amount);
+      this.txns.add(d);
     }
     
     double view_balance() {
       return balance;
     }
     
-    String view_txns() {
-      return "";
+    List<Transaction> view_txns() {
+      return this.txns;
     }
 
    <T> void transfer(T account, double amount){
