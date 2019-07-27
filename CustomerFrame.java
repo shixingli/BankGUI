@@ -82,7 +82,8 @@ public class CustomerFrame implements ItemListener {
       customerFrame.setLayout(new GridLayout(4, 1));
       customerFrame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
       
-      JLabel header = title(client.getName());
+      //JLabel header = title(client.getName());
+      JLabel header = title("DEFAULT");
       JLabel schpeel = new JLabel("How may we be of service?", JLabel.CENTER);
       customerFrame.add(header);
       customerFrame.add(schpeel);
@@ -111,7 +112,7 @@ public class CustomerFrame implements ItemListener {
       greeting = " Good Evening, ";
     }
 
-    SimpleDateFormat df = new SimpleDateFormat("EEEE, MMMM d 'at' h:m a z ");
+    SimpleDateFormat df = new SimpleDateFormat("EEEE, MMMM d 'at' h:mm a z ");
     Date now = new Date();
     welcome.setText(greeting + customerName + ". It is " + df.format(now) + ".");
     
