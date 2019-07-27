@@ -1,24 +1,37 @@
 import javax.swing.*;
-import java.util.HashMap;
+import java.awt.*;
 
-public class Manager extends User {
+public class Manager{
    private static String id = "Louis";
    private static String password = "123456";
-  // methods like pass in a customer and get their information using the customer's getting methods
-    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
-      private ManagerFrame(){
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-        frame.setTitle("Manager Frame");
-        frame.setSize(450,250);
+
+   private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
+      private JFrame MFrame;
+       private ManagerFrame(){
+        JFrame frame = new JFrame("Manager Frame");
+        frame.setLayout(new GridLayout(4,4));
+        frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10,10,10,10,Color.DARK_GRAY));
+        frame.setLocation(100,100);
+        frame.setSize(600,350);
         frame.setLocation(200,100);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(SearchCustomerID());
+        this.MFrame = frame;
+      }
+
+      private JPanel SearchCustomerID(){
+           JPanel panel = new JPanel();
+
+           panel.setLayout( new GridLayout(4,1));
+           panel.add(new JLabel("Seach for Customer: "));
+           panel.add(new JTextField("Enter ID"));
+           return panel;
       }
     }
 
     private Manager(){
       ManagerFrame mf = new ManagerFrame();
-      mf.setVisible(true);
+      mf.MFrame.setVisible(true);
     }
 
     private Customer getCustomer(String id){
