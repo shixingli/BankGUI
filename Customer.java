@@ -141,11 +141,11 @@ public class Customer {
       customerFrame.setVisible(true);
     }
     
+
   
-  
-  
-  
-  
+  /*
+   * THE FRAME  ! 
+   */
   
   public class CustomerFrame extends JFrame implements ItemListener {
     JPanel options;
