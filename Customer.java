@@ -249,21 +249,51 @@ public class Customer {
         
      
         JPanel loan = new JPanel();
+        JTextField loanAmount = new JTextField(7);
+        JTextField loanCurr = new JTextField(3);
+        
         if (Customer.this.collateral.isEmpty()) {
           loan.add(new JLabel("Insufficient collateral to take out a loan."));
         } else {
+          boolean hasChecking = false;
+          for (Account acc : Customer.this.accounts) {
+            if (acc instanceof Checking) {
+              hasChecking = true;
+              break;
+            }
+          }
+          if (hasChecking) {
           loan.add(new JLabel("Amount:"));
-          JTextField loanAmount = new JTextField(7);
           loan.add(loanAmount);
           
           loan.add(new JLabel("Curr. Country Code:"));
-          JTextField loanCurr = new JTextField(3);
           loan.add(loanCurr);
           JButton sub = new JButton("Submit");
           loan.add(sub);
           
-          LoanListener loanL = new LoanListener();
-          sub.addActionListener(loanL);
+          sub.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              System.out.println("Customer attempting to take out a loan!");
+              System.out.println(loanAmount);
+              String loan = loanAmount.getText();
+              String curr = loanCurr.getText();
+              
+              boolean success = false;
+              for (Currency allowed : Bank.currencies) {
+                if (curr.equals(allowed.getCountry())) {
+                  success = true;
+                  
+                  break;
+                }
+              }
+              LoanPanel loanWindow = new LoanPanel(loan, success);
+            }
+          });
+          
+          } else {
+            loan.add(new JLabel("Only customers with Checking accounts can take out loans."));
+          }
         }
         
         JButton display = new JButton("Show");
@@ -372,15 +402,6 @@ public class Customer {
         TransactionHistoryFrame tf = new TransactionHistoryFrame();
       }
     }
-      
-    class LoanListener implements ActionListener {
-      public void actionPerformed( ActionEvent e ) {
-        System.out.println("Customer attempting to take out a loan!");
-        String loan = loanAmount.getText();
-        String curr = loanCurr.getText();
-        Syste
-      } 
-    }
   }
   
   /* 
@@ -446,13 +467,15 @@ public class Customer {
   public class LoanPanel extends JPanel {
     public LoanPanel(boolean validCurr) {
       if (validCurr) {
-        JOptionPane.showMessageDialog("Success!", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Loan amount successfully added to your Checking account.", "Success", JOptionPane.INFORMATION_MESSAGE);
       } else {
-        JOptionPane.showMessageDialog("FAILURE!", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "FAILURE", "Currency type invalid", JOptionPane.ERROR_MESSAGE);
       }
     }
+  }
 
   public static void test() {
+    Bank richMan = new Bank();
     Checking check = new Checking(100.0);
     check.deposit(900);
     Savings save = new Savings(100.0);
