@@ -10,6 +10,7 @@ public class Manager{
    private static String id = "Louis";
    private static String password = "123456";
    private HashMap<String,Customer> customerHM;
+   private static int accountFee;
 
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
        private JFrame MFrame;
@@ -19,7 +20,7 @@ public class Manager{
            frame.setLayout(new GridLayout(3, 3));
            frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
            frame.setLocation(100, 100);
-           frame.setSize(1000, 700);
+           frame.setSize(800, 400);
            frame.setLocation(200, 100);
            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            frame.add(searchCustomerID());
@@ -38,7 +39,12 @@ public class Manager{
 
            tf.addActionListener(e -> {
                String customerID = tf.getText();
-               getCustomer(customerID);
+               if(customerHM.containsKey(customerID)){
+                   customerOverview(customerHM.get(customerID));
+               }
+               else{
+                   JOptionPane.showMessageDialog(null, "Invalid Customer ID!");
+               }
            });
            return SearchPanel;
        }
@@ -64,7 +70,7 @@ public class Manager{
                public void mouseClicked(MouseEvent e) {
                    if (e.getClickCount() == 2) {
                        Customer selectedItem = customerHM.get(list.getSelectedValue());
-                       selectedItem.makeFrame();
+                        customerOverview(selectedItem);
                    }
                }
            });
@@ -77,27 +83,30 @@ public class Manager{
        }
 
        private void customerOverview(Customer c){
-//           JFrame f = new JFrame();
-//
-//           f.setVisible(true);
+           StringBuilder info = new StringBuilder();
+           info.append(c.getName());
+           System.out.println(c.getHistoryAllAcc().isEmpty());
+           if(!c.getHistoryAllAcc().isEmpty()){
+               info.append(System.lineSeparator());
+               info.append(c.getHistoryAllAcc());
+           }
+           info.append(System.lineSeparator());
+           info.append(c.getAccounts());
+           info.append(System.lineSeparator());
+           info.append(c.getTotalBalance());
+           if(c.getLoan() != null){
+               info.append(System.lineSeparator());
+               info.append(c.getLoan());
+           }
+           JOptionPane.showMessageDialog(null,info.toString());
        }
 
    }
     private Manager(HashMap c){
        this.customerHM = c;
-      ManagerFrame mf = new ManagerFrame();
+       ManagerFrame mf = new ManagerFrame();
 
       mf.MFrame.setVisible(true);
-    }
-
-    private Customer getCustomer(String id){
-        System.out.println(id);
-        return null;
-    }
-
-    private void displayCustomer(){//print out a frame of Customer's info.
-       JFrame CFrame = new JFrame();
-
     }
 
     public static boolean isManager(String id, String password){
@@ -109,6 +118,10 @@ public class Manager{
         System.out.println("login unsuccessful");
       }
       return isIt;
+    }
+
+    public static int getAccountFee() {
+        return accountFee;
     }
 
     public static void main(String[] args){
@@ -125,5 +138,6 @@ public class Manager{
         customers.put("dbreynolds", me);
         customers.put("ltann", s);
         Manager m = new Manager(customers);
+        customers.get("ltann").makeFrame();
     }
 }
