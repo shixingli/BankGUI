@@ -178,7 +178,7 @@ public class Customer {
       
       customerFrame.setSize(450, 300);
       customerFrame.setLocation(200, 100);
-      customerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      customerFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       customerFrame.setVisible(true);
     }
     
@@ -384,13 +384,25 @@ public class Customer {
     class CheckingCreateListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to create a customer's checking account!");
-        // if it already exists you can't make it
+        
+        for (Account accounts : Customer.this.accounts) {
+          if (account instanceof Checking) {
+            AccountEPanel exists = new AccountEPanel("Checking", Customer.this.name);
+            break;
+          }
+        }
+        
       }
     }
     
     class SavingsCreateListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to create a customer's savings account!");
+        
+        for (Account accounts : Customer.this.accounts) {
+          if (account instanceof Savings) {
+            AccountEPanel exists = new AccountEPanel("Savings", Customer.this.name);
+            break;
       }
     }
     
@@ -409,6 +421,16 @@ public class Customer {
     
     public AccountDNEPanel(String accType, String customer) {
       JOptionPane.showMessageDialog(this, customer + " does not have a '" + accType + "' account", "Invalid Request", JOptionPane.ERROR_MESSAGE);
+    }
+  }
+  
+  /*
+   * ACCOUNT ALREADY EXISTS FRAME
+   */
+    public class AccountEPanel extends JPanel {
+    
+    public AccountEPanel(String accType, String customer) {
+      JOptionPane.showMessageDialog(this, customer + " already has a '" + accType + "' account", "Invalid Request", JOptionPane.ERROR_MESSAGE);
     }
   }
 
@@ -465,8 +487,12 @@ public class Customer {
   public class LoanPanel extends JPanel {
     public LoanPanel(String amnt, boolean validCurr) {
       if (validCurr) {
-        //get
-        JOptionPane.showMessageDialog(this, "$ " + amnt + "added to your primary Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
+        double tryingTo = Double.parseDouble(amnt);
+        if (tryingTo < 0.0) {
+          JOptionPane.showMessageDialog(this, "Loans cannot be taken out for negative amounts.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
+        } else {
+          JOptionPane.showMessageDialog(this, "$ " + amnt + "added to your primary Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
+        }
       } else {
       JOptionPane.showMessageDialog(this, "Currency not supported by this bank.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
       }

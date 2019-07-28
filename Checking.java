@@ -4,9 +4,5 @@ public class Checking extends Account{
     super(amount);
     this.id = "Checking";
   }
-  
- public static void main(String[] args) {
-
- }
 
 }

@@ -35,6 +35,10 @@ public abstract class Account {
     return this.txns;
   }
   
+  public void setAmount(double begin) {
+    this.amount = begin;
+  }
+  
   public String toString() {
     return this.id + " account with a current value of $" + this.balance;
   }
