@@ -4,7 +4,8 @@ public abstract class Account {
   protected String id;
   protected double balance;
   protected List<Transaction> txns;
-  
+  double USD,CAD,Bitcoin;
+
   public Account() {
   }
   
@@ -64,7 +65,7 @@ void deposit(double amount,String currency){
   public String toString() {
     return this.id + " account with a current value of $" + this.balance;
   }
-  
+
   String check_balance() {
       return ("you have "+USD + " USD, " + CAD + " CAD " + "and " + Bitcoin +" Bitcoins!");
   }
