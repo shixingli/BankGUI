@@ -12,4 +12,12 @@ public class Currency {
     this.id = countryCode;
   }
   
+  public String getCountry() {
+    return this.id;
+  }
+  
+  public String toString() {
+    return this.id;
+  }
+  
 }
