@@ -91,6 +91,11 @@ public class Customer {
     return this.name;
   }
   
+  /* getter for customerUserName */
+  public String getUsername() {
+    return this.id;
+  }
+  
   /* getter for Loans */
   public List<Loan> getLoan() {
     return this.loans;

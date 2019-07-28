@@ -1,4 +1,4 @@
-public abstract class Currency { // based against USD
+public class Currency {
   private String id;
   private double exchangeRate;
   
