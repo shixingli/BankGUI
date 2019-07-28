@@ -35,6 +35,7 @@ public class Customer {
     this.pwd = "pwd";
     this.loans = new LinkedList<Loan>();
     this.accounts = new LinkedList<Account>();
+    Bank.customers.put(this.id, this);
   }
   
   /* adding a default customer w/ account dependent on money in that account */
@@ -68,6 +69,7 @@ public class Customer {
       bal += account.view_balance();
     }
     this.collateral.addAll(this.collateralItems);
+    Bank.customers.put(this.id, this);
   }
   
   /* as above but with custom name, id, and pwd */

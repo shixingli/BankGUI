@@ -1,7 +1,8 @@
-//shizhen
+import java.util.*;
+
 public class Bank {
   // List<Customer> customers; // list of customers
-  public static HashMap<String, Customer> map = new HashMap<>(); //cust id is username
+  public static HashMap<String, Customer> customers = new HashMap<>(); //cust id is username
   // Manager bankManager;
   // Currency[] currencies;
   
