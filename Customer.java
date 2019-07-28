@@ -15,16 +15,16 @@ import java.util.Calendar;
 import java.util.LinkedList;
 
 public class Customer {
-  String name;
-  String id;
-  String pwd;
+  private String name;
+  private String id;
+  private String pwd;
   
-  List<Loan> loans;
-  List<Account> accounts;
-  double totalBalance; // unnecessary?
+  private List<Loan> loans;
+  private List<Account> accounts;
+  private double totalBalance; // unnecessary?
   
-  List<String> collateralItems = Arrays.asList("House", "Business", "Car", "Stocks");
-  Stack<String> collateral = new Stack<String>();// make a list of strings that is collateral and each time they take out a loan you remove an item from the list 
+  private List<String> collateralItems = Arrays.asList("House", "Business", "Car", "Stocks");
+  private Stack<String> collateral = new Stack<String>();// make a list of strings that is collateral and each time they take out a loan you remove an item from the list 
   // if the list is empty then we can't take out a loan
   
   /* no arg */

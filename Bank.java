@@ -4,15 +4,14 @@ public class Bank {
   // List<Customer> customers; // list of customers
   public static HashMap<String, Customer> customers = new HashMap<>(); //cust id is username
   // Manager bankManager;
-  // Currency[] currencies;
-  
+  Currency[] currencies;
   BankFrame frame;
-  // CustomerFrame atm; // customer gui interactivity
   // ManagerFrame authorized; // manager gui interactivity
-
+  
+  
   void open(){
     frame = new BankFrame();
-  frame.bankframe.setVisible(true);
+    frame.bankframe.setVisible(true);
   }
 
   //TODO:

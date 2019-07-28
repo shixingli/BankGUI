@@ -1,12 +1,15 @@
 public abstract class Currency { // based against USD
+  private String id;
   private double exchangeRate;
   
   public Currency() {
     this.exchangeRate = 1.0;
+    this.id = "USD";
   }
   
-  public Currency(int rate) { // USD : this value
+  public Currency(String countryCode, double rate) { // USD : this value
     this.exchangeRate = rate;
+    this.id = countryCode;
   }
   
 }
