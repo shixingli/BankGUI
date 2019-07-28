@@ -14,17 +14,36 @@ public abstract class Account {
     // *add withdraw to account of opening fee *
   }
   
-  void withDraw(double amount){
-    this.balance -= amount;
-    Withdrawal w = new Withdrawal(amount);
-    this.txns.add(w);
-  }
-  
-  void deposit(double amount){
-    this.balance += amount;
-    Deposit d = new Deposit(amount);
-    this.txns.add(d);
-  }
+void withDraw(double amount,String currency){
+      this.balance -= amount;
+      this.balance += amount;
+      if(currency.equals("USD")) {
+        USD -= amount;
+      }
+      if(currency.equals("CAD")) {
+        CAD -= amount;
+      }
+      if(currency.equals("Bitcoin")) {
+        Bitcoin -=amount;
+      }
+//      Withdrawal w = new Withdrawal(amount);
+//      this.txns.add(w);
+    }
+
+void deposit(double amount,String currency){
+      this.balance += amount;
+      if(currency.equals("USD")) {
+        USD+= amount;
+      }
+      if(currency.equals("CAD")) {
+        CAD+= amount;
+      }
+      if(currency.equals("Bitcoin")) {
+        Bitcoin+=amount;
+      }
+//      Deposit d = new Deposit(amount);
+//      this.txns.add(d);
+    }
   
   public String getType() {
     return this.id;
@@ -44,6 +63,10 @@ public abstract class Account {
   
   public String toString() {
     return this.id + " account with a current value of $" + this.balance;
+  }
+  
+  String check_balance() {
+      return ("you have "+USD + " USD, " + CAD + " CAD " + "and " + Bitcoin +" Bitcoins!");
   }
   
   <T> void transfer(T account, double amount){
