@@ -146,10 +146,10 @@ public class Customer {
     if (this.accounts == null) {
       return null;
     } else {
-      List<Transaction> txnHistory = new LinkedList<Transaction>();
+      HashMap<String, Transaction> txnHistory = new HashMap<String, Transaction>();
       for (Account account : this.accounts) {
         for (Transaction txn : account.view_txns()) {
-          txnHistory.addAll(account, txn);
+          txnHistory.put(account.getType(), txn);
         }
       }
       return txnHistory;

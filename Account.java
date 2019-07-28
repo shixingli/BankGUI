@@ -1,9 +1,9 @@
 import java.util.*;
 
 public abstract class Account {
-  private String id;
-  private double balance;
-  private List<Transaction> txns;
+  protected String id;
+  protected double balance;
+  protected List<Transaction> txns;
   
   public Account(double amount) {
     this.balance = amount;
