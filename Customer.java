@@ -397,6 +397,7 @@ public class Customer {
         int lenList = history.size();
         panel.setLayout(new GridLayout(1 + lenList, 2));
         System.out.println("Here");
+        System.out.println(history.toString());
         for (Transaction txn : history) {
           System.out.println("In the loop");
           panel.add(new JLabel(txn.getId()));

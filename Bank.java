@@ -1,7 +1,7 @@
 //shizhen
 public class Bank {
   // List<Customer> customers; // list of customers
-  // HashMap<Integer, Customer> map = new HashMap<>(); //cust id is integer
+  public static HashMap<String, Customer> map = new HashMap<>(); //cust id is username
   // Manager bankManager;
   // Currency[] currencies;
   
@@ -11,7 +11,7 @@ public class Bank {
 
   void open(){
     frame = new BankFrame();
-		frame.bankframe.setVisible(true);
+  frame.bankframe.setVisible(true);
   }
 
   //TODO:
