@@ -12,4 +12,8 @@ public class Currency {
     this.id = countryCode;
   }
   
+  public String getCountry() {
+    return this.id;
+  }
+  
 }

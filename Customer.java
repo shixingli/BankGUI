@@ -247,16 +247,23 @@ public class Customer {
         SavingsCreateListener savingsCL = new SavingsCreateListener();
         savingsC.addActionListener(savingsCL);
         
-        
+     
         JPanel loan = new JPanel();
         if (Customer.this.collateral.isEmpty()) {
           loan.add(new JLabel("Insufficient collateral to take out a loan."));
         } else {
-        loan.add(new JLabel("Amount:"));
-        loan.add(new JTextField(10));
-        
-        loan.add(new JLabel("Currency Country Code:"));
-        loan.add(new JTextField(3));
+          loan.add(new JLabel("Amount:"));
+          JTextField loanAmount = new JTextField(7);
+          loan.add(loanAmount);
+          
+          loan.add(new JLabel("Curr. Country Code:"));
+          JTextField loanCurr = new JTextField(3);
+          loan.add(loanCurr);
+          JButton sub = new JButton("Submit");
+          loan.add(sub);
+          
+          LoanListener loanL = new LoanListener();
+          sub.addActionListener(loanL);
         }
         
         JButton display = new JButton("Show");
@@ -264,22 +271,6 @@ public class Customer {
         history.add(display);
         TransactionHistoryListener historyL = new TransactionHistoryListener();
         display.addActionListener(historyL);
-        
-        
-//        JPanel withdraw = new JPanel();
-//        withdraw.add(new JLabel("Amount:"));
-//        withdraw.add(new JTextField(10));
-//        
-//        withdraw.add(new JLabel("Currency Country Code:"));
-//        withdraw.add(new JTextField(3));
-//        
-//        // unncessary to have the same panel? //
-//        JPanel deposit = new JPanel();
-//        deposit.add(new JLabel("Amount:"));
-//        deposit.add(new JTextField(10));
-//        
-//        deposit.add(new JLabel("Currency Country Code:"));
-//        deposit.add(new JTextField(3));
          
         // creating the drop down menu
         options = new JPanel(new CardLayout());
@@ -289,11 +280,10 @@ public class Customer {
         options.add(create, "Open a New Account");
         options.add(loan, "Take Out a Loan"); // pop up window for this?
         options.add(history, "View Transaction History"); // buttons here and then depending on which will get pop up window
-//        
-
-      
+        
         pane.add(menu, BorderLayout.PAGE_START);
         pane.add(options, BorderLayout.CENTER);
+  
     }
      
     public void itemStateChanged(ItemEvent evt) {
@@ -382,12 +372,20 @@ public class Customer {
         TransactionHistoryFrame tf = new TransactionHistoryFrame();
       }
     }
+      
+    class LoanListener implements ActionListener {
+      public void actionPerformed( ActionEvent e ) {
+        System.out.println("Customer attempting to take out a loan!");
+        String loan = loanAmount.getText();
+        String curr = loanCurr.getText();
+        Syste
+      } 
+    }
   }
   
   /* 
    *  ACCOUNT DNE FRAME
    */
-  
   public class AccountDNEPanel extends JPanel {
     
     public AccountDNEPanel(String accType, String customer) {
@@ -442,6 +440,18 @@ public class Customer {
     }
   }
   
+  /* 
+   * TAKE OUT A LOAN FRAME 
+   */
+  public class LoanPanel extends JPanel {
+    public LoanPanel(boolean validCurr) {
+      if (validCurr) {
+        JOptionPane.showMessageDialog("Success!", JOptionPane.INFORMATION_MESSAGE);
+      } else {
+        JOptionPane.showMessageDialog("FAILURE!", JOptionPane.ERROR_MESSAGE);
+      }
+    }
+
   public static void test() {
     Checking check = new Checking(100.0);
     check.deposit(900);
