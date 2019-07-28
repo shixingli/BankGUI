@@ -33,7 +33,6 @@ public class Customer {
     this.name = "DEFAULT";
     this.id = "username";
     this.pwd = "pwd";
-    this.loans = new LinkedList<Loan>();
     this.accounts = new LinkedList<Account>();
     Bank.customers.put(this.id, this);
   }
@@ -61,7 +60,6 @@ public class Customer {
     this.name = "DEFAULT";
     this.id = "username";
     this.pwd = "pwd";
-    this.loans = new LinkedList<Loan>();
     
     double bal = 0;
     for (Account account : accounts) {
@@ -259,39 +257,39 @@ public class Customer {
           for (Account acc : Customer.this.accounts) {
             if (acc instanceof Checking) {
               hasChecking = true;
-              break;
-            }
-          }
-          if (hasChecking) {
-          loan.add(new JLabel("Amount:"));
-          loan.add(loanAmount);
-          
-          loan.add(new JLabel("Curr. Country Code:"));
-          loan.add(loanCurr);
-          JButton sub = new JButton("Submit");
-          loan.add(sub);
-          
-          sub.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-              System.out.println("Customer attempting to take out a loan!");
-              System.out.println(loanAmount);
-              String loan = loanAmount.getText();
-              String curr = loanCurr.getText();
+              loan.add(new JLabel("Amount:"));
+              loan.add(loanAmount);
               
-              boolean success = false;
-              for (Currency allowed : Bank.currencies) {
-                if (curr.equals(allowed.getCountry())) {
-                  success = true;
-                  loans.add(new Loan(Double.parseDouble(loan)));
-                  break;
-                }
+              loan.add(new JLabel("Curr. Country Code:"));
+              loan.add(loanCurr);
+              JButton sub = new JButton("Submit");
+              loan.add(sub);
+              
+              sub.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                  System.out.println("Customer attempting to take out a loan!");
+                  System.out.println(loanAmount);
+                  String loan = loanAmount.getText();
+                  String curr = loanCurr.getText();
+                  
+                  boolean success = false;
+                  for (Currency allowed : Bank.currencies) {
+                    if (curr.equals(allowed.getCountry())) {
+                      success = true;
+                      Loan poor = new Loan(Double.parseDouble(loan));
+                      loans.add(poor);
+                      acc.deposit(poor.moneyBack());
+                      break;
+                    }
               }
               LoanPanel loanWindow = new LoanPanel(loan, success);
             }
           });
           
-          } else {
+              break;
+            }
+          } if (!hasChecking) {
             loan.add(new JLabel("Only customers with Checking accounts can take out loans."));
           }
         }
@@ -467,7 +465,8 @@ public class Customer {
   public class LoanPanel extends JPanel {
     public LoanPanel(String amnt, boolean validCurr) {
       if (validCurr) {
-        JOptionPane.showMessageDialog(this, "$ " + amnt + "added to your Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
+        //get
+        JOptionPane.showMessageDialog(this, "$ " + amnt + "added to your primary Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
       } else {
       JOptionPane.showMessageDialog(this, "Currency not supported by this bank.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
       }

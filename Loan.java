@@ -2,7 +2,7 @@ public class Loan {
   private double amount;
   
   public Loan(double howMuch) {
-    this.amount;
+    this.amount = howMuch;
   }
   
   public double moneyBack() {
