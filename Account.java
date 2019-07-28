@@ -38,8 +38,8 @@ public abstract class Account {
     return this.txns;
   }
   
-  public void setAmount(double begin) {
-    this.amount = begin;
+  public void setBal(double begin) {
+    this.balance = begin;
   }
   
   public String toString() {

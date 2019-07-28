@@ -385,24 +385,27 @@ public class Customer {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to create a customer's checking account!");
         
-        for (Account accounts : Customer.this.accounts) {
+        for (Account account : Customer.this.accounts) {
           if (account instanceof Checking) {
             AccountEPanel exists = new AccountEPanel("Checking", Customer.this.name);
             break;
           }
         }
-        
+        Checking newCheck = new Checking();
       }
     }
+  
     
     class SavingsCreateListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to create a customer's savings account!");
         
-        for (Account accounts : Customer.this.accounts) {
+        for (Account account : Customer.this.accounts) {
           if (account instanceof Savings) {
             AccountEPanel exists = new AccountEPanel("Savings", Customer.this.name);
             break;
+          }
+        }
       }
     }
     
@@ -494,7 +497,7 @@ public class Customer {
           JOptionPane.showMessageDialog(this, "$ " + amnt + "added to your primary Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
         }
       } else {
-      JOptionPane.showMessageDialog(this, "Currency not supported by this bank.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Currency not supported by this bank.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
       }
     }
   }
