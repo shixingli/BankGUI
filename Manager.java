@@ -10,7 +10,7 @@ public class Manager{
    private static String id = "Louis";
    private static String password = "123456";
    private HashMap<String,Customer> customerHM;
-   private static int accountFee;
+   private static double accountFee;
 
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
        private JFrame MFrame;
@@ -120,7 +120,7 @@ public class Manager{
       return isIt;
     }
 
-    public static int getAccountFee() {
+    public static double getAccountFee() {
         return accountFee;
     }
 
