@@ -6,12 +6,12 @@ import java.awt.event.*;
 public class Manager{
    private static String id = "Louis";
    private static String password = "123456";
+   private List customerList;
 
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
        private JFrame MFrame;
-       private List customerList;
 
-       private ManagerFrame(List customerList) {
+       private ManagerFrame(List c) {
            JFrame frame = new JFrame("RichManBank's Esteemed Manager");
            frame.setLayout(new GridLayout(3, 3));
            frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
@@ -22,7 +22,7 @@ public class Manager{
            frame.add(searchCustomerID());
            frame.add(listOfDebtors());
            this.MFrame = frame;
-           this.customerList = customerList;
+           customerList = c;
        }
 
        private JPanel searchCustomerID() {
@@ -42,17 +42,15 @@ public class Manager{
        }
 
        private JPanel listOfDebtors(){
-           String[] debtors = new String[3]
-           JPanel DebtPanel = new JPanel(debtors);
+           JPanel DebtPanel = new JPanel((LayoutManager) customerList);
            DebtPanel.setLayout(new GridLayout(2,2));
            DebtPanel.add(new JLabel("List of Debtors: "));
 
-           JList list = new JList(debtors);
+           JList list = new JList((ListModel) customerList);
            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
            list.setLayoutOrientation(JList.VERTICAL);
            list.setVisibleRowCount(3);
            list.addMouseListener(new MouseAdapter() {
-               @Override
                public void mouseClicked(MouseEvent e) {
                    if (e.getClickCount() == 2) {
                        Customer selectedItem = (Customer) list.getSelectedValue();
@@ -69,8 +67,9 @@ public class Manager{
            return DebtPanel;
        }
    }
-    private Manager(){
-      ManagerFrame mf = new ManagerFrame();
+    private Manager(List c){
+      ManagerFrame mf = new ManagerFrame(c);
+      this.customerList = c;
       mf.MFrame.setVisible(true);
     }
 
@@ -96,6 +95,7 @@ public class Manager{
     }
 
     public static void main(String[] args){
-      Manager m = new Manager();
+       List test = new List();
+      Manager m = new Manager(test);
     }
 }
