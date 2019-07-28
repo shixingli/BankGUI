@@ -25,9 +25,7 @@ public class SavecheckFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Account saving = new Savings(0.00);
-		SavecheckFrame window = new SavecheckFrame(saving) ;
-		window.savecheckframe.setVisible(true);
+		
 	}
 	
 	
