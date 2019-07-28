@@ -31,7 +31,7 @@ public abstract class Account {
   }
   
   public String toString() {
-    return this.id + " account with a current value of $ " + this.balance;
+    return this.id + " account with a current value of $" + this.balance;
   }
   
   <T> void transfer(T account, double amount){

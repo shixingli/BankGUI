@@ -3,8 +3,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class Transaction {
-  String id;
-  double amount;
+  private String id;
+  private double amount;
   
   public Transaction(double amount) {
     this.amount = amount;

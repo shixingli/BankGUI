@@ -403,13 +403,12 @@ public class Customer {
         
       } else {
         int lenList = history.size();
-        panel.setLayout(new GridLayout(1 + lenList, 2));
-        System.out.println("Here");
-        System.out.println(history.toString());
+        panel.setLayout(new GridLayout(0, 2));
         for (Transaction txn : history) {
           System.out.println("In the loop");
           panel.add(new JLabel(txn.getId()));
-          //panel.add(new JButton("OK-2"));
+          panel.add(new JLabel(txn.getAmount());
+          panel.add(new JButton("OK-2"));
           this.add(panel);
         }
       }
