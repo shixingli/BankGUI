@@ -1,9 +1,9 @@
 import java.util.*;
 
 public abstract class Account {
-  String id;
-  double balance;
-  List<Transaction> txns;
+  private String id;
+  private double balance;
+  private List<Transaction> txns;
   
   public Account(double amount) {
     this.balance = amount;
@@ -20,6 +20,10 @@ public abstract class Account {
     this.balance += amount;
     Deposit d = new Deposit(amount);
     this.txns.add(d);
+  }
+  
+  public String getType() {
+    return this.id;
   }
   
   double view_balance() {

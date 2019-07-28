@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.Calendar;
 import java.util.LinkedList;
+import java.util.HashMap;
 
 public class Customer {
   private String name;
@@ -141,13 +142,15 @@ public class Customer {
     this.accounts = setAcc;
   }
   
-  public List<Transaction> getHistoryAllAcc() {
+  public HashMap<String, Transaction> getHistoryAllAcc() {
     if (this.accounts == null) {
       return null;
     } else {
       List<Transaction> txnHistory = new LinkedList<Transaction>();
       for (Account account : this.accounts) {
-        txnHistory.addAll(account.view_txns());
+        for (Transaction txn : account.view_txns()) {
+          txnHistory.addAll(account, txn);
+        }
       }
       return txnHistory;
     }
@@ -407,8 +410,7 @@ public class Customer {
         for (Transaction txn : history) {
           System.out.println("In the loop");
           panel.add(new JLabel(txn.getId()));
-          panel.add(new JLabel("" + txn.getAmount()));
-          panel.add(new JButton("OK-2"));
+          panel.add(new JLabel("$" + txn.getAmount(), JLabel.CENTER));
           this.add(panel);
         }
       }
@@ -417,6 +419,18 @@ public class Customer {
       this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       this.setVisible(true);
     }
+  }
+  
+  public static void test() {
+    Checking check = new Checking(100.0);
+    check.deposit(900);
+    Savings save = new Savings(100.0);
+    save.withDraw(100);
+    List<Account> acc = new LinkedList<Account>();
+    acc.add(check);
+    acc.add(save);
+    Customer me = new Customer("Deborah Reynolds", "dbreynolds", "1234");
+    me.makeFrame();
   }
 }
   
