@@ -123,6 +123,7 @@ public class Customer {
   
   /* returns the total balance for all accounts for a customer */
   public double getTotalBalance() {
+    this.updateBalance();
     return this.totalBalance;
   }
   

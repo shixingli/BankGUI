@@ -4,4 +4,5 @@ public class Deposit extends Transaction {
     super(toDeposit);
     this.id = "Deposit on " + this.time();
   }
+  
 }
