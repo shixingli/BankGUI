@@ -14,7 +14,7 @@ public class Manager{
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
        private JFrame MFrame;
 
-       private ManagerFrame(HashMap c) {
+       private ManagerFrame() {
            JFrame frame = new JFrame("RichManBank's Esteemed Manager");
            frame.setLayout(new GridLayout(3, 3));
            frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
@@ -75,10 +75,17 @@ public class Manager{
            DebtPanel.add(scrollPane);
            return DebtPanel;
        }
+
+       private void customerOverview(Customer c){
+//           JFrame f = new JFrame();
+//
+//           f.setVisible(true);
+       }
+
    }
     private Manager(HashMap c){
        this.customerHM = c;
-      ManagerFrame mf = new ManagerFrame(c);
+      ManagerFrame mf = new ManagerFrame();
 
       mf.MFrame.setVisible(true);
     }
@@ -107,9 +114,9 @@ public class Manager{
     public static void main(String[] args){
         HashMap<String, Customer> customers = new HashMap<>();
         Checking check = new Checking(100.0);
-        check.deposit(900);
+        check.deposit(900, "USD");
         Savings save = new Savings(100.0);
-        save.withDraw(100);
+        save.withDraw(100, "USD");
         List<Account> acc = new LinkedList<Account>();
         acc.add(check);
         acc.add(save);
