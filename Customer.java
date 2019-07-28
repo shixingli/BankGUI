@@ -384,11 +384,20 @@ public class Customer {
     }
   }
   
+  /* 
+   *  ACCOUNT DNE FRAME
+   */
   
+  public class AccountDNEPanel extends JPanel {
+    
+    public AccountDNEPanel(String accType, String customer) {
+      JOptionPane.showMessageDialog(this, customer + " does not have a '" + accType + "' account", "Invalid Request", JOptionPane.ERROR_MESSAGE);
+    }
+  }
+
   /* 
    * TRANSACTION HISTORY FRAME
    */
-  
   public class TransactionHistoryFrame extends JFrame {
     public TransactionHistoryFrame() {
       this.setTitle("Rich Man's Bank — " + Customer.this.name + " Transaction History");
@@ -416,7 +425,6 @@ public class Customer {
           panel.add(new JLabel(capsType, JLabel.CENTER));
           panel.add(new JLabel("AMOUNT", JLabel.CENTER));
           for (Transaction txn : acc.view_txns()) {
-            System.out.println("In the loop");
             panel.add(new JLabel(txn.getId(), JLabel.CENTER));
             panel.add(new JLabel("$" + txn.getAmount(), JLabel.CENTER));
             this.add(panel);
