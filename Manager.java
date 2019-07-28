@@ -48,24 +48,23 @@ public class Manager{
            DebtPanel.setLayout(new GridLayout(2,2));
            DebtPanel.add(new JLabel("List of Debtors: "));
 
-           Customer[] c = new Customer[3];
+           String[] names = new String[customerHM.size()];
            int i = 0;
             for(Map.Entry<String,Customer> e: customerHM.entrySet()){
                if ( e.getValue().getLoan() == null) {
-                   c[i] = e.getValue();
+                   names[i] = e.getValue().getUsername();
                }
                i++;
            }
-           JList list = new JList(c);
+           JList list = new JList(names);
            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
            list.setLayoutOrientation(JList.VERTICAL);
            list.setVisibleRowCount(3);
            list.addMouseListener(new MouseAdapter() {
                public void mouseClicked(MouseEvent e) {
                    if (e.getClickCount() == 2) {
-                       System.out.println(list.getSelectedValue());
-                       Customer selectedItem = (Customer) list.getSelectedValue();
-                       System.out.println(selectedItem.toString());
+                       Customer selectedItem = customerHM.get(list.getSelectedValue());
+                       selectedItem.makeFrame();
                    }
                }
            });
@@ -116,9 +115,8 @@ public class Manager{
         acc.add(save);
         Customer me = new Customer(acc, "Deborah Reynolds", "dbreynolds", "1234");
         Customer s = new Customer(acc, "Louis Tannudin", "ltann", "1234");
-        customers.put("id1", me);
-        customers.put("id2", s);
-
+        customers.put("dbreynolds", me);
+        customers.put("ltann", s);
         Manager m = new Manager(customers);
     }
 }
