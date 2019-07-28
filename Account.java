@@ -8,6 +8,7 @@ public abstract class Account {
   public Account(double amount) {
     this.balance = amount;
     this.txns = new LinkedList<Transaction>();
+    // *add withdraw to account of opening fee *
   }
   
   void withDraw(double amount){

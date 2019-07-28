@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.Calendar;
 import java.util.LinkedList;
-import java.util.HashMap;
 
 public class Customer {
   private String name;
@@ -142,19 +141,25 @@ public class Customer {
     this.accounts = setAcc;
   }
   
-  public HashMap<String, Transaction> getHistoryAllAcc() {
+  /* gets all history for accs w/out differentiation */
+  public List<Transaction> getHistoryAllAcc() {
     if (this.accounts == null) {
       return null;
     } else {
-      HashMap<String, Transaction> txnHistory = new HashMap<String, Transaction>();
+      List<Transaction> txnHistory = new LinkedList<Transaction>();
       for (Account account : this.accounts) {
-        for (Transaction txn : account.view_txns()) {
-          txnHistory.put(account.getType(), txn);
-        }
+        txnHistory.addAll(account.view_txns());
       }
       return txnHistory;
     }
   }
+  
+  //  /* gets history for a given account */
+//  public List<Transaction> getHistoryForAcc(Account account) {
+//    List<Transaction> txnHistory = new LinkedList<Transaction>();
+//    txnHistory.addAll(account.view_txns());
+//    return txnHistory;
+//  }
   
   public void makeFrame() {
       JFrame customerFrame = new JFrame("Rich Man's Bank — " + Customer.this.name + " Financial Summary");
@@ -405,13 +410,21 @@ public class Customer {
         this.add(panel);
         
       } else {
-        int lenList = history.size();
         panel.setLayout(new GridLayout(0, 2));
-        for (Transaction txn : history) {
-          System.out.println("In the loop");
-          panel.add(new JLabel(txn.getId()));
-          panel.add(new JLabel("$" + txn.getAmount(), JLabel.CENTER));
-          this.add(panel);
+        for (Account acc : Customer.this.accounts) {
+          String capsType = acc.getType().toUpperCase();
+          panel.add(new JLabel(capsType, JLabel.CENTER));
+          panel.add(new JLabel("AMOUNT", JLabel.CENTER));
+          for (Transaction txn : acc.view_txns()) {
+            System.out.println("In the loop");
+            panel.add(new JLabel(txn.getId(), JLabel.CENTER));
+            panel.add(new JLabel("$" + txn.getAmount(), JLabel.CENTER));
+            this.add(panel);
+          }
+          panel.add(new JLabel("Current Value", JLabel.CENTER));
+          panel.add(new JLabel("$" + acc.view_balance(), JLabel.CENTER));
+          panel.add(new JLabel(""));
+          panel.add(new JLabel(""));
         }
       }
       this.pack();
@@ -429,7 +442,7 @@ public class Customer {
     List<Account> acc = new LinkedList<Account>();
     acc.add(check);
     acc.add(save);
-    Customer me = new Customer("Deborah Reynolds", "dbreynolds", "1234");
+    Customer me = new Customer(acc, "Deborah Reynolds", "dbreynolds", "1234");
     me.makeFrame();
   }
 }
