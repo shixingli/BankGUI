@@ -467,9 +467,9 @@ public class Customer {
   public class LoanPanel extends JPanel {
     public LoanPanel(String amnt, boolean validCurr) {
       if (validCurr) {
-        JOptionPane.showMessageDialog(this, "$" + amnt + "added to your Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "$ " + amnt + "added to your Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
       } else {
-      JOptionPane.showMessageDialog(this, "Currency invalid.\n Currencies supported are: " + Bank.currencies, "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "Currency not supported by this bank.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
       }
     }
   }
