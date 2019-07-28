@@ -279,7 +279,7 @@ public class Customer {
                       success = true;
                       Loan poor = new Loan(Double.parseDouble(loan));
                       loans.add(poor);
-                      acc.deposit(poor.moneyBack());
+                      acc.deposit(poor.moneyBack(), curr);
                       break;
                     }
               }
@@ -392,6 +392,9 @@ public class Customer {
           }
         }
         Checking newCheck = new Checking();
+        Customer.this.accounts.add(newCheck);
+        SavecheckFrame window = new SavecheckFrame(newCheck);
+        window.savecheckframe.setVisible(true);
       }
     }
   
@@ -406,6 +409,10 @@ public class Customer {
             break;
           }
         }
+        Savings newSave = new Savings();
+        Customer.this.accounts.add(newSave);
+        SavecheckFrame window = new SavecheckFrame(newSave);
+        window.savecheckframe.setVisible(true);
       }
     }
     
@@ -505,9 +512,9 @@ public class Customer {
   public static void test() {
     Bank richMan = new Bank();
     Checking check = new Checking(100.0);
-    check.deposit(900);
+    check.deposit(900, "USD");
     Savings save = new Savings(100.0);
-    save.withDraw(100);
+    save.withDraw(100, "USD");
     List<Account> acc = new LinkedList<Account>();
     acc.add(check);
     acc.add(save);
