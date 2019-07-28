@@ -1,28 +1,30 @@
-import javax.print.attribute.standard.JobMediaSheetsCompleted;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class Manager{
    private static String id = "Louis";
    private static String password = "123456";
-   private List customerList;
+   private HashMap<String,Customer> customerHM;
 
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
        private JFrame MFrame;
 
-       private ManagerFrame(List c) {
+       private ManagerFrame(HashMap c) {
            JFrame frame = new JFrame("RichManBank's Esteemed Manager");
            frame.setLayout(new GridLayout(3, 3));
            frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
            frame.setLocation(100, 100);
            frame.setSize(1000, 700);
            frame.setLocation(200, 100);
-           frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            frame.add(searchCustomerID());
            frame.add(listOfDebtors());
            this.MFrame = frame;
-           customerList = c;
        }
 
        private JPanel searchCustomerID() {
@@ -42,20 +44,28 @@ public class Manager{
        }
 
        private JPanel listOfDebtors(){
-           JPanel DebtPanel = new JPanel((LayoutManager) customerList);
+           JPanel DebtPanel = new JPanel();
            DebtPanel.setLayout(new GridLayout(2,2));
            DebtPanel.add(new JLabel("List of Debtors: "));
 
-           JList list = new JList((ListModel) customerList);
+           Customer[] c = new Customer[3];
+           int i = 0;
+            for(Map.Entry<String,Customer> e: customerHM.entrySet()){
+               if ( e.getValue().getLoan() == null) {
+                   c[i] = e.getValue();
+               }
+               i++;
+           }
+           JList list = new JList(c);
            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
            list.setLayoutOrientation(JList.VERTICAL);
            list.setVisibleRowCount(3);
            list.addMouseListener(new MouseAdapter() {
                public void mouseClicked(MouseEvent e) {
                    if (e.getClickCount() == 2) {
+                       System.out.println(list.getSelectedValue());
                        Customer selectedItem = (Customer) list.getSelectedValue();
-                       selectedItem.toString();
-
+                       System.out.println(selectedItem.toString());
                    }
                }
            });
@@ -67,9 +77,10 @@ public class Manager{
            return DebtPanel;
        }
    }
-    private Manager(List c){
+    private Manager(HashMap c){
+       this.customerHM = c;
       ManagerFrame mf = new ManagerFrame(c);
-      this.customerList = c;
+
       mf.MFrame.setVisible(true);
     }
 
@@ -95,7 +106,19 @@ public class Manager{
     }
 
     public static void main(String[] args){
-       List test = new List();
-      Manager m = new Manager(test);
+        HashMap<String, Customer> customers = new HashMap<>();
+        Checking check = new Checking(100.0);
+        check.deposit(900);
+        Savings save = new Savings(100.0);
+        save.withDraw(100);
+        List<Account> acc = new LinkedList<Account>();
+        acc.add(check);
+        acc.add(save);
+        Customer me = new Customer(acc, "Deborah Reynolds", "dbreynolds", "1234");
+        Customer s = new Customer(acc, "Louis Tannudin", "ltann", "1234");
+        customers.put("id1", me);
+        customers.put("id2", s);
+
+        Manager m = new Manager(customers);
     }
 }
