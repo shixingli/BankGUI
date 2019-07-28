@@ -407,7 +407,7 @@ public class Customer {
         for (Transaction txn : history) {
           System.out.println("In the loop");
           panel.add(new JLabel(txn.getId()));
-          panel.add(new JLabel(txn.getAmount());
+          panel.add(new JLabel("" + txn.getAmount()));
           panel.add(new JButton("OK-2"));
           this.add(panel);
         }
