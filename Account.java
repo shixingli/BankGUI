@@ -5,6 +5,9 @@ public abstract class Account {
   protected double balance;
   protected List<Transaction> txns;
   
+  public Account() {
+  }
+  
   public Account(double amount) {
     this.balance = amount;
     this.txns = new LinkedList<Transaction>();
