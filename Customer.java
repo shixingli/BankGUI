@@ -283,7 +283,7 @@ public class Customer {
               for (Currency allowed : Bank.currencies) {
                 if (curr.equals(allowed.getCountry())) {
                   success = true;
-                  
+                  loans.add(new Loan(Double.parseDouble(loan)));
                   break;
                 }
               }
@@ -465,11 +465,11 @@ public class Customer {
    * TAKE OUT A LOAN FRAME 
    */
   public class LoanPanel extends JPanel {
-    public LoanPanel(boolean validCurr) {
+    public LoanPanel(String amnt, boolean validCurr) {
       if (validCurr) {
-        JOptionPane.showMessageDialog(this, "Loan amount successfully added to your Checking account.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "$" + amnt + "added to your Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
       } else {
-      JOptionPane.showMessageDialog(this, "FAILURE", "Currency type invalid", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "Currency invalid.\n Currencies supported are: " + Bank.currencies, "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
       }
     }
   }
