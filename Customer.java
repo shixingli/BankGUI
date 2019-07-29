@@ -355,7 +355,8 @@ public class Customer {
       if (Customer.this.accounts != null) {
         for (Account account : Customer.this.accounts) {
           if (account instanceof Checking) {
-            // open the checking frame
+            SavecheckFrame window = new SavecheckFrame(account);
+            window.savecheckframe.setVisible(true);
             success = true;
           }
         }
@@ -396,10 +397,8 @@ public class Customer {
             break;
           }
         }
-        Checking newCheck = new Checking();
-        Customer.this.accounts.add(newCheck);
-        SavecheckFrame window = new SavecheckFrame(newCheck);
-        window.savecheckframe.setVisible(true);
+//        Checking newCheck = new Checking();
+//        Customer.this.accounts.add(newCheck);
       }
     }
   
