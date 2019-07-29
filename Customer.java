@@ -219,17 +219,21 @@ public class Customer {
         JPanel withdraw = new JPanel();
         withdraw.add(checkingW);
         withdraw.add(savingsW);
-        CheckingWListener checkWL = new CheckingWListener();
-        SavingsWListener savingsWL = new SavingsWListener(); 
+        AccountListener checkWL = new AccountListener("Checking", "Withdraw");
+        AccountListener savingsWL = new AccountListener("Savings", "Withdraw");
         checkingW.addActionListener(checkWL);
         savingsW.addActionListener(savingsWL);
-        
         
         JButton checkingD = new JButton("Checking");
         JButton savingsD = new JButton("Savings");
         JPanel deposit = new JPanel();
         deposit.add(checkingD);
         deposit.add(savingsD);
+        AccountListener checkDL = new AccountListener("Checking", "Deposit");
+        AccountListener savingsDL = new AccountListener("Savings", "Deposit");
+        checkingD.addActionListener(checkDL);
+        savingsD.addActionListener(savingsDL);
+      
         
 //        CheckSummaryListener checkSumL = new CheckSummaryListener();
 //        checkingSum.addActionListener(checkSumL); 
@@ -238,19 +242,16 @@ public class Customer {
 
         
         
-//        checkingD.addActionListener(checkL);
-//        savingsD.addActionListener(savingsL);
-//        
         JButton checkingC = new JButton("Checking");
         JButton savingsC = new JButton("Savings");
         JPanel create = new JPanel();
         create.add(checkingC);
         create.add(savingsC);
         
-        CheckingCreateListener checkCL = new CheckingCreateListener();
-        checkingC.addActionListener(checkCL); 
-        SavingsCreateListener savingsCL = new SavingsCreateListener();
-        savingsC.addActionListener(savingsCL);
+//        CheckingCreateListener checkCL = new CheckingCreateListener();
+//        checkingC.addActionListener(checkCL); 
+//        SavingsCreateListener savingsCL = new SavingsCreateListener();
+//        savingsC.addActionListener(savingsCL);
         
      
         JPanel loan = new JPanel();
@@ -350,48 +351,57 @@ public class Customer {
   }
   
   /* INCOMPLETE */
-  class CheckingWListener implements ActionListener {
-    String
+  class AccountListener implements ActionListener {
+    String accType;
+    String transaction;
+    public AccountListener(String type, String txn) {
+     this.accType = type;
+     this.transaction = txn;
+    }
+    
     public void actionPerformed( ActionEvent e ) {
       System.out.println("Open the customer's checking account, if it exists.");
       
       boolean success = false;
       if (Customer.this.accounts != null) {
         for (Account account : Customer.this.accounts) {
-          if (account instanceof Checking) {
-            SavecheckFrame window = new SavecheckFrame(account);
+          if (account.getType().equals(this.accType)) {
+            System.out.println(account.getType() + "        " + this.transaction);
+            SavecheckFrame window = new SavecheckFrame(account, this.transaction);
             window.savecheckframe.setVisible(true);
             success = true;
           }
         }
       }
       if (!success) {
-        AccountDNEPanel dne = new AccountDNEPanel("Checking", Customer.this.name);
+        AccountDNEPanel dne = new AccountDNEPanel(this.accType, Customer.this.name);
       }
     }
   }
-  
-    /* INCOMPLETE */
-    class SavingsListener implements ActionListener {
-      public void actionPerformed( ActionEvent e ) {
-        System.out.println("Open the customer's savings account, if it exists.");
-        
-        boolean success = false;
-        if (Customer.this.accounts != null) {
-          for (Account account : Customer.this.accounts) {
-            if (account instanceof Savings) {
-              // open the checking frame
-              success = true;
-            }
-          }
-        }
-        if (!success) {
-          AccountDNEPanel dne = new AccountDNEPanel("Savings", Customer.this.name);
-        }
-      }
-    }
+//  
+//    /* INCOMPLETE */
+//    class SavingsListener implements ActionListener {
+//      public void actionPerformed( ActionEvent e ) {
+//        System.out.println("Open the customer's savings account, if it exists.");
+//        
+//        boolean success = false;
+//        if (Customer.this.accounts != null) {
+//          for (Account account : Customer.this.accounts) {
+//            if (account instanceof Savings) {
+//              // open the checking frame
+//              success = true;
+//            }
+//          }
+//        }
+//        if (!success) {
+//          AccountDNEPanel dne = new AccountDNEPanel("Savings", Customer.this.name);
+//        }
+//      }
+//    }
     
-    class CheckingCreateListener implements ActionListener {
+    class CreateListener implements ActionListener {
+      String account;
+      
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to create a customer's checking account!");
         
