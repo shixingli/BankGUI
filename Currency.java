@@ -20,7 +20,7 @@ public class Currency {
     return this.id;
   }
   
-  public double rate(){
+  public double getRate(){
     return this.exchangeRate;
   }
   

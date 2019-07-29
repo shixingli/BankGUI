@@ -17,34 +17,51 @@ public abstract class Account {
   }
 
 void withDraw(double amount,String currency){
-      this.balance -= amount;
+    for (Currency curr : Bank.currencies) {
+      if (currency.equals(currency)) {
+        double rate = curr.getRate();
+        double newAmount = amount * rate;
+        this.balance -= newAmount;
+        Withdrawal w = new Withdrawal(amount);
+        this.txns.add(w);
+        break;
+      }
 //      this.balance += amount;
-     if(currency.equals("USD")) {
-       USD -= amount;
-     }
+//     if(currency.equals("USD")) {
+//       USD -= amount;
+//     }
 //      if(currency.equals("CAD")) {
 //        CAD -= amount;
 //      }
 //      if(currency.equals("Bitcoin")) {
 //        Bitcoin -=amount;
 //      }
-      Withdrawal w = new Withdrawal(amount);
-      this.txns.add(w);
     }
+}
 
 void deposit(double amount,String currency){
-      this.balance += amount;
-     if(currency.equals("USD")) {
-       USD+= amount;
-     }
+  for (Currency curr : Bank.currencies) {
+    if (currency.equals(currency)) {
+      double rate = curr.getRate();
+      double newAmount = amount * rate;
+      this.balance += newAmount;
+      Deposit d = new Deposit(newAmount);
+      this.txns.add(d);
+      break;
+    }
+  }
+//  this.balance += amount;
+//     if(currency.equals("USD")) {
+//       USD+= amount;
+//     }
 //      if(currency.equals("CAD")) {
 //        CAD+= amount;
 //      }
 //      if(currency.equals("Bitcoin")) {
 //        Bitcoin+=amount;
 //      }
-      Deposit d = new Deposit(amount);
-      this.txns.add(d);
+
+
     }
 
   public String getType() {
@@ -68,7 +85,7 @@ void deposit(double amount,String currency){
   }
 
   String check_balance() {
-      return ("you have "+USD);
+      return ("you have "+balance);
   }
 
   <T> void transfer(T account, double amount){
