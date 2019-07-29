@@ -43,10 +43,10 @@ public class BankFrame {
 
 
 
-	public BankFrame() {
-		initialize();
+	public BankFrame(Manager bankManager) {
+		initialize(bankManager);
 	}
-	private void initialize() {
+	private void initialize(Manager bankManager) {
 		bankframe = new JFrame();
 		bankframe.setResizable(false);
 		bankframe.setBounds(100, 100, 450, 300);
@@ -102,8 +102,13 @@ public class BankFrame {
 		Official_click.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "are you even a manager????");
-				//pops out Manager frame if the credential matches
+				if(bankManager.isManager(official_username.getText(),officialpwd.getText()==true)) {
+					bankManager.createMFrame();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "manager password or username is wrong");
+
+			}
 			}
 		});
 		Official_click.setForeground(Color.BLACK);

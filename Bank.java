@@ -3,7 +3,7 @@ import java.util.*;
 public class Bank {
   // List<Customer> customers; // list of customers
   public static HashMap<String, Customer> customers = new HashMap<>();
-  // Manager bankManager;
+  Manager bankManager= new Manager(customers,"louis", "1234");
   public static Currency[] currencies;
   BankFrame frame;
   // ManagerFrame authorized; // manager gui interactivity
@@ -37,7 +37,7 @@ public class Bank {
   }
 
   void open(){
-    frame = new BankFrame();
+    frame = new BankFrame(bankManager);
     frame.bankframe.setVisible(true);
   }
 
