@@ -57,32 +57,32 @@ public class SavecheckFrame {
 		lblNewLabel.setBounds(105, 6, 210, 77);
 		halfframe.getContentPane().add(lblNewLabel);
 
-//		JButton btnNewButton = new JButton(action+ " CAD");
-//		btnNewButton.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				if(action.equals("deposite")) {
-//					try {
-//						double amount= Double.parseDouble(amout_money.getText());
-//						savechecking.deposit(amount,"CAD");
-//
-//					}catch(Exception e1) {
-//						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
-//					}
-//				}
-//				else {
-//					try {
-//						double amount= Double.parseDouble(amout_money.getText());
-//						savechecking.withDraw(amount,"CAD");
-//
-//					}catch(Exception e1) {
-//						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
-//					}
-//				}
-//			}
-//		});
-//		btnNewButton.setBounds(166, 160, 122, 29);
-//		halfframe.getContentPane().add(btnNewButton);
+		JButton btnNewButton = new JButton(action+ " CAD");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(action.equals("deposite")) {
+					try {
+						double amount= Double.parseDouble(amout_money.getText());
+						savechecking.deposit(amount,"CAD");
+
+					}catch(Exception e1) {
+						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+					}
+				}
+				else {
+					try {
+						double amount= Double.parseDouble(amout_money.getText());
+						savechecking.withDraw(amount,"CAD");
+
+					}catch(Exception e1) {
+						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+					}
+				}
+			}
+		});
+		btnNewButton.setBounds(166, 160, 122, 29);
+		halfframe.getContentPane().add(btnNewButton);
 
 		JButton USDBUTTON = new JButton(action + " USD");
 		USDBUTTON.addMouseListener(new MouseAdapter() {
@@ -111,32 +111,32 @@ public class SavecheckFrame {
 		USDBUTTON.setBounds(6, 160, 148, 29);
 		halfframe.getContentPane().add(USDBUTTON);
 
-//		JButton btnDepositeBitcoin = new JButton(action + " Bitcoin");
-//		btnDepositeBitcoin.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				if(action.equals("deposite")) {
-//					try {
-//						double amount= Double.parseDouble(amout_money.getText());
-//						savechecking.deposit(amount,"Bitcoin");
-//
-//					}catch(Exception e1) {
-//						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
-//					}
-//				}
-//				else {
-//					try {
-//						double amount= Double.parseDouble(amout_money.getText());
-//						savechecking.withDraw(amount,"Bitcoin");
-//
-//					}catch(Exception e1) {
-//						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
-//					}
-//				}
-//			}
-//		});
-//		btnDepositeBitcoin.setBounds(307, 160, 137, 29);
-//		halfframe.getContentPane().add(btnDepositeBitcoin);
+		JButton btnDepositeBitcoin = new JButton(action + " Bitcoin");
+		btnDepositeBitcoin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(action.equals("deposite")) {
+					try {
+						double amount= Double.parseDouble(amout_money.getText());
+						savechecking.deposit(amount,"Bitcoin");
+
+					}catch(Exception e1) {
+						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+					}
+				}
+				else {
+					try {
+						double amount= Double.parseDouble(amout_money.getText());
+						savechecking.withDraw(amount,"Bitcoin");
+
+					}catch(Exception e1) {
+						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+					}
+				}
+			}
+		});
+		btnDepositeBitcoin.setBounds(307, 160, 137, 29);
+		halfframe.getContentPane().add(btnDepositeBitcoin);
 
 		amout_money = new JTextField();
 		amout_money.setBounds(158, 95, 130, 26);
@@ -219,37 +219,37 @@ public class SavecheckFrame {
 		btnUsd.setBounds(270, 31, 50, 29);
 		savecheckframe.getContentPane().add(btnUsd);
 
-//		JButton btnCad = new JButton("CAD");
-//		btnCad.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				try {
-//					double amount= Double.parseDouble(deposite_amount.getText());
-//					savechecking.deposit(amount,"CAD");
-//
-//				}catch(Exception e1) {
-//					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
-//				}
-//			}
-//		});
-//		btnCad.setBounds(320, 31, 56, 29);
-//		savecheckframe.getContentPane().add(btnCad);
+		JButton btnCad = new JButton("CAD");
+		btnCad.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					double amount= Double.parseDouble(deposite_amount.getText());
+					savechecking.deposit(amount,"CAD");
 
-//		JButton btnBitcoin = new JButton("Bitcoin");
-//		btnBitcoin.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				try {
-//					double amount= Double.parseDouble(deposite_amount.getText());
-//					savechecking.deposit(amount,"Bitcoin");
-//
-//				}catch(Exception e1) {
-//					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
-//				}
-//			}
-//		});
-//		btnBitcoin.setBounds(373, 31, 71, 29);
-//		savecheckframe.getContentPane().add(btnBitcoin);
+				}catch(Exception e1) {
+					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+				}
+			}
+		});
+		btnCad.setBounds(320, 31, 56, 29);
+		savecheckframe.getContentPane().add(btnCad);
+
+		JButton btnBitcoin = new JButton("Bitcoin");
+		btnBitcoin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					double amount= Double.parseDouble(deposite_amount.getText());
+					savechecking.deposit(amount,"Bitcoin");
+
+				}catch(Exception e1) {
+					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+				}
+			}
+		});
+		btnBitcoin.setBounds(373, 31, 71, 29);
+		savecheckframe.getContentPane().add(btnBitcoin);
 
 		JButton withdraw_usd = new JButton("USD");
 		withdraw_usd.addMouseListener(new MouseAdapter() {
@@ -267,37 +267,37 @@ public class SavecheckFrame {
 		withdraw_usd.setBounds(270, 95, 50, 29);
 		savecheckframe.getContentPane().add(withdraw_usd);
 
-//		JButton withdraw_cad = new JButton("CAD");
-//		withdraw_cad.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				try {
-//					double amount= Double.parseDouble(deposite_amount.getText());
-//					savechecking.withDraw(amount,"CAD");
-//
-//				}catch(Exception e1) {
-//					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
-//				}
-//			}
-//		});
-//		withdraw_cad.setBounds(320, 95, 56, 29);
-//		savecheckframe.getContentPane().add(withdraw_cad);
+		JButton withdraw_cad = new JButton("CAD");
+		withdraw_cad.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					double amount= Double.parseDouble(deposite_amount.getText());
+					savechecking.withDraw(amount,"CAD");
 
-//		JButton withdraw_bitcoin = new JButton("Bitcoin");
-//		withdraw_bitcoin.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				try {
-//					double amount= Double.parseDouble(deposite_amount.getText());
-//					savechecking.withDraw(amount,"Bitcoin");
-//
-//				}catch(Exception e1) {
-//					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
-//				}
-//			}
-//		});
-//		withdraw_bitcoin.setBounds(373, 95, 71, 29);
-//		savecheckframe.getContentPane().add(withdraw_bitcoin);
+				}catch(Exception e1) {
+					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+				}
+			}
+		});
+		withdraw_cad.setBounds(320, 95, 56, 29);
+		savecheckframe.getContentPane().add(withdraw_cad);
+
+		JButton withdraw_bitcoin = new JButton("Bitcoin");
+		withdraw_bitcoin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					double amount= Double.parseDouble(deposite_amount.getText());
+					savechecking.withDraw(amount,"Bitcoin");
+
+				}catch(Exception e1) {
+					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+				}
+			}
+		});
+		withdraw_bitcoin.setBounds(373, 95, 71, 29);
+		savecheckframe.getContentPane().add(withdraw_bitcoin);
 
 		JButton btntransfer = new JButton("Transfer");
 		btntransfer.setBounds(280, 146, 117, 29);
