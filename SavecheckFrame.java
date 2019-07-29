@@ -118,7 +118,7 @@ public class SavecheckFrame {
 				if(action.equals("Deposit")) {
 					try {
 						double amount= Double.parseDouble(amout_money.getText());
-						savechecking.deposit(amount,"Bitcoin");
+						savechecking.deposit(amount,"BIT");
 
 					}catch(Exception e1) {
 						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
@@ -147,7 +147,7 @@ public class SavecheckFrame {
 		lblEnterTheAmount.setBounds(37, 100, 117, 16);
 		halfframe.getContentPane().add(lblEnterTheAmount);
 
-		JButton bal = new JButton("hit me");
+		JButton bal = new JButton("check balance");
 		bal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -241,7 +241,7 @@ public class SavecheckFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					double amount= Double.parseDouble(deposite_amount.getText());
-					savechecking.deposit(amount,"Bitcoin");
+					savechecking.deposit(amount,"BIT");
 
 				}catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
@@ -289,7 +289,7 @@ public class SavecheckFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					double amount= Double.parseDouble(deposite_amount.getText());
-					savechecking.withDraw(amount,"Bitcoin");
+					savechecking.withDraw(amount,"BIT");
 
 				}catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
