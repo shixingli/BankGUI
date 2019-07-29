@@ -10,8 +10,8 @@ public class Manager{
    private static String id = "Louis";
    private static String password = "123456";
    private HashMap<String,Customer> customerHM;
-   private static double accountFee;
-   private static double interest;
+   private static double accountFee = 3.0;
+   private static double interest = 1.5;
 
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
        private JFrame MFrame;
@@ -60,7 +60,7 @@ public class Manager{
            String[] names = new String[customerHM.size()];
            int i = 0;
             for(Map.Entry<String,Customer> e: customerHM.entrySet()){
-               if ( e.getValue().getLoan() == null) {//CHANGE THIS WHEN DONE to !=
+               if (e.getValue().getLoan().isEmpty()) {
                    names[i] = e.getValue().getUsername();
                }
                i++;
@@ -87,12 +87,40 @@ public class Manager{
 
        private JPanel managerOptions(){
            JPanel p = new JPanel();
-           JButton button = new JButton("Daily Transactions");
-           button.addActionListener((ActionEvent e) ->{
+           JButton daily_transactions = new JButton("Daily Transactions");
+           daily_transactions.addActionListener((ActionEvent e) ->{
                dailyTransactions(customerHM);
            });
-           p.add(button);
+           p.add(daily_transactions);
+
+           JButton interest_rate = new JButton("Interest Rate Options");
+           interest_rate.addActionListener(e->{
+               interestRates();
+           });
+           p.add(interest_rate);
            return p;
+       }
+
+       private void interestRates(){
+           JFrame j = new JFrame();
+           JPanel p = new JPanel();
+           JLabel current = new JLabel("Current Interest Rates are: " + interest);
+           j.setLayout(new GridLayout(4,2));
+           JTextField new_interest_rate = new JTextField("Enter a valid rate");
+           new_interest_rate.setSize(400,100);
+           j.setSize(300,300);
+           j.add(current);
+           JButton change_interest_rate = new JButton("Change Interest Rate");
+           change_interest_rate.addActionListener(actionEvent -> {
+               double input =  Double.parseDouble(new_interest_rate.getText());
+               interest = input;
+               j.setVisible(false);
+           });
+           p.add(new_interest_rate);
+           p.add(change_interest_rate);
+           j.add(p);
+           j.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+           j.setVisible(true);
        }
 
        private void dailyTransactions(HashMap<String, Customer> c){
@@ -109,6 +137,8 @@ public class Manager{
            JOptionPane.showMessageDialog(null,info.toString());
 
        }
+
+
 
        private void customerOverview(Customer c){
            StringBuilder info = new StringBuilder();
@@ -165,6 +195,9 @@ public class Manager{
         Customer s = new Customer(acc, "Louis Tannudin", "ltann", "1234");
         customers.put("dbreynolds", me);
         customers.put("ltann", s);
+        customers.put("ltannn", new Customer(acc, "Louis Tannudin", "ltann", "1234"));
+        customers.put("ltannnn", new Customer(acc, "Louis Tannudin", "ltann", "1234"));
+
         Manager m = new Manager(customers);
     }
 }
