@@ -219,6 +219,11 @@ public class Customer {
         JPanel withdraw = new JPanel();
         withdraw.add(checkingW);
         withdraw.add(savingsW);
+        CheckingWListener checkWL = new CheckingWListener();
+        SavingsWListener savingsWL = new SavingsWListener(); 
+        checkingW.addActionListener(checkWL);
+        savingsW.addActionListener(savingsWL);
+        
         
         JButton checkingD = new JButton("Checking");
         JButton savingsD = new JButton("Savings");
@@ -230,15 +235,12 @@ public class Customer {
 //        checkingSum.addActionListener(checkSumL); 
 //        SavingsSummaryListener savingsSumL = new SavingsSummaryListener();
 //        savingsSum.addActionListener(savingsL); 
+
         
-        CheckingListener checkL = new CheckingListener();
-        checkingW.addActionListener(checkL);
-        checkingD.addActionListener(checkL);
         
-        SavingsListener savingsL = new SavingsListener();
-        savingsW.addActionListener(savingsL); 
-        savingsD.addActionListener(savingsL);
-        
+//        checkingD.addActionListener(checkL);
+//        savingsD.addActionListener(savingsL);
+//        
         JButton checkingC = new JButton("Checking");
         JButton savingsC = new JButton("Savings");
         JPanel create = new JPanel();
@@ -282,7 +284,6 @@ public class Customer {
                   for (Currency allowed : Bank.currencies) {
                     if (curr.equals(allowed.getCountry())) {
                       success = true;
-                      System.out.println(loan);
                       Loan poor = new Loan(Double.parseDouble(loan));
                       loans.add(poor);
                       System.out.println(poor.moneyBack());
@@ -349,7 +350,8 @@ public class Customer {
   }
   
   /* INCOMPLETE */
-  class CheckingListener implements ActionListener {
+  class CheckingWListener implements ActionListener {
+    String
     public void actionPerformed( ActionEvent e ) {
       System.out.println("Open the customer's checking account, if it exists.");
       
