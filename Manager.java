@@ -11,6 +11,9 @@ public class Manager{
    private static String password = "123456";
    private HashMap<String,Customer> customerHM;
    private static double accessFee = 3.0;
+   private static double withdrawFee = 3.0;
+   private static double depositFee = 3.0;
+   private static double closeFee = 3.0;
    private static double interest = 0.015;
 
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
@@ -104,21 +107,40 @@ public class Manager{
                accessFee();
            });
            p.add(access_fee);
+
+           JButton withdraw_fee = new JButton("Withdraw Fee");
+           withdraw_fee.addActionListener(e->{
+               withdrawFee();
+           });
+           p.add(withdraw_fee);
+
+           JButton depositFee = new JButton("Deposit Fee");
+           depositFee.addActionListener(e->{
+               depositFee();
+           });
+           p.add(depositFee);
+
+           JButton closing_fee = new JButton("Closing Fee");
+           closing_fee.addActionListener(e->{
+               closeFee();
+           });
+           p.add(closing_fee);
+
            return p;
        }
 
        private void interestRates(){
            JFrame j = new JFrame();
            JPanel p = new JPanel();
-           JLabel current = new JLabel("Current Interest Rates are: " + interest);
+           JLabel current = new JLabel("Current Interest Rates is: " + (interest*100) + "%");
            j.setLayout(new GridLayout(4,2));
-           JTextField new_interest_rate = new JTextField("Enter a valid rate");
+           JTextField new_interest_rate = new JTextField("(Enter a valid rate in percent)");
            new_interest_rate.setSize(400,100);
            j.setSize(300,300);
            j.add(current);
            JButton change_interest_rate = new JButton("Change Interest Rate");
            change_interest_rate.addActionListener(actionEvent -> {
-               double input =  Double.parseDouble(new_interest_rate.getText());
+               double input =  Double.parseDouble(new_interest_rate.getText()) / 100;
                interest = input;
                j.setVisible(false);
            });
@@ -151,10 +173,77 @@ public class Manager{
            j2.setVisible(true);
        }
 
+       private void withdrawFee(){
+           JFrame j3 = new JFrame();
+           JPanel p = new JPanel();
+           JLabel current = new JLabel("Current Withdraw fee is: " + withdrawFee);
+           j3.setLayout(new GridLayout(4,2));
+           JTextField new_fee = new JTextField("Enter a valid fee");
+           new_fee.setSize(400,100);
+           j3.setSize(300,300);
+           j3.add(current);
+           JButton change_withdraw_fee = new JButton("Change Withdraw Fee");
+           change_withdraw_fee.addActionListener(actionEvent -> {
+               double input =  Double.parseDouble(new_fee.getText());
+               withdrawFee = input;
+               j3.setVisible(false);
+           });
+           p.add(new_fee);
+           p.add(change_withdraw_fee);
+           j3.add(p);
+           j3.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+           j3.setVisible(true);
+       }
+
+       private void depositFee(){
+           JFrame j4 = new JFrame();
+           JPanel p = new JPanel();
+           JLabel current = new JLabel("Current Deposit fee is: " + depositFee);
+           j4.setLayout(new GridLayout(4,2));
+           JTextField new_fee = new JTextField("Enter a valid fee");
+           new_fee.setSize(400,100);
+           j4.setSize(300,300);
+           j4.add(current);
+           JButton change_deposit_fee = new JButton("Change Deposit Fee");
+           change_deposit_fee.addActionListener(actionEvent -> {
+               double input =  Double.parseDouble(new_fee.getText());
+               depositFee = input;
+               j4.setVisible(false);
+           });
+           p.add(new_fee);
+           p.add(change_deposit_fee);
+           j4.add(p);
+           j4.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+           j4.setVisible(true);
+       }
+
+       private void closeFee(){
+           JFrame j5 = new JFrame();
+           JPanel p = new JPanel();
+           JLabel current = new JLabel("Current Close fee is: " + closeFee);
+           j5.setLayout(new GridLayout(4,2));
+           JTextField new_fee = new JTextField("Enter a valid fee");
+           new_fee.setSize(400,100);
+           j5.setSize(300,300);
+           j5.add(current);
+           JButton change_closing_fee = new JButton("Change Closing Fee");
+           change_closing_fee.addActionListener(actionEvent -> {
+               double input =  Double.parseDouble(new_fee.getText());
+               closeFee = input;
+               j5.setVisible(false);
+           });
+           p.add(new_fee);
+           p.add(change_closing_fee);
+           j5.add(p);
+           j5.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+           j5.setVisible(true);
+       }
+
        private void dailyTransactions(HashMap<String, Customer> c){
            StringBuilder info = new StringBuilder();
            for(Map.Entry<String,Customer> e: customerHM.entrySet()){
                if(!e.getValue().getHistoryAllAcc().isEmpty()){
+                   info.append(e.getValue().getName() + " ");
                    info.append(e.getValue().getHistoryAllAcc());
                    info.append(System.lineSeparator());
                }
@@ -205,9 +294,23 @@ public class Manager{
         return accessFee;
     }
 
+    public static double getDepositFee() {
+        return depositFee;
+    }
+
+    public static double getWithdrawFee() {
+        return withdrawFee;
+    }
+
+    public static double getCloseFee() {
+        return closeFee;
+    }
+
     public static double getInterest(){
        return interest;
     }
+
+
 
     public static void main(String[] args){
         HashMap<String, Customer> customers = new HashMap<>();
