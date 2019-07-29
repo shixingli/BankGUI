@@ -88,7 +88,7 @@ public class SavecheckFrame {
 		USDBUTTON.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(action.equals("deposite")) {
+				if(action.equals("Deposit")) {
 					try {
 						double amount= Double.parseDouble(amout_money.getText());
 						savechecking.deposit(amount,"USD");
