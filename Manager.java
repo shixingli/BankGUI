@@ -22,7 +22,7 @@ public class Manager{
        private ManagerFrame() {
            JFrame frame = new JFrame("RichManBank's Esteemed Manager");
            frame.setLayout(new GridLayout(3, 3));
-           frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
+           frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.magenta));
            frame.setLocation(100, 100);
            frame.setSize(500, 400);
            frame.setLocation(200, 100);
@@ -132,7 +132,7 @@ public class Manager{
            JFrame j = new JFrame();
            JPanel p = new JPanel();
            JLabel current = new JLabel("Current Interest Rates is: " + (interest*100) + "%");
-           j.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
+           j.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.PINK));
            j.setLayout(new GridLayout(4,2));
            JTextField new_interest_rate = new JTextField("(Enter a valid rate in percent)");
            new_interest_rate.setSize(400,100);
@@ -155,7 +155,7 @@ public class Manager{
            JFrame j2 = new JFrame();
            JPanel p = new JPanel();
            JLabel current = new JLabel("Current Account Access fee is: " + accessFee + "USD");
-           j2.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
+           j2.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.PINK));
            j2.setLayout(new GridLayout(4,2));
            JTextField new_fee = new JTextField("Enter a valid fee");
            new_fee.setSize(400,100);
@@ -177,7 +177,7 @@ public class Manager{
        private void withdrawFee(){
            JFrame j3 = new JFrame();
            JPanel p = new JPanel();
-           j3.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
+           j3.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.PINK));
            JLabel current = new JLabel("Current Withdraw fee is: " + withdrawFee + "USD");
            j3.setLayout(new GridLayout(4,2));
            JTextField new_fee = new JTextField("Enter a valid fee");
@@ -200,7 +200,7 @@ public class Manager{
        private void depositFee(){
            JFrame j4 = new JFrame();
            JPanel p = new JPanel();
-           j4.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
+           j4.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.PINK));
            JLabel current = new JLabel("Current Deposit fee is: " + depositFee + "USD");
            j4.setLayout(new GridLayout(4,2));
            JTextField new_fee = new JTextField("Enter a valid fee");
@@ -223,7 +223,7 @@ public class Manager{
        private void closeFee(){
            JFrame j5 = new JFrame();
            JPanel p = new JPanel();
-           j5.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
+           j5.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.PINK));
            JLabel current = new JLabel("Current Close fee is: " + closeFee + "USD");
            j5.setLayout(new GridLayout(4,2));
            JTextField new_fee = new JTextField("Enter a valid fee");
