@@ -8,7 +8,7 @@ public class Loan {
   public double moneyBack() {
     double interest = Manager.getInterest();
     double val = this.amount * interest;
-    return val;
+    return this.amount - val;
   }
   public String toString() {
     return "Loan : $" + this.amount;

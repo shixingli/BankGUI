@@ -45,9 +45,9 @@ public class Bank {
       Bank mybank = new Bank(Bank.test());
       mybank.open();
   }
-  public static double getInterest_manager(){
-    interestrate = Manager.getInterest();
-  }
+//  public static double getInterest_manager(){
+//    interestrate = Manager.getInterest();
+//  }
   public static HashMap<String, Customer> test() {
     HashMap<String, Customer> map = new HashMap<String, Customer>();
 

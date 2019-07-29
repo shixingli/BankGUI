@@ -282,6 +282,7 @@ public class Customer {
                   for (Currency allowed : Bank.currencies) {
                     if (curr.equals(allowed.getCountry())) {
                       success = true;
+                      System.out.println(loan);
                       Loan poor = new Loan(Double.parseDouble(loan));
                       loans.add(poor);
                       System.out.println(poor.moneyBack());
