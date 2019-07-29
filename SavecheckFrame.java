@@ -29,8 +29,8 @@ public class SavecheckFrame {
 //		Account saving = new Savings(0.00);
 //		SavecheckFrame window = new SavecheckFrame(saving,"deposite") ;
 //		window.halfframe.setVisible(true);
-//		SavecheckFrame window1 = new SavecheckFrame(saving,"withdraw") ;
-//		window1.halfframe.setVisible(true);
+		// SavecheckFrame window1 = new SavecheckFrame(saving,"withdraw") ;
+		// window1.halfframe.setVisible(true);
 	}
 
 
@@ -61,7 +61,7 @@ public class SavecheckFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(action.equals("deposite")) {
+				if(action.equals("Deposit")) {
 					try {
 						double amount= Double.parseDouble(amout_money.getText());
 						savechecking.deposit(amount,"CAD");
@@ -115,7 +115,7 @@ public class SavecheckFrame {
 		btnDepositeBitcoin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(action.equals("deposite")) {
+				if(action.equals("Deposit")) {
 					try {
 						double amount= Double.parseDouble(amout_money.getText());
 						savechecking.deposit(amount,"Bitcoin");
