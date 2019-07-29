@@ -80,7 +80,13 @@ void deposit(double amount,String currency){
   public static void main(String[] args) {
   }
   
+  /*
+   * ACCOUNT SUMMARY FRAME  
+   */
   public class AccountSummaryFrame extends JFrame {
-    
+    // constructor takes in a customer and gets their name for the title and then returns a pretty gridLayout of all txns for the account
+    // including total available bal (maybe at the top)
+    // take from show all txn history
+    // if checking you have to show loans associated with the account
   }
 }
