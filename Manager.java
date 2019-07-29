@@ -11,7 +11,7 @@ public class Manager{
    private static String password = "123456";
    private HashMap<String,Customer> customerHM;
    private static double accountFee = 3.0;
-   private static double interest = 1.5;
+   private static double interest = 0.015;
 
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
        private JFrame MFrame;
@@ -135,7 +135,6 @@ public class Manager{
                info.append("No Transactions of All Customer Accounts");
            }
            JOptionPane.showMessageDialog(null,info.toString());
-
        }
 
 
