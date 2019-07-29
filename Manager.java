@@ -11,6 +11,7 @@ public class Manager{
    private static String password = "123456";
    private HashMap<String,Customer> customerHM;
    private static double accountFee;
+   private static double interest;
 
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
        private JFrame MFrame;
@@ -25,6 +26,7 @@ public class Manager{
            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            frame.add(searchCustomerID());
            frame.add(listOfDebtors());
+           frame.add(managerOptions());
            this.MFrame = frame;
        }
 
@@ -35,6 +37,7 @@ public class Manager{
            SearchPanel.add(new JLabel("Seach for Customer: "));
 
            JTextField tf = new JTextField("(Enter ID)");
+           tf.setPreferredSize( new Dimension( 100, 30 ) );
            SearchPanel.add(tf);
 
            tf.addActionListener(e -> {
@@ -57,7 +60,7 @@ public class Manager{
            String[] names = new String[customerHM.size()];
            int i = 0;
             for(Map.Entry<String,Customer> e: customerHM.entrySet()){
-               if ( e.getValue().getLoan() == null) {
+               if ( e.getValue().getLoan() == null) {//CHANGE THIS WHEN DONE to !=
                    names[i] = e.getValue().getUsername();
                }
                i++;
@@ -82,14 +85,34 @@ public class Manager{
            return DebtPanel;
        }
 
+       private JPanel managerOptions(){
+           JPanel p = new JPanel();
+           JButton button = new JButton("Daily Transactions");
+           button.addActionListener((ActionEvent e) ->{
+               dailyTransactions(customerHM);
+           });
+           p.add(button);
+           return p;
+       }
+
+       private void dailyTransactions(HashMap<String, Customer> c){
+           StringBuilder info = new StringBuilder();
+           for(Map.Entry<String,Customer> e: customerHM.entrySet()){
+               if(!e.getValue().getHistoryAllAcc().isEmpty()){
+                   info.append(e.getValue().getHistoryAllAcc());
+                   info.append(System.lineSeparator());
+               }
+           }
+           if(info.toString().equals("")){
+               info.append("No Transactions of All Customer Accounts");
+           }
+           JOptionPane.showMessageDialog(null,info.toString());
+
+       }
+
        private void customerOverview(Customer c){
            StringBuilder info = new StringBuilder();
            info.append(c.getName());
-           System.out.println(c.getHistoryAllAcc().isEmpty());
-           if(!c.getHistoryAllAcc().isEmpty()){
-               info.append(System.lineSeparator());
-               info.append(c.getHistoryAllAcc());
-           }
            info.append(System.lineSeparator());
            info.append(c.getAccounts());
            info.append(System.lineSeparator());
@@ -101,7 +124,8 @@ public class Manager{
            JOptionPane.showMessageDialog(null,info.toString());
        }
 
-   }
+   }//End of Manager Frame
+
     private Manager(HashMap c){
        this.customerHM = c;
        ManagerFrame mf = new ManagerFrame();
@@ -124,6 +148,10 @@ public class Manager{
         return accountFee;
     }
 
+    public static double getInterest(){
+       return interest;
+    }
+
     public static void main(String[] args){
         HashMap<String, Customer> customers = new HashMap<>();
         Checking check = new Checking(100.0);
@@ -138,6 +166,5 @@ public class Manager{
         customers.put("dbreynolds", me);
         customers.put("ltann", s);
         Manager m = new Manager(customers);
-        customers.get("ltann").makeFrame();
     }
 }
