@@ -278,13 +278,13 @@ public class Manager{
 
    }//End of Manager Frame
 
-    private Manager(HashMap c, String id, String password){
+    public Manager(HashMap c, String id, String password){
        this.customerHM = c;
        this.id = id;
        this.password = password;
     }
 
-    private void createMFrame(){
+    public void createMFrame(){
         ManagerFrame mf = new ManagerFrame();
         mf.MFrame.setVisible(true);
     }
