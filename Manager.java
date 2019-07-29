@@ -62,7 +62,7 @@ public class Manager{
            String[] names = new String[customerHM.size()];
            int i = 0;
             for(Map.Entry<String,Customer> e: customerHM.entrySet()){
-               if (e.getValue().getLoan().isEmpty()) {
+               if (!e.getValue().getLoan().isEmpty()) {
                    names[i] = e.getValue().getUsername();
                }
                i++;
@@ -321,22 +321,25 @@ public class Manager{
     }
 
     public static void main(String[] args){
-        Bank b = new RichManBank();
-        HashMap<String, Customer> customers = new HashMap<>();
-        Checking check = new Checking(100.0);
-        check.deposit(900, "USD");
-        Savings save = new Savings(100.0);
-        save.withDraw(100, "USD");
-        List<Account> acc = new LinkedList<Account>();
-        acc.add(check);
-        acc.add(save);
-        Customer me = new Customer(acc, "Deborah Reynolds", "dbreynolds", "1234");
-        Customer s = new Customer(acc, "Louis Tannudin", "ltann", "1234");
-        customers.put("dbreynolds", me);
-        customers.put("ltann", s);
-        customers.put("ltannn", new Customer(acc, "Louis Tannudin", "ltann", "1234"));
-        customers.put("ltannnn", new Customer(acc, "Louis Tannudin", "ltann", "1234"));
+        HashMap<String, Customer> map = new HashMap<String, Customer>();
 
-        Manager m = new Manager(customers, "Louis", "1234");
+        Checking c1c = new Checking(101);
+        Savings c1s = new Savings(11);
+
+        Checking c2c = new Checking(50);
+
+        Savings c3s = new Savings(1000000);
+
+        List<Account> c1Acc = new LinkedList<Account>();
+        c1Acc.add(c1c);
+        c1Acc.add(c1s);
+        Customer c1 = new Customer(c1Acc, "Deborah Reynolds", "dbreynolds", "890cloverfield");
+        map.put(c1.getUsername(), c1);
+        Customer c2 = new Customer(c2c, "Blake Lively", "blive", "123456");
+        map.put(c2.getUsername(), c2);
+        Customer c3 = new Customer(c3s, "Jake Gyllenhaal", "deadpool", "48");
+        map.put(c3.getUsername(), c3);
+        Manager m = new Manager(map, "Louis", "1234");
+        m.createMFrame();
     }
 }
