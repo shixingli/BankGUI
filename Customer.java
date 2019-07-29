@@ -514,10 +514,6 @@ public class Customer {
     }
   }
   
-  /*
-   * ACCOUNT SUMMARY FRAME  
-   */
-  
   public static void test() {
     Bank richMan = new Bank();
     Checking check = new Checking(100.0);
