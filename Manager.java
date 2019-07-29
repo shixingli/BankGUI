@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class Manager{
-   private static String id = "Louis";
-   private static String password = "123456";
+   private String id;
+   private String password;
    private HashMap<String,Customer> customerHM;
    private static double accessFee = 3.0;
    private static double withdrawFee = 3.0;
@@ -24,7 +24,7 @@ public class Manager{
            frame.setLayout(new GridLayout(3, 3));
            frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.DARK_GRAY));
            frame.setLocation(100, 100);
-           frame.setSize(800, 400);
+           frame.setSize(500, 400);
            frame.setLocation(200, 100);
            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            frame.add(searchCustomerID());
@@ -35,13 +35,10 @@ public class Manager{
 
        private JPanel searchCustomerID() {
            JPanel SearchPanel = new JPanel();
-
            SearchPanel.setLayout(new GridLayout(3, 2));
            SearchPanel.add(new JLabel("Seach for Customer: "));
-
            JTextField tf = new JTextField("(Enter ID)");
            tf.setPreferredSize( new Dimension( 100, 30 ) );
-           SearchPanel.add(tf);
 
            tf.addActionListener(e -> {
                String customerID = tf.getText();
@@ -52,6 +49,8 @@ public class Manager{
                    JOptionPane.showMessageDialog(null, "Invalid Customer ID!");
                }
            });
+           SearchPanel.add(tf);
+
            return SearchPanel;
        }
 
@@ -141,7 +140,7 @@ public class Manager{
            j.add(current);
            JButton change_interest_rate = new JButton("Change Interest Rate");
            change_interest_rate.addActionListener(actionEvent -> {
-               double input =  Double.parseDouble(new_interest_rate.getText()) / 100;
+               double input =  Double.parseDouble(new_interest_rate.getText()) / 100.0;
                interest = input;
                j.setVisible(false);
            });
@@ -259,34 +258,40 @@ public class Manager{
            JOptionPane.showMessageDialog(null,info.toString());
        }
 
-
-
        private void customerOverview(Customer c){
            StringBuilder info = new StringBuilder();
-           info.append(c.getName());
+           info.append("Name: "+ c.getName());
+           info.append(System.lineSeparator());
+           info.append("Username: " + c.getUsername());
            info.append(System.lineSeparator());
            info.append(c.getAccounts());
-           info.append(System.lineSeparator());
-           info.append(c.getTotalBalance());
            if(!c.getLoan().isEmpty()){
                info.append(System.lineSeparator());
                info.append(c.getLoan());
+           }
+           if(!c.getHistoryAllAcc().isEmpty()){
+               info.append(System.lineSeparator());
+               info.append(c.getHistoryAllAcc());
            }
            JOptionPane.showMessageDialog(null,info.toString());
        }
 
    }//End of Manager Frame
 
-    private Manager(HashMap c){
+    private Manager(HashMap c, String id, String password){
        this.customerHM = c;
-       ManagerFrame mf = new ManagerFrame();
-
-      mf.MFrame.setVisible(true);
+       this.id = id;
+       this.password = password;
     }
 
-    public static boolean isManager(String id, String password){
+    private void createMFrame(){
+        ManagerFrame mf = new ManagerFrame();
+        mf.MFrame.setVisible(true);
+    }
+
+    public boolean isManager(String id, String password){
       boolean isIt = false;
-      if(Manager.id.equals(id) && Manager.password.equals(password)){
+      if(this.id.equals(id) && this.password.equals(password)){
         isIt = true;
       }
       else{
@@ -332,6 +337,6 @@ public class Manager{
         customers.put("ltannn", new Customer(acc, "Louis Tannudin", "ltann", "1234"));
         customers.put("ltannnn", new Customer(acc, "Louis Tannudin", "ltann", "1234"));
 
-        Manager m = new Manager(customers);
+        Manager m = new Manager(customers, "Louis", "1234");
     }
 }
