@@ -102,7 +102,7 @@ public class BankFrame {
 		Official_click.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(bankManager.isManager(official_username.getText(),officialpwd.getText()==true)) {
+				if(bankManager.isManager(official_username.getText(),officialpwd.getText())==true) {
 					bankManager.createMFrame();
 			}
 			else {
