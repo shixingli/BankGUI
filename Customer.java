@@ -247,11 +247,10 @@ public class Customer {
         JPanel create = new JPanel();
         create.add(checkingC);
         create.add(savingsC);
-        
-//        CheckingCreateListener checkCL = new CheckingCreateListener();
-//        checkingC.addActionListener(checkCL); 
-//        SavingsCreateListener savingsCL = new SavingsCreateListener();
-//        savingsC.addActionListener(savingsCL);
+        CreateListener checkCL = new CreateListener("Checking");
+        checkingC.addActionListener(checkCL); 
+        CreateListener savingsCL = new CreateListener("Savings");
+        savingsC.addActionListener(savingsCL);
         
      
         JPanel loan = new JPanel();
@@ -399,26 +398,40 @@ public class Customer {
 //      }
 //    }
     
-//    class CreateListener implements ActionListener {
-//      String accType;
-//      
-//      public CreateListener(String type) {
-//        this.accType = type;
-//      }
-//      
-//      public void actionPerformed( ActionEvent e ) {
-//        System.out.println("Here to create a customer's checking account!");
-//        
-//        for (Account account : Customer.this.accounts) {
-//          if (account.Checking) {
-//            AccountEPanel exists = new AccountEPanel(this.accType, Customer.this.name);
-//            break;
-//          }
-//        }
-////        Checking newCheck = new Checking();
-////        Customer.this.accounts.add(newCheck);
-//      }
-//    }
+    class CreateListener implements ActionListener {
+      String accType;
+      
+      public CreateListener(String type) {
+        this.accType = type;
+      }
+      public void actionPerformed( ActionEvent e ) {
+        System.out.println("Here to create a customer's " + this.accType + " account!");
+        
+        boolean success = false;
+        for (Account account : Customer.this.accounts) {
+          if (account.getType().equals(accType)) {
+            AccountEPanel exists = new AccountEPanel(this.accType, Customer.this.name);
+            success = true;
+            break;
+          }
+        }
+        
+        if (!success) {
+          if (accType.equals("Checking")) {
+            Checking newCheck = new Checking();
+            SavecheckFrame window = new SavecheckFrame(newCheck, "Deposit");
+            window.halfframe.setVisible(true);
+            Customer.this.accounts.add(newCheck);
+            
+          } else if (accType.equals("Savings")) {
+            Savings newSavings = new Savings();
+            SavecheckFrame window = new SavecheckFrame(newSavings, "Deposit");
+            window.halfframe.setVisible(true);
+            Customer.this.accounts.add(newSavings);
+          }
+        }
+      }
+    }
   
     
 //    class SavingsCreateListener implements ActionListener {

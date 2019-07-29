@@ -8,6 +8,7 @@ public abstract class Account {
   double USD,CAD,Bitcoin;
 
   public Account() {
+    this.balance = 0.0;
   }
 
   public Account(double amount) {
