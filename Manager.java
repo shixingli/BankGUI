@@ -10,7 +10,7 @@ public class Manager{
    private static String id = "Louis";
    private static String password = "123456";
    private HashMap<String,Customer> customerHM;
-   private static double accountFee = 3.0;
+   private static double accessFee = 3.0;
    private static double interest = 0.015;
 
    private class ManagerFrame extends JFrame {// GUI for the Manager part. Inner class for encapsulation since no other classes should be able to access this part???
@@ -98,6 +98,12 @@ public class Manager{
                interestRates();
            });
            p.add(interest_rate);
+
+           JButton access_fee = new JButton("Access Fee");
+           access_fee.addActionListener(e->{
+               accessFee();
+           });
+           p.add(access_fee);
            return p;
        }
 
@@ -121,6 +127,28 @@ public class Manager{
            j.add(p);
            j.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
            j.setVisible(true);
+       }
+
+       private void accessFee(){
+           JFrame j2 = new JFrame();
+           JPanel p = new JPanel();
+           JLabel current = new JLabel("Current Account Access fee is: " + accessFee);
+           j2.setLayout(new GridLayout(4,2));
+           JTextField new_fee = new JTextField("Enter a valid fee");
+           new_fee.setSize(400,100);
+           j2.setSize(300,300);
+           j2.add(current);
+           JButton change_access_fee = new JButton("Change Access Fee");
+           change_access_fee.addActionListener(actionEvent -> {
+               double input =  Double.parseDouble(new_fee.getText());
+               accessFee = input;
+               j2.setVisible(false);
+           });
+           p.add(new_fee);
+           p.add(change_access_fee);
+           j2.add(p);
+           j2.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+           j2.setVisible(true);
        }
 
        private void dailyTransactions(HashMap<String, Customer> c){
@@ -174,7 +202,7 @@ public class Manager{
     }
 
     public static double getAccountFee() {
-        return accountFee;
+        return accessFee;
     }
 
     public static double getInterest(){
