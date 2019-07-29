@@ -9,19 +9,19 @@ public abstract class Account {
 
   public Account() {
   }
-  
+
   public Account(double amount) {
     this.balance = amount;
     this.txns = new LinkedList<Transaction>();
     // *add withdraw to account of opening fee *
   }
-  
+
 void withDraw(double amount,String currency){
       this.balance -= amount;
 //      this.balance += amount;
-//      if(currency.equals("USD")) {
-//        USD -= amount;
-//      }
+     if(currency.equals("USD")) {
+       USD -= amount;
+     }
 //      if(currency.equals("CAD")) {
 //        CAD -= amount;
 //      }
@@ -34,9 +34,9 @@ void withDraw(double amount,String currency){
 
 void deposit(double amount,String currency){
       this.balance += amount;
-//      if(currency.equals("USD")) {
-//        USD+= amount;
-//      }
+     if(currency.equals("USD")) {
+       USD+= amount;
+     }
 //      if(currency.equals("CAD")) {
 //        CAD+= amount;
 //      }
@@ -46,42 +46,42 @@ void deposit(double amount,String currency){
       Deposit d = new Deposit(amount);
       this.txns.add(d);
     }
-  
+
   public String getType() {
     return this.id;
   }
-  
+
   double view_balance() {
     return balance;
   }
-  
+
   List<Transaction> view_txns() {
     return this.txns;
   }
-  
+
   public void setBal(double begin) {
     this.balance = begin;
   }
-  
+
   public String toString() {
     return this.id + " account with a current value of $" + this.balance;
   }
 
   String check_balance() {
-      return ("you have "+USD + " USD, " + CAD + " CAD " + "and " + Bitcoin +" Bitcoins!");
+      return ("you have "+USD);
   }
-  
+
   <T> void transfer(T account, double amount){
     //transfer money from current account to saving/checking
     //lets not implement right now since it is not required,
   }
-  
-  
+
+
   public static void main(String[] args) {
   }
-  
+
   /*
-   * ACCOUNT SUMMARY FRAME  
+   * ACCOUNT SUMMARY FRAME
    */
   public class AccountSummaryFrame extends JFrame {
     // constructor takes in a customer and gets their name for the title and then returns a pretty gridLayout of all txns for the account

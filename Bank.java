@@ -8,6 +8,7 @@ public class Bank {
   BankFrame frame;
   // ManagerFrame authorized; // manager gui interactivity
   static double interestrate;
+  static double accountfee;
   // Rich Man's Bank Default
   public Bank() {
     defaultCurrencies();
