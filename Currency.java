@@ -20,4 +20,8 @@ public class Currency {
     return this.id;
   }
   
+  public double rate(){
+    return this.exchangeRate;
+  }
+  
 }

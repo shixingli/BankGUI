@@ -284,6 +284,7 @@ public class Customer {
                       success = true;
                       Loan poor = new Loan(Double.parseDouble(loan));
                       loans.add(poor);
+                      System.out.println(poor.moneyBack());
                       acc.deposit(poor.moneyBack(), curr);
                       break;
                     }
