@@ -9,6 +9,7 @@ public abstract class Account {
 
   public Account() {
     this.balance = 0.0;
+    this.txns = new LinkedList<Transaction>();
   }
 
   public Account(double amount) {
@@ -19,7 +20,7 @@ public abstract class Account {
 
 void withDraw(double amount,String currency){
     for (Currency curr : Bank.currencies) {
-      if (currency.equals(currency)) {
+      if (curr.getCountry().equals(currency)) {
         double rate = curr.getRate();
         double newAmount = amount * rate;
         this.balance -= newAmount;
@@ -42,12 +43,18 @@ void withDraw(double amount,String currency){
 
 void deposit(double amount,String currency){
   for (Currency curr : Bank.currencies) {
-    if (currency.equals(currency)) {
+    String country = curr.getCountry();
+    if (country.equals(currency)) {
+      System.out.println("EQUAL");
       double rate = curr.getRate();
       double newAmount = amount * rate;
+      System.out.println(newAmount);
       this.balance += newAmount;
+      System.out.println("Hiya!");
       Deposit d = new Deposit(newAmount);
+      System.out.println("Howdee!");
       this.txns.add(d);
+      System.out.println("add error");
       break;
     }
   }

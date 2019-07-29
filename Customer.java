@@ -165,10 +165,7 @@ public class Customer {
       JFrame customerFrame = new JFrame("Rich Man's Bank — " + Customer.this.name + " Financial Summary");
       customerFrame.setLayout(new GridLayout(4, 1));
       customerFrame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
-      
-      //JLabel header = title(client.getName());
 
-      
       CustomerFrame frame = new CustomerFrame();
       JLabel header = frame.title(this.name);
       customerFrame.add(header);
@@ -183,13 +180,11 @@ public class Customer {
       customerFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       customerFrame.setVisible(true);
     }
-    
-
+   
   
   /*
    * THE CUSTOMER FRAME  ! 
    */
-  
   public class CustomerFrame extends JFrame implements ItemListener {
     JPanel options;
     
@@ -239,8 +234,6 @@ public class Customer {
 //        checkingSum.addActionListener(checkSumL); 
 //        SavingsSummaryListener savingsSumL = new SavingsSummaryListener();
 //        savingsSum.addActionListener(savingsL); 
-
-        
         
         JButton checkingC = new JButton("Checking");
         JButton savingsC = new JButton("Savings");
@@ -349,7 +342,6 @@ public class Customer {
     return welcome;
   }
   
-  /* INCOMPLETE */
   class AccountListener implements ActionListener {
     String accType;
     String transaction;
@@ -377,80 +369,42 @@ public class Customer {
       }
     }
   }
-//  
-//    /* INCOMPLETE */
-//    class SavingsListener implements ActionListener {
-//      public void actionPerformed( ActionEvent e ) {
-//        System.out.println("Open the customer's savings account, if it exists.");
-//        
-//        boolean success = false;
-//        if (Customer.this.accounts != null) {
-//          for (Account account : Customer.this.accounts) {
-//            if (account instanceof Savings) {
-//              // open the checking frame
-//              success = true;
-//            }
-//          }
-//        }
-//        if (!success) {
-//          AccountDNEPanel dne = new AccountDNEPanel("Savings", Customer.this.name);
-//        }
-//      }
-//    }
     
-    class CreateListener implements ActionListener {
-      String accType;
+  class CreateListener implements ActionListener {
+    String accType;
+    
+    public CreateListener(String type) {
+      this.accType = type;
+    }
+    public void actionPerformed( ActionEvent e ) {
+      System.out.println("Here to create a customer's " + this.accType + " account!");
       
-      public CreateListener(String type) {
-        this.accType = type;
-      }
-      public void actionPerformed( ActionEvent e ) {
-        System.out.println("Here to create a customer's " + this.accType + " account!");
-        
-        boolean success = false;
-        for (Account account : Customer.this.accounts) {
-          if (account.getType().equals(accType)) {
-            AccountEPanel exists = new AccountEPanel(this.accType, Customer.this.name);
-            success = true;
-            break;
-          }
+      boolean success = false;
+      for (Account account : Customer.this.accounts) {
+        if (account.getType().equals(accType)) {
+          AccountEPanel exists = new AccountEPanel(this.accType, Customer.this.name);
+          success = true;
+          break;
         }
-        
-        if (!success) {
-          if (accType.equals("Checking")) {
-            Checking newCheck = new Checking();
-            SavecheckFrame window = new SavecheckFrame(newCheck, "Deposit");
-            window.halfframe.setVisible(true);
-            Customer.this.accounts.add(newCheck);
-            
-          } else if (accType.equals("Savings")) {
-            Savings newSavings = new Savings();
-            SavecheckFrame window = new SavecheckFrame(newSavings, "Deposit");
-            window.halfframe.setVisible(true);
-            Customer.this.accounts.add(newSavings);
-          }
+      }
+      
+      if (!success) {
+        if (accType.equals("Checking")) {
+          Checking newCheck = new Checking();
+          SavecheckFrame window = new SavecheckFrame(newCheck, "Deposit");
+          window.halfframe.setVisible(true);
+          Customer.this.accounts.add(newCheck);
+          
+        } else if (accType.equals("Savings")) {
+          Savings newSavings = new Savings();
+          SavecheckFrame window = new SavecheckFrame(newSavings, "Deposit");
+          window.halfframe.setVisible(true);
+          Customer.this.accounts.add(newSavings);
         }
       }
     }
+  }
   
-    
-//    class SavingsCreateListener implements ActionListener {
-//      public void actionPerformed( ActionEvent e ) {
-//        System.out.println("Here to create a customer's savings account!");
-//        
-//        for (Account account : Customer.this.accounts) {
-//          if (account instanceof Savings) {
-//            AccountEPanel exists = new AccountEPanel("Savings", Customer.this.name);
-//            break;
-//          }
-//        }
-//        Savings newSave = new Savings();
-//        Customer.this.accounts.add(newSave);
-//        SavecheckFrame window = new SavecheckFrame(newSave);
-//        window.savecheckframe.setVisible(true);
-//      }
-//    }
-    
     class TransactionHistoryListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to display a customer's transaction history!");
