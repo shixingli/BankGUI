@@ -1,4 +1,5 @@
 import java.util.*;
+import javax.swing.*;
 
 public abstract class Account {
   protected String id;
@@ -17,33 +18,33 @@ public abstract class Account {
   
 void withDraw(double amount,String currency){
       this.balance -= amount;
-      this.balance += amount;
-      if(currency.equals("USD")) {
-        USD -= amount;
-      }
-      if(currency.equals("CAD")) {
-        CAD -= amount;
-      }
-      if(currency.equals("Bitcoin")) {
-        Bitcoin -=amount;
-      }
-//      Withdrawal w = new Withdrawal(amount);
-//      this.txns.add(w);
+//      this.balance += amount;
+//      if(currency.equals("USD")) {
+//        USD -= amount;
+//      }
+//      if(currency.equals("CAD")) {
+//        CAD -= amount;
+//      }
+//      if(currency.equals("Bitcoin")) {
+//        Bitcoin -=amount;
+//      }
+      Withdrawal w = new Withdrawal(amount);
+      this.txns.add(w);
     }
 
 void deposit(double amount,String currency){
       this.balance += amount;
-      if(currency.equals("USD")) {
-        USD+= amount;
-      }
-      if(currency.equals("CAD")) {
-        CAD+= amount;
-      }
-      if(currency.equals("Bitcoin")) {
-        Bitcoin+=amount;
-      }
-//      Deposit d = new Deposit(amount);
-//      this.txns.add(d);
+//      if(currency.equals("USD")) {
+//        USD+= amount;
+//      }
+//      if(currency.equals("CAD")) {
+//        CAD+= amount;
+//      }
+//      if(currency.equals("Bitcoin")) {
+//        Bitcoin+=amount;
+//      }
+      Deposit d = new Deposit(amount);
+      this.txns.add(d);
     }
   
   public String getType() {
@@ -79,6 +80,10 @@ void deposit(double amount,String currency){
   public static void main(String[] args) {
   }
   
+  
+  public class AccountSummaryFrame extends JFrame {
+    
+  }
   
   
   

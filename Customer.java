@@ -34,6 +34,7 @@ public class Customer {
     this.id = "username";
     this.pwd = "pwd";
     this.accounts = new LinkedList<Account>();
+    this.loans = new LinkedList<Loan>();
     Bank.customers.put(this.id, this);
   }
   
@@ -67,6 +68,7 @@ public class Customer {
       bal += account.view_balance();
     }
     this.collateral.addAll(this.collateralItems);
+    this.loans = new LinkedList<Loan>();
     Bank.customers.put(this.id, this);
   }
   
@@ -224,13 +226,16 @@ public class Customer {
         deposit.add(checkingD);
         deposit.add(savingsD);
         
+//        CheckSummaryListener checkSumL = new CheckSummaryListener();
+//        checkingSum.addActionListener(checkSumL); 
+//        SavingsSummaryListener savingsSumL = new SavingsSummaryListener();
+//        savingsSum.addActionListener(savingsL); 
+        
         CheckingListener checkL = new CheckingListener();
-        checkingSum.addActionListener(checkL); 
         checkingW.addActionListener(checkL);
         checkingD.addActionListener(checkL);
         
         SavingsListener savingsL = new SavingsListener();
-        savingsSum.addActionListener(savingsL); 
         savingsW.addActionListener(savingsL); 
         savingsD.addActionListener(savingsL);
         
@@ -501,7 +506,7 @@ public class Customer {
         if (tryingTo < 0.0) {
           JOptionPane.showMessageDialog(this, "Loans cannot be taken out for negative amounts.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
         } else {
-          JOptionPane.showMessageDialog(this, "$ " + amnt + "added to your primary Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.showMessageDialog(this, "$" + amnt + " added to your primary Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
         }
       } else {
         JOptionPane.showMessageDialog(this, "Currency not supported by this bank.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
@@ -519,6 +524,7 @@ public class Customer {
     acc.add(check);
     acc.add(save);
     Customer me = new Customer(acc, "Deborah Reynolds", "dbreynolds", "1234");
+    System.out.println(me.getAccounts());
     me.makeFrame();
   }
 }
