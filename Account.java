@@ -45,16 +45,11 @@ void deposit(double amount,String currency){
   for (Currency curr : Bank.currencies) {
     String country = curr.getCountry();
     if (country.equals(currency)) {
-      System.out.println("EQUAL");
       double rate = curr.getRate();
       double newAmount = amount * rate;
-      System.out.println(newAmount);
       this.balance += newAmount;
-      System.out.println("Hiya!");
       Deposit d = new Deposit(newAmount);
-      System.out.println("Howdee!");
       this.txns.add(d);
-      System.out.println("add error");
       break;
     }
   }

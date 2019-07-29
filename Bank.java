@@ -3,61 +3,66 @@ import java.util.*;
 public class Bank {
   // List<Customer> customers; // list of customers
   public static HashMap<String, Customer> customers = new HashMap<>();
-  Manager bankManager= new Manager(Bank.test(),"louis", "1234");
+  Manager bankManager;
   public static Currency[] currencies;
   BankFrame frame;
   // ManagerFrame authorized; // manager gui interactivity
   static double interestrate;
   static double accountfee;
   // Rich Man's Bank Default
+  
   public Bank() {
     defaultCurrencies();
+    bankManager = new Manager(this.customers,"louis", "1234");
   }
-
+  
   // Rich Man's Bank w/ customers input
   public Bank(HashMap<String, Customer> users) {
     this();
     customers = users;
   }
-
+  
   public Bank(Currency[] inpCurrencies, HashMap<String, Customer> users) {
     Bank.newCurrencies(inpCurrencies);
     customers = users;
+    bankManager = new Manager(this.customers, "louis", "1234");
   }
-
+  
   public static void defaultCurrencies() {
     Currency USD = new Currency();
     Currency Bitcoin = new Currency("BIT", 9536.68);
     Currency CAD = new Currency("CAD", 0.76);
     currencies = new Currency[]{USD, Bitcoin, CAD};
   }
-
+  
   public static void newCurrencies(Currency[] newCurr) {
     currencies = newCurr;
   }
-
+  
   void open(){
     frame = new BankFrame(bankManager);
     frame.bankframe.setVisible(true);
   }
-
+  
   public static void main(String[] args)  {
-      Bank mybank = new Bank(Bank.test());
-      mybank.open();
+    Bank mybank = new Bank(Bank.test());
+    mybank.open();
   }
+  
 //  public static double getInterest_manager(){
 //    interestrate = Manager.getInterest();
 //  }
   public static HashMap<String, Customer> test() {
     HashMap<String, Customer> map = new HashMap<String, Customer>();
-
+    defaultCurrencies();
+    
     Checking c1c = new Checking(101);
     Savings c1s = new Savings(11);
-
+    
     Checking c2c = new Checking(50);
-
+    
     Savings c3s = new Savings(1000000);
-
+    
     List<Account> c1Acc = new LinkedList<Account>();
     c1c.deposit(900,"USD");
     c1Acc.add(c1c);
@@ -68,11 +73,11 @@ public class Bank {
     map.put(c2.getUsername(), c2);
     Customer c3 = new Customer(c3s, "Jake Gyllenhaal", "deadpool", "48");
     map.put(c3.getUsername(), c3);
-
+    
     return map;
   }
-
-
-
-
+  
+  
+  
+  
 }
