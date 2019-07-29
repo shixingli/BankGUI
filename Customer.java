@@ -141,6 +141,11 @@ public class Customer {
     this.accounts = setAcc;
   }
   
+  /* adder for multiple accounts */
+  public void addAccounts(List<Account> accs) {
+    this.accounts.addAll(accs);
+  }
+  
   /* gets all history for accs w/out differentiation */
   public List<Transaction> getHistoryAllAcc() {
     if (this.accounts == null) {
