@@ -147,7 +147,7 @@ public class SavecheckFrame {
 		lblEnterTheAmount.setBounds(37, 100, 117, 16);
 		halfframe.getContentPane().add(lblEnterTheAmount);
 
-		JButton bal = new JButton("check balance");
+		JButton bal = new JButton("Check Balance");
 		bal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
