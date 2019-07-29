@@ -509,11 +509,15 @@ public class Customer {
           JOptionPane.showMessageDialog(this, "$" + amnt + " added to your primary Checking account.", "Loan Approved", JOptionPane.INFORMATION_MESSAGE);
         }
       } else {
-        JOptionPane.showMessageDialog(this, "Currency not supported by this bank.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Currency not currently supported at this bank.", "Loan Request Failure", JOptionPane.ERROR_MESSAGE);
       }
     }
   }
-
+  
+  /*
+   * ACCOUNT SUMMARY FRAME  
+   */
+  
   public static void test() {
     Bank richMan = new Bank();
     Checking check = new Checking(100.0);
