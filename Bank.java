@@ -42,7 +42,7 @@ public class Bank {
   }
 
   void open(){
-    frame = new BankFrame(bankManager);
+    frame = new BankFrame(bankManager,customers);
     frame.bankframe.setVisible(true);
   }
 
