@@ -27,242 +27,242 @@ import javax.swing.JPasswordField;
 
 
 public class BankFrame {
-	JFrame bankframe,accframe;
-	JPanel Official,Customer;
-	JButton Official_click,Customer_Click;
-	JLabel creator,Username_label,Title,user_passwordlabel,official_label,official_label2;
-	JTextField official_username,user_name,user_password,official_password;
-	private JPasswordField customerpwd;
-	private JPasswordField officialpwd;
-	private JTextField username;
-	private JTextField userid;
-	private JTextField userpwd;
-	private JButton checkingBTN;
-	private JButton BothBTn;
-	private JLabel lblNewLabel;
-	private Account check = new Checking(0.0);
-	private Account saving = new Savings(0.0);
+ JFrame bankframe,accframe;
+ JPanel Official,Customer;
+ JButton Official_click,Customer_Click;
+ JLabel creator,Username_label,Title,user_passwordlabel,official_label,official_label2;
+ JTextField official_username,user_name,user_password,official_password;
+ private JPasswordField customerpwd;
+ private JPasswordField officialpwd;
+ private JTextField username;
+ private JTextField userid;
+ private JTextField userpwd;
+ private JButton checkingBTN;
+ private JButton BothBTn;
+ private JLabel lblNewLabel;
+ private Account check = new Checking(0.0);
+ private Account saving = new Savings(0.0);
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-//		  HashMap<String, Customer> customers = new HashMap<>();
+ /**
+  * Launch the application.
+  */
+ public static void main(String[] args) {
+//    HashMap<String, Customer> customers = new HashMap<>();
 //
-//		  Manager bankManager = new Manager(customers,"louis","1234");
+//    Manager bankManager = new Manager(customers,"louis","1234");
 //
-//		 BankFrame window = new BankFrame(bankManager);
-//		 window.bankframe.setVisible(true);
-//		 BankFrame window1 = new BankFrame();
-//		 window1.accframe.setVisible(true);
-	}
+//   BankFrame window = new BankFrame(bankManager);
+//   window.bankframe.setVisible(true);
+//   BankFrame window1 = new BankFrame();
+//   window1.accframe.setVisible(true);
+ }
 
 
-	public BankFrame(HashMap<String, Customer> customers) {
-		initialize(customers);
-	}
-	public BankFrame(Manager bankManager, HashMap<String, Customer> customers) {
-		initialize(bankManager,customers);
-	}
+ public BankFrame(HashMap<String, Customer> customers) {
+  initialize(customers);
+ }
+ public BankFrame(Manager bankManager, HashMap<String, Customer> customers) {
+  initialize(bankManager,customers);
+ }
 
 
 
 
 
-	private void initialize(HashMap<String, Customer> customers) {
-		accframe = new JFrame();
-		accframe.setResizable(false);
-		accframe.setBounds(100, 100, 450, 300);
-		accframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		accframe.getContentPane().setBackground(Color.PINK);
-		accframe.getContentPane().setLayout(null);
+ private void initialize(HashMap<String, Customer> customers) {
+  accframe = new JFrame();
+  accframe.setResizable(false);
+  accframe.setBounds(100, 100, 450, 300);
+  accframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+  accframe.getContentPane().setBackground(Color.PINK);
+  accframe.getContentPane().setLayout(null);
 
-		JLabel lblCreateUsername = new JLabel("Create your username:");
-		lblCreateUsername.setBounds(68, 64, 173, 16);
-		accframe.getContentPane().add(lblCreateUsername);
+  JLabel lblCreateUsername = new JLabel("Create your username:");
+  lblCreateUsername.setBounds(68, 64, 173, 16);
+  accframe.getContentPane().add(lblCreateUsername);
 
-		JLabel lblCreateUserid = new JLabel("Create your id:");
-		lblCreateUserid.setBounds(68, 105, 140, 16);
-		accframe.getContentPane().add(lblCreateUserid);
+  JLabel lblCreateUserid = new JLabel("Create your id:");
+  lblCreateUserid.setBounds(68, 105, 140, 16);
+  accframe.getContentPane().add(lblCreateUserid);
 
-		JLabel lblCreateYourId = new JLabel("Create your password:");
-		lblCreateYourId.setBounds(68, 148, 140, 16);
-		accframe.getContentPane().add(lblCreateYourId);
+  JLabel lblCreateYourId = new JLabel("Create your password:");
+  lblCreateYourId.setBounds(68, 148, 140, 16);
+  accframe.getContentPane().add(lblCreateYourId);
 
-		username = new JTextField();
-		username.setBounds(268, 59, 130, 26);
-		accframe.getContentPane().add(username);
-		username.setColumns(10);
+  username = new JTextField();
+  username.setBounds(268, 59, 130, 26);
+  accframe.getContentPane().add(username);
+  username.setColumns(10);
 
-		userid = new JTextField();
-		userid.setColumns(10);
-		userid.setBounds(268, 100, 130, 26);
-		accframe.getContentPane().add(userid);
+  userid = new JTextField();
+  userid.setColumns(10);
+  userid.setBounds(268, 100, 130, 26);
+  accframe.getContentPane().add(userid);
 
-		userpwd = new JTextField();
-		userpwd.setColumns(10);
-		userpwd.setBounds(268, 143, 130, 26);
-		accframe.getContentPane().add(userpwd);
+  userpwd = new JTextField();
+  userpwd.setColumns(10);
+  userpwd.setBounds(268, 143, 130, 26);
+  accframe.getContentPane().add(userpwd);
 
-		JButton Saving_btn = new JButton("Saving Account ");
-		Saving_btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Customer newcust = new Customer(saving,username.getText(),userid.getText(),userpwd.getText());
-				customers.put(userid.getText(),newcust);
-				JOptionPane.showMessageDialog(null, "Your saving account is all set, please log in with your username and password");
-				accframe.dispose();
-			}
-		});
-		Saving_btn.setBounds(181, 243, 145, 29);
-		accframe.getContentPane().add(Saving_btn);
+  JButton Saving_btn = new JButton("Saving Account ");
+  Saving_btn.addActionListener(new ActionListener() {
+   public void actionPerformed(ActionEvent e) {
+    Customer newcust = new Customer(saving,username.getText(),userid.getText(),userpwd.getText());
+    customers.put(userid.getText(),newcust);
+    JOptionPane.showMessageDialog(null, "Your saving account is all set, please log in with your username and password");
+    accframe.dispose();
+   }
+  });
+  Saving_btn.setBounds(181, 243, 145, 29);
+  accframe.getContentPane().add(Saving_btn);
 
-		checkingBTN = new JButton("Checking Account ");
-		checkingBTN.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
-				customers.put(userid.getText(),newcust);
-				JOptionPane.showMessageDialog(null, "Your checking account is all set, please log in with your username and password");
-				accframe.dispose();
-			}
-		});
-		checkingBTN.setBounds(21, 243, 153, 29);
-		accframe.getContentPane().add(checkingBTN);
+  checkingBTN = new JButton("Checking Account ");
+  checkingBTN.addActionListener(new ActionListener() {
+   public void actionPerformed(ActionEvent e) {
+    Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
+    customers.put(userid.getText(),newcust);
+    JOptionPane.showMessageDialog(null, "Your checking account is all set, please log in with your username and password");
+    accframe.dispose();
+   }
+  });
+  checkingBTN.setBounds(21, 243, 153, 29);
+  accframe.getContentPane().add(checkingBTN);
 
-		BothBTn = new JButton("Both");
-		BothBTn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
-				newcust.addAccount(saving);
-				customers.put(userid.getText(),newcust);
-				JOptionPane.showMessageDialog(null, "Your two accounts are all set, please log in with your username and password");
-				accframe.dispose();
-			}
-		});
-		BothBTn.setBounds(327, 243, 117, 29);
-		accframe.getContentPane().add(BothBTn);
+  BothBTn = new JButton("Both");
+  BothBTn.addActionListener(new ActionListener() {
+   public void actionPerformed(ActionEvent e) {
+    Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
+    newcust.addAccount(saving);
+    customers.put(userid.getText(),newcust);
+    JOptionPane.showMessageDialog(null, "Your two accounts are all set, please log in with your username and password");
+    accframe.dispose();
+   }
+  });
+  BothBTn.setBounds(327, 243, 117, 29);
+  accframe.getContentPane().add(BothBTn);
 
-		lblNewLabel = new JLabel("What type of account you want to open?");
-		lblNewLabel.setBounds(95, 201, 282, 16);
-		accframe.getContentPane().add(lblNewLabel);
+  lblNewLabel = new JLabel("What type of account you want to open?");
+  lblNewLabel.setBounds(95, 201, 282, 16);
+  accframe.getContentPane().add(lblNewLabel);
 
 
-	}
-	private void initialize(Manager bankManager, HashMap<String, Customer> customers) {
-		bankframe = new JFrame();
-		bankframe.setResizable(false);
-		bankframe.setBounds(100, 100, 450, 300);
-		bankframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		bankframe.getContentPane().setBackground(Color.PINK);
-		bankframe.getContentPane().setLayout(null);
+ }
+ private void initialize(Manager bankManager, HashMap<String, Customer> customers) {
+  bankframe = new JFrame();
+  bankframe.setResizable(false);
+  bankframe.setBounds(100, 100, 450, 300);
+  bankframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  bankframe.getContentPane().setBackground(Color.PINK);
+  bankframe.getContentPane().setLayout(null);
 
-		Customer = new JPanel();
-		Customer.setBorder(new EmptyBorder(0, 0, 0, 0));
-		Customer.setBackground(Color.PINK);
-		Customer.setBounds(6, 95, 210, 159);
-		bankframe.getContentPane().add(Customer);
-		Customer.setLayout(null);
+  Customer = new JPanel();
+  Customer.setBorder(new EmptyBorder(0, 0, 0, 0));
+  Customer.setBackground(Color.PINK);
+  Customer.setBounds(6, 95, 210, 159);
+  bankframe.getContentPane().add(Customer);
+  Customer.setLayout(null);
 
-		Customer_Click = new JButton("Customer Login in ");
-		Customer_Click.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				 if (customers.containsKey(user_name.getText())) {
-					 //id for now
-					 customers.get(user_name.getText()).makeFrame();
-				 }
-				 else {
-					JOptionPane.showMessageDialog(null, "username is not correct");
-				 }
-//				JOptionPane.showMessageDialog(null, "username or password is not correct");
-				//pops out Customer frame if they correctly match the credentials
-			}
-		});
-		Customer_Click.setBounds(59, 94, 145, 29);
-		Customer.add(Customer_Click);
+  Customer_Click = new JButton("Customer Login in ");
+  Customer_Click.addMouseListener(new MouseAdapter() {
+   @Override
+   public void mouseClicked(MouseEvent e) {
+     if (customers.containsKey(user_name.getText())) {
+      //id for now
+      customers.get(user_name.getText()).makeFrame();
+     }
+     else {
+     JOptionPane.showMessageDialog(null, "username is not correct");
+     }
+//    JOptionPane.showMessageDialog(null, "username or password is not correct");
+    //pops out Customer frame if they correctly match the credentials
+   }
+  });
+  Customer_Click.setBounds(59, 94, 145, 29);
+  Customer.add(Customer_Click);
 
-		user_name = new JTextField();
-		user_name.setBounds(79, 15, 106, 26);
-		Customer.add(user_name);
-		user_name.setColumns(10);
+  user_name = new JTextField();
+  user_name.setBounds(79, 15, 106, 26);
+  Customer.add(user_name);
+  user_name.setColumns(10);
 
-		Username_label = new JLabel("Username:");
-		Username_label.setForeground(Color.WHITE);
-		Username_label.setBounds(6, 20, 75, 16);
-		Customer.add(Username_label);
+  Username_label = new JLabel("Username:");
+  Username_label.setForeground(Color.WHITE);
+  Username_label.setBounds(6, 20, 75, 16);
+  Customer.add(Username_label);
 
-		customerpwd = new JPasswordField();
-		customerpwd.setBounds(79, 56, 107, 26);
-		Customer.add(customerpwd);
+  customerpwd = new JPasswordField();
+  customerpwd.setBounds(79, 56, 107, 26);
+  Customer.add(customerpwd);
 
-		user_passwordlabel = new JLabel("Password:");
-		user_passwordlabel.setForeground(Color.WHITE);
-		user_passwordlabel.setBounds(6, 61, 75, 16);
-		Customer.add(user_passwordlabel);
+  user_passwordlabel = new JLabel("Password:");
+  user_passwordlabel.setForeground(Color.WHITE);
+  user_passwordlabel.setBounds(6, 61, 75, 16);
+  Customer.add(user_passwordlabel);
 
-		JButton createaccBTN = new JButton("Create an Account");
-		createaccBTN.setBounds(59, 129, 145, 29);
-		Customer.add(createaccBTN);
-		createaccBTN.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BankFrame window = new BankFrame(customers);
-				 window.accframe.setVisible(true);
-			}
-		});
+  JButton createaccBTN = new JButton("Create an Account");
+  createaccBTN.setBounds(59, 129, 145, 29);
+  Customer.add(createaccBTN);
+  createaccBTN.addActionListener(new ActionListener() {
+   public void actionPerformed(ActionEvent e) {
+    BankFrame window = new BankFrame(customers);
+     window.accframe.setVisible(true);
+   }
+  });
 
-		Official = new JPanel();
-		Official.setBorder(new EmptyBorder(0, 0, 0, 0));
-		Official.setBackground(Color.PINK);
-		Official.setBounds(234, 95, 210, 143);
-		bankframe.getContentPane().add(Official);
-		Official.setLayout(null);
+  Official = new JPanel();
+  Official.setBorder(new EmptyBorder(0, 0, 0, 0));
+  Official.setBackground(Color.PINK);
+  Official.setBounds(234, 95, 210, 143);
+  bankframe.getContentPane().add(Official);
+  Official.setLayout(null);
 
-		Official_click = new JButton("Official Login in ");
-		Official_click.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(bankManager.isManager(official_username.getText(),officialpwd.getText())==true) {
-					bankManager.createMFrame();
-			}
-			else {
-				JOptionPane.showMessageDialog(null, "manager password or username is wrong");
+  Official_click = new JButton("Official Login in ");
+  Official_click.addActionListener(new ActionListener() {
+   public void actionPerformed(ActionEvent e) {
+    if(bankManager.isManager(official_username.getText(),officialpwd.getText())==true) {
+     bankManager.createMFrame();
+   }
+   else {
+    JOptionPane.showMessageDialog(null, "manager password or username is wrong");
 
-			}
-			}
-		});
+   }
+   }
+  });
 
-		Official_click.setForeground(Color.BLACK);
-		Official_click.setBounds(62, 94, 142, 29);
-		Official.add(Official_click);
+  Official_click.setForeground(Color.BLACK);
+  Official_click.setBounds(62, 94, 142, 29);
+  Official.add(Official_click);
 
-		official_label = new JLabel("Username:");
-		official_label.setForeground(Color.WHITE);
-		official_label.setBounds(6, 20, 75, 16);
-		Official.add(official_label);
+  official_label = new JLabel("Username:");
+  official_label.setForeground(Color.WHITE);
+  official_label.setBounds(6, 20, 75, 16);
+  Official.add(official_label);
 
-		official_username = new JTextField();
-		official_username.setColumns(10);
-		official_username.setBounds(75, 15, 106, 26);
-		Official.add(official_username);
+  official_username = new JTextField();
+  official_username.setColumns(10);
+  official_username.setBounds(75, 15, 106, 26);
+  Official.add(official_username);
 
-		official_label2 = new JLabel("Password:");
-		official_label2.setForeground(Color.WHITE);
-		official_label2.setBounds(6, 61, 75, 16);
-		Official.add(official_label2);
+  official_label2 = new JLabel("Password:");
+  official_label2.setForeground(Color.WHITE);
+  official_label2.setBounds(6, 61, 75, 16);
+  Official.add(official_label2);
 
-		officialpwd = new JPasswordField();
-		officialpwd.setBounds(75, 56, 107, 26);
-		Official.add(officialpwd);
+  officialpwd = new JPasswordField();
+  officialpwd.setBounds(75, 56, 107, 26);
+  Official.add(officialpwd);
 
-		Title = new JLabel("Welcome to our bank");
-		Title.setForeground(Color.WHITE);
-		Title.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-		Title.setHorizontalAlignment(SwingConstants.CENTER);
-		Title.setBounds(59, 31, 329, 52);
-		bankframe.getContentPane().add(Title);
+  Title = new JLabel("Welcome to Richman's Bank");
+  Title.setForeground(Color.WHITE);
+  Title.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+  Title.setHorizontalAlignment(SwingConstants.CENTER);
+  Title.setBounds(59, 31, 329, 52);
+  bankframe.getContentPane().add(Title);
 
-		creator = new JLabel("Amanda, Louis, Shizhen");
-		creator.setForeground(Color.WHITE);
-		creator.setHorizontalAlignment(SwingConstants.CENTER);
-		creator.setBounds(79, 256, 309, 16);
-		bankframe.getContentPane().add(creator);
-	}
+  creator = new JLabel("Amanda, Louis, Shizhen");
+  creator.setForeground(Color.WHITE);
+  creator.setHorizontalAlignment(SwingConstants.CENTER);
+  creator.setBounds(79, 256, 309, 16);
+  bankframe.getContentPane().add(creator);
+ }
 }
