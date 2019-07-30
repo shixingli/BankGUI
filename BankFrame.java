@@ -252,7 +252,7 @@ public class BankFrame {
   officialpwd.setBounds(75, 56, 107, 26);
   Official.add(officialpwd);
 
-  Title = new JLabel("Welcome to Richman's Bank");
+  Title = new JLabel("Welcome to Richman's ank");
   Title.setForeground(Color.WHITE);
   Title.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
   Title.setHorizontalAlignment(SwingConstants.CENTER);
