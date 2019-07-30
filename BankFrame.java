@@ -77,7 +77,7 @@ public class BankFrame {
   accframe.getContentPane().setBackground(Color.PINK);
   accframe.getContentPane().setLayout(null);
 
-  JLabel lblCreateUsername = new JLabel("First Name Last Name:");
+  JLabel lblCreateUsername = new JLabel("Name (first and last):");
   lblCreateUsername.setBounds(68, 64, 173, 16);
   accframe.getContentPane().add(lblCreateUsername);
 
