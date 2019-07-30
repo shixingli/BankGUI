@@ -52,6 +52,7 @@ public class SavecheckFrame {
 
  private void init(Account savechecking,boolean flag) {
   justframe = new JFrame();
+  justframe.setBackground(Color.PINK);
   justframe.setResizable(false);
   justframe.setBounds(100, 100, 450, 300);
   justframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -91,6 +92,7 @@ public class SavecheckFrame {
 
  private void half_init(Account savechecking, String action ) {
   halfframe = new JFrame();
+  halfframe.setBackground(Color.PINK);
   halfframe.setResizable(false);
   halfframe.setBounds(100, 100, 450, 300);
   halfframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -253,6 +255,7 @@ public class SavecheckFrame {
  }
  private void initialize(Account savechecking) {
   savecheckframe = new JFrame();
+  savecheckframe.setBackground(Color.PINK);
   savecheckframe.setResizable(false);
   savecheckframe.setBounds(100, 100, 450, 300);
   savecheckframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
