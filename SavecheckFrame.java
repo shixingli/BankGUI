@@ -234,7 +234,7 @@ public class SavecheckFrame {
   halfframe.getContentPane().add(amout_money);
   amout_money.setColumns(10);
 
-  JLabel lblEnterTheAmount = new JLabel("Enter the amount :");
+  JLabel lblEnterTheAmount = new JLabel("Enter the amount:");
   lblEnterTheAmount.setBounds(37, 100, 117, 16);
   halfframe.getContentPane().add(lblEnterTheAmount);
 
@@ -288,7 +288,7 @@ public class SavecheckFrame {
   Checkbalance.setBounds(121, 209, 190, 63);
   savecheckframe.getContentPane().add(Checkbalance);
 
-  JLabel lblIWanTo_2 = new JLabel("I wan to transfer:");
+  JLabel lblIWanTo_2 = new JLabel("I want to transfer:");
   lblIWanTo_2.setBounds(20, 133, 137, 52);
   savecheckframe.getContentPane().add(lblIWanTo_2);
 
