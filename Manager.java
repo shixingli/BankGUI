@@ -22,7 +22,7 @@ public class Manager{
        private ManagerFrame() {
            JFrame frame = new JFrame("RichManBank's Esteemed Manager");
            frame.setLayout(new GridLayout(3, 3));
-           frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.magenta));
+           frame.getRootPane().setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.PINK));
            frame.setLocation(100, 100);
            frame.setSize(500, 400);
            frame.setLocation(200, 100);
