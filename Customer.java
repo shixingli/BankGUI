@@ -277,8 +277,6 @@ public class Customer {
               sub.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                  System.out.println("Customer attempting to take out a loan!");
-                  System.out.println(loanAmount);
                   String loan = loanAmount.getText();
                   String curr = loanCurr.getText();
                   
@@ -288,7 +286,12 @@ public class Customer {
                       success = true;
                       Loan poor = new Loan(Double.parseDouble(loan));
                       loans.add(poor);
-                      System.out.println(poor.moneyBack());
+                      try {
+                        Customer.this.collateral.pop();
+                      } catch (Exception except) {
+                        CollateralDNEPanel collat = new CollateralDNEPanel();
+                        return;
+                      }
                       acc.deposit(poor.moneyBack(), curr);
                       break;
                     }
@@ -448,8 +451,17 @@ public class Customer {
     }
   }
   
+  /*
+   * COLLATERAL DNE PANEL 
+   */
+  public class CollateralDNEPanel extends JPanel {
+     public CollateralDNEPanel() {
+      JOptionPane.showMessageDialog(this, "Insufficent collateral to take out a loan", "Invalid Request", JOptionPane.ERROR_MESSAGE);
+    }
+  }
+  
   /* 
-   *  ACCOUNT DNE FRAME
+   *  ACCOUNT DNE PANEL
    */
   public class AccountDNEPanel extends JPanel {
     
@@ -522,10 +534,10 @@ public class Customer {
    */
   public class LoanPanel extends JPanel {
     public LoanPanel(String amnt, boolean validCurr) {
-         UIManager UI=new UIManager();
-         UI.put("OptionPane.messageForeground", Color.WHITE);
-         UI.put("OptionPane.background", Color.PINK);
-         UI.put("Panel.background", Color.PINK);
+//         UIManager UI=new UIManager();
+//         UI.put("OptionPane.messageForeground", Color.WHITE);
+//         UI.put("OptionPane.background", Color.PINK);
+//         UI.put("Panel.background", Color.PINK);
       if (validCurr) {
         double tryingTo = Double.parseDouble(amnt);
         if (tryingTo < 0.0) {
