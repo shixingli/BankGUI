@@ -77,7 +77,7 @@ public class BankFrame {
   accframe.getContentPane().setBackground(Color.PINK);
   accframe.getContentPane().setLayout(null);
 
-  JLabel lblCreateUsername = new JLabel("Create your username:");
+  JLabel lblCreateUsername = new JLabel("First Name Last Name:");
   lblCreateUsername.setBounds(68, 64, 173, 16);
   accframe.getContentPane().add(lblCreateUsername);
 
@@ -252,7 +252,7 @@ public class BankFrame {
   officialpwd.setBounds(75, 56, 107, 26);
   Official.add(officialpwd);
 
-  Title = new JLabel("Welcome to Richman's ank");
+  Title = new JLabel("Richman's Bank");
   Title.setForeground(Color.WHITE);
   Title.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
   Title.setHorizontalAlignment(SwingConstants.CENTER);
