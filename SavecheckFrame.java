@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 public class SavecheckFrame {
 	JFrame savecheckframe,halfframe,justframe;
@@ -53,23 +55,38 @@ public class SavecheckFrame {
 		justframe.setResizable(false);
 		justframe.setBounds(100, 100, 450, 300);
 		justframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		justframe.getContentPane().setLayout(new GridLayout(2, 1));
+		justframe.getContentPane().setLayout(null);
 
-	    JPanel panel = new JPanel();
-
-		justframe.getContentPane().add(panel);
+		JScrollPane scrollPane_1 = new JScrollPane(null,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_1.setBounds(0, 0, 450, 278);
+		justframe.getContentPane().add(scrollPane_1);
 
 		if(savechecking instanceof Savings) {
 			for(Transaction txn: savechecking.view_txns()) {
-	            panel.add(new JLabel(txn.getId()+" $ " + txn.getAmount()));
+				scrollPane_1.add(new JLabel(txn.getId()+" $ " + txn.getAmount()));
 
 			}
 		}
 		else {
 			for(Transaction txn: savechecking.view_txns()) {
-	            panel.add(new JLabel(txn.getId()+" $ " + txn.getAmount()));
+				scrollPane_1.add(new JLabel(txn.getId()+" $ " + txn.getAmount()));
 			}
 		}
+	  //   JPanel panel = new JPanel();
+		//
+		// justframe.getContentPane().add(panel);
+		//
+		// if(savechecking instanceof Savings) {
+		// 	for(Transaction txn: savechecking.view_txns()) {
+	  //           panel.add(new JLabel(txn.getId()+" $ " + txn.getAmount()));
+		//
+		// 	}
+		// }
+		// else {
+		// 	for(Transaction txn: savechecking.view_txns()) {
+	  //           panel.add(new JLabel(txn.getId()+" $ " + txn.getAmount()));
+		// 	}
+		// }
 	}
 
 	private void half_init(Account savechecking, String action ) {
