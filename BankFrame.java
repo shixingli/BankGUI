@@ -1,3 +1,4 @@
+// package bank;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,44 +21,141 @@ import javax.swing.JInternalFrame;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+
 import javax.swing.JPasswordField;
 
 
 public class BankFrame {
-	JFrame bankframe;
+	JFrame bankframe,accframe;
 	JPanel Official,Customer;
 	JButton Official_click,Customer_Click;
 	JLabel creator,Username_label,Title,user_passwordlabel,official_label,official_label2;
 	JTextField official_username,user_name,user_password,official_password;
 	private JPasswordField customerpwd;
 	private JPasswordField officialpwd;
-
+	private JTextField username;
+	private JTextField userid;
+	private JTextField userpwd;
+	private JButton checkingBTN;
+	private JButton BothBTn;
+	private JLabel lblNewLabel;
+	private Account check = new Checking(0.0);
+	private Account saving = new Savings(0.0);
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		// BankFrame window = new BankFrame();
-		// window.bankframe.setVisible(true);
+//		  HashMap<String, Customer> customers = new HashMap<>();
+//
+//		  Manager bankManager = new Manager(customers,"louis","1234");
+//
+//		 BankFrame window = new BankFrame(bankManager);
+//		 window.bankframe.setVisible(true);
+		 // BankFrame window1 = new BankFrame();
+		 // window1.accframe.setVisible(true);
+	}
+
+
+	public BankFrame() {
+		initialize();
+	}
+	public BankFrame(Manager bankManager) {
+		initialize(bankManager);
 	}
 
 
 
-	public BankFrame(Manager bankManager) {
-		initialize(bankManager);
+
+
+	private void initialize() {
+		accframe = new JFrame();
+		accframe.setResizable(false);
+		accframe.setBounds(100, 100, 450, 300);
+		accframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		accframe.getContentPane().setBackground(Color.PINK);
+		accframe.getContentPane().setLayout(null);
+
+		JLabel lblCreateUsername = new JLabel("Create your username:");
+		lblCreateUsername.setBounds(68, 64, 173, 16);
+		accframe.getContentPane().add(lblCreateUsername);
+
+		JLabel lblCreateUserid = new JLabel("Create your id:");
+		lblCreateUserid.setBounds(68, 105, 140, 16);
+		accframe.getContentPane().add(lblCreateUserid);
+
+		JLabel lblCreateYourId = new JLabel("Create your password:");
+		lblCreateYourId.setBounds(68, 148, 140, 16);
+		accframe.getContentPane().add(lblCreateYourId);
+
+		username = new JTextField();
+		username.setBounds(268, 59, 130, 26);
+		accframe.getContentPane().add(username);
+		username.setColumns(10);
+
+		userid = new JTextField();
+		userid.setColumns(10);
+		userid.setBounds(268, 100, 130, 26);
+		accframe.getContentPane().add(userid);
+
+		userpwd = new JTextField();
+		userpwd.setColumns(10);
+		userpwd.setBounds(268, 143, 130, 26);
+		accframe.getContentPane().add(userpwd);
+
+		JButton Saving_btn = new JButton("Saving Account ");
+		Saving_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Customer newcust = new Customer(saving,username.getText(),userid.getText(),userpwd.getText());
+				JOptionPane.showMessageDialog(null, "Your saving account is all set, please log in with your username and password");
+				accframe.dispose();
+			}
+		});
+		Saving_btn.setBounds(181, 243, 145, 29);
+		accframe.getContentPane().add(Saving_btn);
+
+		checkingBTN = new JButton("Checking Account ");
+		checkingBTN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
+				JOptionPane.showMessageDialog(null, "Your checking account is all set, please log in with your username and password");
+				accframe.dispose();
+			}
+		});
+		checkingBTN.setBounds(21, 243, 153, 29);
+		accframe.getContentPane().add(checkingBTN);
+
+		BothBTn = new JButton("Both");
+		BothBTn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
+				newcust.addAccount(saving);
+				JOptionPane.showMessageDialog(null, "Your two accounts are all set, please log in with your username and password");
+				accframe.dispose();
+			}
+		});
+		BothBTn.setBounds(327, 243, 117, 29);
+		accframe.getContentPane().add(BothBTn);
+
+		lblNewLabel = new JLabel("What type of account you want to open?");
+		lblNewLabel.setBounds(95, 201, 282, 16);
+		accframe.getContentPane().add(lblNewLabel);
+
+
 	}
 	private void initialize(Manager bankManager) {
 		bankframe = new JFrame();
 		bankframe.setResizable(false);
 		bankframe.setBounds(100, 100, 450, 300);
 		bankframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		bankframe.getContentPane().setBackground(Color.BLACK);
+		bankframe.getContentPane().setBackground(Color.PINK);
 		bankframe.getContentPane().setLayout(null);
 
 		Customer = new JPanel();
 		Customer.setBorder(new EmptyBorder(0, 0, 0, 0));
-		Customer.setBackground(Color.BLACK);
-		Customer.setBounds(6, 95, 210, 143);
+		Customer.setBackground(Color.PINK);
+		Customer.setBounds(6, 95, 210, 159);
 		bankframe.getContentPane().add(Customer);
 		Customer.setLayout(null);
 
@@ -91,17 +189,26 @@ public class BankFrame {
 		user_passwordlabel.setBounds(6, 61, 75, 16);
 		Customer.add(user_passwordlabel);
 
+		JButton createaccBTN = new JButton("Create an Account");
+		createaccBTN.setBounds(59, 129, 145, 29);
+		Customer.add(createaccBTN);
+		createaccBTN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BankFrame window = new BankFrame();
+				 window.accframe.setVisible(true);
+			}
+		});
+
 		Official = new JPanel();
 		Official.setBorder(new EmptyBorder(0, 0, 0, 0));
-		Official.setBackground(Color.BLACK);
+		Official.setBackground(Color.PINK);
 		Official.setBounds(234, 95, 210, 143);
 		bankframe.getContentPane().add(Official);
 		Official.setLayout(null);
 
 		Official_click = new JButton("Official Login in ");
-		Official_click.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		Official_click.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				if(bankManager.isManager(official_username.getText(),officialpwd.getText())==true) {
 					bankManager.createMFrame();
 			}
@@ -111,6 +218,7 @@ public class BankFrame {
 			}
 			}
 		});
+
 		Official_click.setForeground(Color.BLACK);
 		Official_click.setBounds(62, 94, 142, 29);
 		Official.add(Official_click);
