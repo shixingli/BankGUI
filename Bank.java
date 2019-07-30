@@ -15,6 +15,7 @@ public class Bank {
 
   public Bank() {
     defaultCurrencies();
+
     bankManager = new Manager(this.customers,curr_managername, curr_managerpwd);
   }
 
@@ -47,20 +48,14 @@ public class Bank {
   }
 
   public static void main(String[] args)  {
-    Bank mybank = new Bank(Bank.test());
-    mybank.open();
-  }
-
-//  public static double getInterest_manager(){
-//    interestrate = Manager.getInterest();
-//  }
-  public static HashMap<String, Customer> test() {
+    // defaultCurrencies();
     HashMap<String, Customer> map = new HashMap<String, Customer>();
-    defaultCurrencies();
+    // defaultCurrencies();
+    Bank mybank = new Bank(map);
 
     Checking c1c = new Checking(101);
     Savings c1s = new Savings(11);
-
+    c1c.deposit(900,"USD");
     Checking c2c = new Checking(50);
 
     Savings c3s = new Savings(1000000);
@@ -76,8 +71,38 @@ public class Bank {
     Customer c3 = new Customer(c3s, "Jake Gyllenhaal", "deadpool", "48");
     map.put(c3.getUsername(), c3);
 
-    return map;
+    // Bank mybank = new Bank(map);
+    mybank.open();
+
   }
+
+//  public static double getInterest_manager(){
+//    interestrate = Manager.getInterest();
+//  }
+  // public static HashMap<String, Customer> test() {
+  //   HashMap<String, Customer> map = new HashMap<String, Customer>();
+  //   // defaultCurrencies();
+  //
+  //   Checking c1c = new Checking(101);
+  //   Savings c1s = new Savings(11);
+  //   c1c.deposit(900,"USD");
+  //   Checking c2c = new Checking(50);
+  //
+  //   Savings c3s = new Savings(1000000);
+  //
+  //   List<Account> c1Acc = new LinkedList<Account>();
+  //   c1c.deposit(900,"USD");
+  //   c1Acc.add(c1c);
+  //   c1Acc.add(c1s);
+  //   Customer c1 = new Customer(c1Acc, "Deborah Reynolds", "dbreynolds", "890cloverfield");
+  //   map.put(c1.getUsername(), c1);
+  //   Customer c2 = new Customer(c2c, "Blake Lively", "blive", "123456");
+  //   map.put(c2.getUsername(), c2);
+  //   Customer c3 = new Customer(c3s, "Jake Gyllenhaal", "deadpool", "48");
+  //   map.put(c3.getUsername(), c3);
+  //
+  //   return map;
+  // }
 
 
 
