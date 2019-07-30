@@ -72,20 +72,23 @@ public class BankFrame {
  private void initialize(HashMap<String, Customer> customers) {
   accframe = new JFrame();
   accframe.setResizable(false);
-  accframe.setBounds(100, 100, 450, 300);
+  accframe.setBounds(100, 100, 500, 325);
   accframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   accframe.getContentPane().setBackground(Color.PINK);
   accframe.getContentPane().setLayout(null);
 
   JLabel lblCreateUsername = new JLabel("Name (first and last):");
+  lblCreateUsername.setForeground(Color.WHITE);
   lblCreateUsername.setBounds(68, 64, 173, 16);
   accframe.getContentPane().add(lblCreateUsername);
 
   JLabel lblCreateUserid = new JLabel("Create your id:");
+  lblCreateUserid.setForeground(Color.WHITE);
   lblCreateUserid.setBounds(68, 105, 140, 16);
   accframe.getContentPane().add(lblCreateUserid);
 
   JLabel lblCreateYourId = new JLabel("Create your password:");
+  lblCreateYourId.setForeground(Color.WHITE);
   lblCreateYourId.setBounds(68, 148, 140, 16);
   accframe.getContentPane().add(lblCreateYourId);
 
@@ -142,6 +145,7 @@ public class BankFrame {
   accframe.getContentPane().add(BothBTn);
 
   lblNewLabel = new JLabel("What type of account you want to open?");
+  lblNewLabel.setForeground(Color.WHITE);
   lblNewLabel.setBounds(95, 201, 282, 16);
   accframe.getContentPane().add(lblNewLabel);
 
@@ -150,7 +154,7 @@ public class BankFrame {
  private void initialize(Manager bankManager, HashMap<String, Customer> customers) {
   bankframe = new JFrame();
   bankframe.setResizable(false);
-  bankframe.setBounds(100, 100, 450, 300);
+  bankframe.setBounds(200, 200, 475, 350);
   bankframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   bankframe.getContentPane().setBackground(Color.PINK);
   bankframe.getContentPane().setLayout(null);
@@ -259,7 +263,7 @@ public class BankFrame {
   Title.setBounds(59, 31, 329, 52);
   bankframe.getContentPane().add(Title);
 
-  creator = new JLabel("Amanda, Louis, Shizhen");
+  creator = new JLabel("Made by: Amanda, Louis, Shizhen");
   creator.setForeground(Color.WHITE);
   creator.setHorizontalAlignment(SwingConstants.CENTER);
   creator.setBounds(79, 256, 309, 16);
