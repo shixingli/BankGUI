@@ -1,8 +1,4 @@
-// package bank;
-
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+ // package bank;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -33,9 +29,9 @@ public class SavecheckFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-//		Account saving = new Savings(0.00);
-//		SavecheckFrame window = new SavecheckFrame(saving,"deposite") ;
-//		window.halfframe.setVisible(true);
+		Account saving = new Savings(0.00);
+		SavecheckFrame window = new SavecheckFrame(saving) ;
+		window.savecheckframe.setVisible(true);
 		// SavecheckFrame window1 = new SavecheckFrame(saving,"withdraw") ;
 		// window1.halfframe.setVisible(true);
 	}
@@ -57,9 +53,9 @@ public class SavecheckFrame {
 		justframe.setResizable(false);
 		justframe.setBounds(100, 100, 450, 300);
 		justframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		justframe.getContentPane().setLayout(null);
+		justframe.getContentPane().setLayout(new GridLayout(2, 1));
 
-		JPanel panel = new JPanel();
+	    JPanel panel = new JPanel();
 
 		justframe.getContentPane().add(panel);
 
@@ -89,9 +85,8 @@ public class SavecheckFrame {
 		halfframe.getContentPane().add(lblNewLabel);
 
 		JButton btnNewButton = new JButton(action+ " CAD");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				if(action.equals("Deposit")) {
 					try {
 						double amount= Double.parseDouble(amout_money.getText());
@@ -112,13 +107,35 @@ public class SavecheckFrame {
 				}
 			}
 		});
+//		btnNewButton.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				if(action.equals("Deposit")) {
+//					try {
+//						double amount= Double.parseDouble(amout_money.getText());
+//						savechecking.deposit(amount,"CAD");
+//
+//					}catch(Exception e1) {
+//						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+//					}
+//				}
+//				else {
+//					try {
+//						double amount= Double.parseDouble(amout_money.getText());
+//						savechecking.withDraw(amount,"CAD");
+//
+//					}catch(Exception e1) {
+//						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+//					}
+//				}
+//			}
+//		});
 		btnNewButton.setBounds(166, 160, 122, 29);
 		halfframe.getContentPane().add(btnNewButton);
 
 		JButton USDBUTTON = new JButton(action + " USD");
-		USDBUTTON.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		USDBUTTON.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				if(action.equals("Deposit")) {
 					try {
 						double amount= Double.parseDouble(amout_money.getText());
@@ -143,9 +160,8 @@ public class SavecheckFrame {
 		halfframe.getContentPane().add(USDBUTTON);
 
 		JButton btnDepositeBitcoin = new JButton(action + " Bitcoin");
-		btnDepositeBitcoin.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnDepositeBitcoin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				if(action.equals("Deposit")) {
 					try {
 						double amount= Double.parseDouble(amout_money.getText());
@@ -168,6 +184,31 @@ public class SavecheckFrame {
 				}
 			}
 		});
+//		btnDepositeBitcoin.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				if(action.equals("Deposit")) {
+//					try {
+//						double amount= Double.parseDouble(amout_money.getText());
+//						savechecking.deposit(amount,"BIT");
+//						JOptionPane.showMessageDialog(null, "deposited " + amount +"!");
+//
+//					}catch(Exception e1) {
+//						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+//					}
+//				}
+//				else {
+//					try {
+//						double amount= Double.parseDouble(amout_money.getText());
+//						savechecking.withDraw(amount,"Bitcoin");
+//						JOptionPane.showMessageDialog(null, "withDraw " + amount +"!");
+//
+//					}catch(Exception e1) {
+//						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+//					}
+//				}
+//			}
+//		});
 		btnDepositeBitcoin.setBounds(307, 160, 137, 29);
 		halfframe.getContentPane().add(btnDepositeBitcoin);
 
@@ -240,10 +281,8 @@ public class SavecheckFrame {
 		savecheckframe.getContentPane().add(transfer_amount);
 
 		JButton btnUsd = new JButton("USD");
-		btnUsd.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//user has to input a valid input
+		btnUsd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					double amount= Double.parseDouble(deposite_amount.getText());
 					savechecking.deposit(amount,"USD");
@@ -254,6 +293,20 @@ public class SavecheckFrame {
 				}
 			}
 		});
+//		btnUsd.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				//user has to input a valid input
+//				try {
+//					double amount= Double.parseDouble(deposite_amount.getText());
+//					savechecking.deposit(amount,"USD");
+//					JOptionPane.showMessageDialog(null, "deposit " + amount +"!");
+//
+//				}catch(Exception e1) {
+//					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
+//				}
+//			}
+//		});
 		btnUsd.setBounds(270, 31, 50, 29);
 		savecheckframe.getContentPane().add(btnUsd);
 
