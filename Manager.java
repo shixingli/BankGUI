@@ -324,8 +324,9 @@ public class Manager{
         HashMap<String, Customer> map = new HashMap<String, Customer>();
 
         Checking c1c = new Checking(101);
+//        c1c.deposit(300, "USD");
         Savings c1s = new Savings(11);
-
+//        c1s.withDraw(11,"USD");
         Checking c2c = new Checking(50);
 
         Savings c3s = new Savings(1000000);
@@ -334,6 +335,8 @@ public class Manager{
         c1Acc.add(c1c);
         c1Acc.add(c1s);
         Customer c1 = new Customer(c1Acc, "Deborah Reynolds", "dbreynolds", "890cloverfield");
+        Loan l = new Loan(300);
+        c1.setLoan(l);
         map.put(c1.getUsername(), c1);
         Customer c2 = new Customer(c2c, "Blake Lively", "blive", "123456");
         map.put(c2.getUsername(), c2);
