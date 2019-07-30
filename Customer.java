@@ -268,10 +268,10 @@ public class Customer {
           for (Account acc : Customer.this.accounts) {
             if (acc instanceof Checking) {
               hasChecking = true;
-              loan.add(new JLabel("Amount:"));
+              loan.add(new JLabel("Amount:")).setForeground(Color.WHITE);
               loan.add(loanAmount);
               
-              loan.add(new JLabel("Curr. Country Code:"));
+              loan.add(new JLabel("Curr. Country Code:")).setForeground(Color.WHITE);
               loan.add(loanCurr);
               JButton sub = new JButton("Submit");
               loan.add(sub);
@@ -501,6 +501,10 @@ public class Customer {
    */
   public class LoanPanel extends JPanel {
     public LoanPanel(String amnt, boolean validCurr) {
+         UIManager UI=new UIManager();
+         UI.put("OptionPane.messageForeground", Color.WHITE);
+         UI.put("OptionPane.background", Color.PINK);
+         UI.put("Panel.background", Color.PINK);
       if (validCurr) {
         double tryingTo = Double.parseDouble(amnt);
         if (tryingTo < 0.0) {

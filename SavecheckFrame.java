@@ -92,13 +92,15 @@ public class SavecheckFrame {
 
  private void half_init(Account savechecking, String action ) {
   halfframe = new JFrame();
-  halfframe.setBackground(Color.PINK);
   halfframe.setResizable(false);
   halfframe.setBounds(100, 100, 450, 300);
   halfframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   halfframe.getContentPane().setLayout(null);
+  halfframe.setBackground(Color.PINK);
+
 
   JLabel lblNewLabel = new JLabel(action);
+//  lblNewLabel.setForeground(Color.WHITE);
   lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
   lblNewLabel.setBounds(105, 6, 210, 77);
   halfframe.getContentPane().add(lblNewLabel);
