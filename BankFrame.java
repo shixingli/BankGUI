@@ -166,7 +166,7 @@ public class BankFrame {
   bankframe.getContentPane().add(Customer);
   Customer.setLayout(null);
 
-  Customer_Click = new JButton("Customer Login in ");
+  Customer_Click = new JButton("Customer Login");
   Customer_Click.addMouseListener(new MouseAdapter() {
    @Override
    public void mouseClicked(MouseEvent e) {
@@ -220,7 +220,7 @@ public class BankFrame {
   bankframe.getContentPane().add(Official);
   Official.setLayout(null);
 
-  Official_click = new JButton("Official Login in ");
+  Official_click = new JButton("Official Login");
   Official_click.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e) {
     if(bankManager.isManager(official_username.getText(),officialpwd.getText())==true) {

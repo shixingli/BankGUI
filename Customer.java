@@ -215,6 +215,10 @@ public class Customer {
         summary.setBackground(Color.PINK);
         summary.add(checkingSum);
         summary.add(savingsSum);
+        SummaryListener checkSumL = new SummaryListener("Checking");
+        SummaryListener savingsSumL = new SummaryListener("Savings");
+        checkingSum.addActionListener(checkSumL);
+        savingsSum.addActionListener(savingsSumL);
         
         JButton checkingW = new JButton("Checking");
         JButton savingsW = new JButton("Savings");
@@ -237,12 +241,6 @@ public class Customer {
         AccountListener savingsDL = new AccountListener("Savings", "Deposit");
         checkingD.addActionListener(checkDL);
         savingsD.addActionListener(savingsDL);
-      
-        
-//        CheckSummaryListener checkSumL = new CheckSummaryListener();
-//        checkingSum.addActionListener(checkSumL); 
-//        SavingsSummaryListener savingsSumL = new SavingsSummaryListener();
-//        savingsSum.addActionListener(savingsL); 
         
         JButton checkingC = new JButton("Checking");
         JButton savingsC = new JButton("Savings");
@@ -383,7 +381,30 @@ public class Customer {
       }
     }
   }
+  
+  class SummaryListener implements ActionListener {
+    String accType;
+    public SummaryListener(String type) {
+      this.accType = type;
+    }
     
+    public void actionPerformed( ActionEvent e ) {
+      boolean success = false;
+      if (Customer.this.accounts != null) {
+        for (Account account : Customer.this.accounts) {
+          if (account.getType().equals(this.accType)) {
+            SavecheckFrame window = new SavecheckFrame(account, true);
+            window.justframe.setVisible(true);
+            success = true;
+          }
+        }
+      }
+      if (!success) {
+        AccountDNEPanel dne = new AccountDNEPanel(this.accType, Customer.this.name);
+      }
+    }
+  }
+      
   class CreateListener implements ActionListener {
     String accType;
     
