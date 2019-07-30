@@ -4,9 +4,16 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -14,7 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class SavecheckFrame {
-	JFrame savecheckframe,halfframe;
+	JFrame savecheckframe,halfframe,justframe;
 	JLabel Gosaving,gochecking;
 	private JTextField deposite_amount;
 	private JTextField withdraw_amount;
@@ -41,9 +48,33 @@ public class SavecheckFrame {
 	public SavecheckFrame(Account savechecking, String actions) {
 		half_init(savechecking,actions);
 	}
+	public SavecheckFrame(Account savechecking,boolean flag) {
+		init(savechecking,flag);
+	}
 
+	private void init(Account savechecking,boolean flag) {
+		justframe = new JFrame();
+		justframe.setResizable(false);
+		justframe.setBounds(100, 100, 450, 300);
+		justframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		justframe.getContentPane().setLayout(null);
 
+		JPanel panel = new JPanel();
 
+		justframe.getContentPane().add(panel);
+
+		if(savechecking instanceof Savings) {
+			for(Transaction txn: savechecking.view_txns()) {
+	            panel.add(new JLabel(txn.getId()+" $ " + txn.getAmount()));
+
+			}
+		}
+		else {
+			for(Transaction txn: savechecking.view_txns()) {
+	            panel.add(new JLabel(txn.getId()+" $ " + txn.getAmount()));
+			}
+		}
+	}
 
 	private void half_init(Account savechecking, String action ) {
 		halfframe = new JFrame();
@@ -119,6 +150,7 @@ public class SavecheckFrame {
 					try {
 						double amount= Double.parseDouble(amout_money.getText());
 						savechecking.deposit(amount,"BIT");
+						JOptionPane.showMessageDialog(null, "deposited " + amount +"!");
 
 					}catch(Exception e1) {
 						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
@@ -128,6 +160,7 @@ public class SavecheckFrame {
 					try {
 						double amount= Double.parseDouble(amout_money.getText());
 						savechecking.withDraw(amount,"Bitcoin");
+						JOptionPane.showMessageDialog(null, "withDraw " + amount +"!");
 
 					}catch(Exception e1) {
 						JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
@@ -152,6 +185,8 @@ public class SavecheckFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JOptionPane.showMessageDialog(null, savechecking.check_balance());
+				SavecheckFrame window = new SavecheckFrame(savechecking,true) ;
+				window.justframe.setVisible(true);
 			}
 		});
 		bal.setBounds(171, 243, 117, 29);
@@ -188,6 +223,8 @@ public class SavecheckFrame {
 		Checkbalance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, savechecking.check_balance());
+				SavecheckFrame window = new SavecheckFrame(savechecking,true) ;
+				window.justframe.setVisible(true);
 			}
 		});
 		Checkbalance.setBounds(121, 209, 190, 63);
@@ -210,6 +247,7 @@ public class SavecheckFrame {
 				try {
 					double amount= Double.parseDouble(deposite_amount.getText());
 					savechecking.deposit(amount,"USD");
+					JOptionPane.showMessageDialog(null, "deposit " + amount +"!");
 
 				}catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
@@ -226,6 +264,7 @@ public class SavecheckFrame {
 				try {
 					double amount= Double.parseDouble(deposite_amount.getText());
 					savechecking.deposit(amount,"CAD");
+					JOptionPane.showMessageDialog(null, "deposit " + amount +"!");
 
 				}catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
@@ -242,6 +281,7 @@ public class SavecheckFrame {
 				try {
 					double amount= Double.parseDouble(deposite_amount.getText());
 					savechecking.deposit(amount,"BIT");
+					JOptionPane.showMessageDialog(null, "deposit " + amount +"!");
 
 				}catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
@@ -258,6 +298,7 @@ public class SavecheckFrame {
 				try {
 					double amount= Double.parseDouble(deposite_amount.getText());
 					savechecking.withDraw(amount,"USD");
+					JOptionPane.showMessageDialog(null, "withDraw " + amount +"!");
 
 				}catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
@@ -274,6 +315,7 @@ public class SavecheckFrame {
 				try {
 					double amount= Double.parseDouble(deposite_amount.getText());
 					savechecking.withDraw(amount,"CAD");
+					JOptionPane.showMessageDialog(null, "withDraw " + amount +"!");
 
 				}catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
@@ -290,6 +332,7 @@ public class SavecheckFrame {
 				try {
 					double amount= Double.parseDouble(deposite_amount.getText());
 					savechecking.withDraw(amount,"BIT");
+						JOptionPane.showMessageDialog(null, "withDraw " + amount +"!");
 
 				}catch(Exception e1) {
 					JOptionPane.showMessageDialog(null, e1 + "only integer allowed");
