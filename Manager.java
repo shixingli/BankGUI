@@ -26,7 +26,7 @@ public class Manager{
            frame.setLocation(100, 100);
            frame.setSize(500, 400);
            frame.setLocation(200, 100);
-           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+           frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
            frame.add(searchCustomerID());
            frame.add(listOfDebtors());
            frame.add(managerOptions());
