@@ -169,18 +169,19 @@ public class Customer {
   public void makeFrame() {
       JFrame customerFrame = new JFrame("Rich Man's Bank — " + Customer.this.name + " Financial Summary");
       customerFrame.setLayout(new GridLayout(4, 1));
-      customerFrame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
+      customerFrame.getContentPane().setBackground(Color.PINK);
 
       CustomerFrame frame = new CustomerFrame();
       JLabel header = frame.title(this.name);
       customerFrame.add(header);
             
       JLabel schpeel = new JLabel("How may we be of service?", JLabel.CENTER);
+      schpeel.setForeground(Color.WHITE);
       customerFrame.add(schpeel);
       
       frame.addToPane(customerFrame.getContentPane());
       
-      customerFrame.setSize(450, 300);
+      customerFrame.setSize(500, 300);
       customerFrame.setLocation(200, 100);
       customerFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       customerFrame.setVisible(true);
@@ -195,7 +196,7 @@ public class Customer {
     
     public void addToPane(Container pane) {
         JPanel menu = new JPanel();
-        
+        menu.setBackground(Color.PINK);
         String banking[] = { "View Account Summary", 
           "Withdraw", 
           "Deposit", 
@@ -211,12 +212,14 @@ public class Customer {
         JButton checkingSum = new JButton("Checking");
         JButton savingsSum = new JButton("Savings");
         JPanel summary = new JPanel();
+        summary.setBackground(Color.PINK);
         summary.add(checkingSum);
         summary.add(savingsSum);
         
         JButton checkingW = new JButton("Checking");
         JButton savingsW = new JButton("Savings");
         JPanel withdraw = new JPanel();
+        withdraw.setBackground(Color.PINK);
         withdraw.add(checkingW);
         withdraw.add(savingsW);
         AccountListener checkWL = new AccountListener("Checking", "Withdraw");
@@ -227,6 +230,7 @@ public class Customer {
         JButton checkingD = new JButton("Checking");
         JButton savingsD = new JButton("Savings");
         JPanel deposit = new JPanel();
+        deposit.setBackground(Color.PINK);
         deposit.add(checkingD);
         deposit.add(savingsD);
         AccountListener checkDL = new AccountListener("Checking", "Deposit");
@@ -243,6 +247,7 @@ public class Customer {
         JButton checkingC = new JButton("Checking");
         JButton savingsC = new JButton("Savings");
         JPanel create = new JPanel();
+        create.setBackground(Color.PINK);
         create.add(checkingC);
         create.add(savingsC);
         CreateListener checkCL = new CreateListener("Checking");
@@ -252,6 +257,7 @@ public class Customer {
         
      
         JPanel loan = new JPanel();
+        loan.setBackground(Color.PINK);
         JTextField loanAmount = new JTextField(7);
         JTextField loanCurr = new JTextField(3);
         
@@ -302,12 +308,14 @@ public class Customer {
         
         JButton display = new JButton("Show");
         JPanel history = new JPanel();
+        history.setBackground(Color.PINK);
         history.add(display);
         TransactionHistoryListener historyL = new TransactionHistoryListener();
         display.addActionListener(historyL);
          
         // creating the drop down menu
         options = new JPanel(new CardLayout());
+        options.setBackground(Color.PINK);
         options.add(summary, "View Account Summary");
         options.add(withdraw, "Withdraw");
         options.add(deposit, "Deposit");
@@ -328,6 +336,7 @@ public class Customer {
     /* creates the title and border for the frame */
   public JLabel title (String customerName) {
     JLabel welcome = new JLabel("", JLabel.CENTER);
+    welcome.setForeground(Color.WHITE);
     Calendar c = Calendar.getInstance();
     int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
     String greeting;
@@ -445,37 +454,39 @@ public class Customer {
     public TransactionHistoryFrame() {
       this.setTitle("Rich Man's Bank — " + Customer.this.name + " Transaction History");
       this.setLayout(new GridLayout(2, 1));
-      this.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
-      
+      this.getContentPane().setBackground(Color.PINK);
+
       SimpleDateFormat df = new SimpleDateFormat("EEEE, MMMM d 'at' h:mm a z ");
       Date now = new Date();
       String curr = df.format(now);
       JLabel schpeel = new JLabel("        Transaction history acquired " + curr + "         ", JLabel.CENTER);
+      schpeel.setForeground(Color.WHITE);
       this.add(schpeel);
       
       JPanel panel = new JPanel();
       List<Transaction> history = Customer.this.getHistoryAllAcc();
-      
+      panel.setBackground(Color.PINK);
       if (history == null) {
         panel.setLayout(new GridLayout(2, 1));
-        panel.add(new JLabel("No recent transactions.", JLabel.CENTER));
+
+        panel.add(new JLabel("No recent transactions.", JLabel.CENTER)).setBackground(Color.WHITE);
         this.add(panel);
         
       } else {
         panel.setLayout(new GridLayout(0, 2));
         for (Account acc : Customer.this.accounts) {
           String capsType = acc.getType().toUpperCase();
-          panel.add(new JLabel(capsType, JLabel.CENTER));
-          panel.add(new JLabel("AMOUNT", JLabel.CENTER));
+          panel.add(new JLabel(capsType, JLabel.CENTER)).setForeground(Color.WHITE);
+          panel.add(new JLabel("AMOUNT", JLabel.CENTER)).setForeground(Color.WHITE);
           for (Transaction txn : acc.view_txns()) {
-            panel.add(new JLabel(txn.getId(), JLabel.CENTER));
-            panel.add(new JLabel("$" + txn.getAmount(), JLabel.CENTER));
+            panel.add(new JLabel(txn.getId(), JLabel.CENTER)).setForeground(Color.WHITE);
+            panel.add(new JLabel("$" + txn.getAmount(), JLabel.CENTER)).setForeground(Color.WHITE);
             this.add(panel);
           }
-          panel.add(new JLabel("Current Value", JLabel.CENTER));
-          panel.add(new JLabel("$" + acc.view_balance(), JLabel.CENTER));
-          panel.add(new JLabel(""));
-          panel.add(new JLabel(""));
+          panel.add(new JLabel("Current Value", JLabel.CENTER)).setForeground(Color.WHITE);
+          panel.add(new JLabel("$" + acc.view_balance(), JLabel.CENTER)).setForeground(Color.WHITE);
+          panel.add(new JLabel("")).setForeground(Color.WHITE);
+          panel.add(new JLabel("")).setForeground(Color.WHITE);
         }
       }
       this.pack();
