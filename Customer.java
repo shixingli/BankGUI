@@ -67,6 +67,7 @@ public class Customer {
       this.accounts.add(account);
       bal += account.view_balance();
     }
+    this.totalBalance = bal;
     this.collateral.addAll(this.collateralItems);
     this.loans = new LinkedList<Loan>();
     Bank.customers.put(this.id, this);
