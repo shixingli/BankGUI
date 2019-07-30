@@ -53,23 +53,23 @@ public class BankFrame {
 //
 //		 BankFrame window = new BankFrame(bankManager);
 //		 window.bankframe.setVisible(true);
-//		 BankFrame window1 = new BankFrame();
-//		 window1.accframe.setVisible(true);
+		 // BankFrame window1 = new BankFrame();
+		 // window1.accframe.setVisible(true);
 	}
 
 
-	public BankFrame(HashMap<String, Customer> customers) {
-		initialize(customers);
+	public BankFrame() {
+		initialize();
 	}
-	public BankFrame(Manager bankManager, HashMap<String, Customer> customers) {
-		initialize(bankManager,customers);
+	public BankFrame(Manager bankManager) {
+		initialize(bankManager);
 	}
 
 
 
 
 
-	private void initialize(HashMap<String,Customer> customers) {
+	private void initialize() {
 		accframe = new JFrame();
 		accframe.setResizable(false);
 		accframe.setBounds(100, 100, 450, 300);
@@ -108,7 +108,6 @@ public class BankFrame {
 		Saving_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Customer newcust = new Customer(saving,username.getText(),userid.getText(),userpwd.getText());
-				customers.put(userid.getText(),newcust);
 				JOptionPane.showMessageDialog(null, "Your saving account is all set, please log in with your username and password");
 				accframe.dispose();
 			}
@@ -120,7 +119,6 @@ public class BankFrame {
 		checkingBTN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
-				customers.put(userid.getText(),newcust);
 				JOptionPane.showMessageDialog(null, "Your checking account is all set, please log in with your username and password");
 				accframe.dispose();
 			}
@@ -133,7 +131,6 @@ public class BankFrame {
 			public void actionPerformed(ActionEvent e) {
 				Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
 				newcust.addAccount(saving);
-				customers.put(userid.getText(),newcust);
 				JOptionPane.showMessageDialog(null, "Your two accounts are all set, please log in with your username and password");
 				accframe.dispose();
 			}
@@ -147,7 +144,7 @@ public class BankFrame {
 
 
 	}
-	private void initialize(Manager bankManager, HashMap<String, Customer> customers) {
+	private void initialize(Manager bankManager) {
 		bankframe = new JFrame();
 		bankframe.setResizable(false);
 		bankframe.setBounds(100, 100, 450, 300);
@@ -166,14 +163,7 @@ public class BankFrame {
 		Customer_Click.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				 if (customers.containsKey(user_name.getText())) {
-					 //id for now
-					 customers.get(user_name.getText()).makeFrame();
-				 }
-				 else {
-					JOptionPane.showMessageDialog(null, "username is not correct");
-				 }
-//				JOptionPane.showMessageDialog(null, "username or password is not correct");
+				JOptionPane.showMessageDialog(null, "username or password is not correct");
 				//pops out Customer frame if they correctly match the credentials
 			}
 		});
@@ -204,7 +194,7 @@ public class BankFrame {
 		Customer.add(createaccBTN);
 		createaccBTN.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BankFrame window = new BankFrame(customers);
+				BankFrame window = new BankFrame();
 				 window.accframe.setVisible(true);
 			}
 		});
