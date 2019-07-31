@@ -194,12 +194,12 @@ public class BankFrame {
   Customer_Click.addMouseListener(new MouseAdapter() {
    @Override
    public void mouseClicked(MouseEvent e) {
-     if (customers.containsKey(user_name.getText())) {
+     if (customers.containsKey(user_name.getText()) && customers.get(user_name.getText()).getpwd().equals(customerpwd.getText())) {
       //id for now
       customers.get(user_name.getText()).makeFrame();
      }
      else {
-     JOptionPane.showMessageDialog(null, "username is not correct");
+     JOptionPane.showMessageDialog(null, "username or password is not correct");
      }
 //    JOptionPane.showMessageDialog(null, "username or password is not correct");
     //pops out Customer frame if they correctly match the credentials

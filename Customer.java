@@ -92,6 +92,10 @@ public class Customer {
     return this.name;
   }
 
+  /* getter for customerpwd */
+  public String getpwd() {
+    return this.pwd;
+  }
   /* getter for customerUserName */
   public String getUsername() {
     return this.id;
