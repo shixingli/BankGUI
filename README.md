@@ -1,9 +1,11 @@
 # BankGUI
-A bank GUI
-1.Javav Bank.java to compile
+A bank GUI with functionality allowing customers to withdraw and deposit accounts as well as for manager to oversee these accounts:
 
-2.Java Bank to run 
+Client Code:
+HashMap<String, Customer> map = new HashMap<String, Customer>();
+Bank mybank = new Bank(map);
+mybank.open();
 
-3.Default Manager:Louis,pwd:1234
-
-4.Default Customer: dbreynolds, pwd:890cloverfield; blive, pwd:123456; deadpool,pwd:48
+Default Manager:
+  uid: Louis
+  pwd: 1234
