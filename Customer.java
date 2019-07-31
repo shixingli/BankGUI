@@ -535,10 +535,6 @@ public class Customer {
    */
   public class LoanPanel extends JPanel {
     public LoanPanel(String amnt, boolean validCurr) {
-//         UIManager UI=new UIManager();
-//         UI.put("OptionPane.messageForeground", Color.WHITE);
-//         UI.put("OptionPane.background", Color.PINK);
-//         UI.put("Panel.background", Color.PINK);
       if (validCurr) {
         double tryingTo = Double.parseDouble(amnt);
         if (tryingTo < 0.0) {
