@@ -1,4 +1,4 @@
-// package bank;
+ // package bank;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -110,6 +110,14 @@ public class BankFrame {
   JButton Saving_btn = new JButton("Saving Account ");
   Saving_btn.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e) {
+	   if(userpwd.getText().equals("")) {
+		   JOptionPane.showMessageDialog(null, "enter your password!!");
+		   return;
+	   }
+		 if(customers.containsKey(userid.getText())) {
+			   JOptionPane.showMessageDialog(null, "your id is already existed!!");
+			 return;
+			}
     Customer newcust = new Customer(saving,username.getText(),userid.getText(),userpwd.getText());
     customers.put(userid.getText(),newcust);
     JOptionPane.showMessageDialog(null, "Your saving account is all set, please log in with your username and password");
@@ -122,6 +130,14 @@ public class BankFrame {
   checkingBTN = new JButton("Checking Account ");
   checkingBTN.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e) {
+	   if(userpwd.getText().equals("")) {
+		   JOptionPane.showMessageDialog(null, "enter your password!!");
+		   return;
+	   }
+		 if(customers.containsKey(userid.getText())) {
+			   JOptionPane.showMessageDialog(null, "your id is already existed!!");
+			 return;
+			}
     Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
     customers.put(userid.getText(),newcust);
     JOptionPane.showMessageDialog(null, "Your checking account is all set, please log in with your username and password");
@@ -134,6 +150,14 @@ public class BankFrame {
   BothBTn = new JButton("Both");
   BothBTn.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e) {
+	   if(userpwd.getText().equals("")) {
+		   JOptionPane.showMessageDialog(null, "enter your password!!");
+		   return;
+	   }
+	 if(customers.containsKey(userid.getText())) {
+		   JOptionPane.showMessageDialog(null, "your id is already existed!!");
+		 return;
+		}
     Customer newcust = new Customer(check,username.getText(),userid.getText(),userpwd.getText());
     newcust.addAccount(saving);
     customers.put(userid.getText(),newcust);
@@ -208,8 +232,9 @@ public class BankFrame {
   Customer.add(createaccBTN);
   createaccBTN.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent e) {
-    BankFrame window = new BankFrame(customers);
-     window.accframe.setVisible(true);
+		    BankFrame window = new BankFrame(customers);
+		     window.accframe.setVisible(true);
+//		    JOptionPane.showMessageDialog(null, err+ "your id is already existed!!");
    }
   });
 
