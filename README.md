@@ -6,6 +6,4 @@ A bank GUI
 
 3.Default Manager:Louis,pwd:1234
 
-4.Default Customer: dbreynolds, pwd:890cloverfield
-                    blive,      pwd:123456
-                    deadpool,   pwd:48
+4.Default Customer: dbreynolds, pwd:890cloverfield; blive, pwd:123456; deadpool,pwd:48
