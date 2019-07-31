@@ -19,14 +19,16 @@ public abstract class Account {
   }
 
 void withDraw(double amount,String currency) throws Exception{
+	double fee = Manager.getWithdrawFee();
     for (Currency curr : Bank.currencies) {
       if (curr.getCountry().equals(currency)) {
         double rate = curr.getRate();
         double newAmount = amount * rate;
-        if(this.balance<newAmount) {
+        if(this.balance<newAmount || this.balance<fee) {
         	throw new Exception("low balance");
         }
         this.balance -= newAmount;
+        this.balance -= fee;
         Withdrawal w = new Withdrawal(amount);
         this.txns.add(w);
         break;
@@ -45,12 +47,16 @@ void withDraw(double amount,String currency) throws Exception{
 }
 
 void deposit(double amount,String currency){
+	double fee = Manager.getWithdrawFee();
   for (Currency curr : Bank.currencies) {
     String country = curr.getCountry();
     if (country.equals(currency)) {
       double rate = curr.getRate();
       double newAmount = amount * rate;
       this.balance += newAmount;
+      if(this.getType().equals("Checking")) {
+          this.balance -= fee;
+      }
       Deposit d = new Deposit(newAmount);
       this.txns.add(d);
       break;
