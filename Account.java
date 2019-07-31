@@ -105,10 +105,6 @@ void deposit(double amount,String currency){
     //lets not implement right now since it is not required,
   }
 
-
-  public static void main(String[] args) {
-  }
-
   /*
    * ACCOUNT SUMMARY FRAME
    */

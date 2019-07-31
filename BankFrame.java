@@ -46,16 +46,7 @@ public class BankFrame {
  /**
   * Launch the application.
   */
- public static void main(String[] args) {
-//    HashMap<String, Customer> customers = new HashMap<>();
-//
-//    Manager bankManager = new Manager(customers,"louis","1234");
-//
-//   BankFrame window = new BankFrame(bankManager);
-//   window.bankframe.setVisible(true);
-//   BankFrame window1 = new BankFrame();
-//   window1.accframe.setVisible(true);
- }
+
 
 
  public BankFrame(HashMap<String, Customer> customers) {
