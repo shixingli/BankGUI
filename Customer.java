@@ -207,7 +207,8 @@ public class Customer {
           "Deposit",
           "Open a New Account",
           "View Transaction History",
-          "Take Out a Loan"};
+          "Take Out a Loan",
+          "close an account"};
 
         JComboBox dropDown = new JComboBox(banking);
         dropDown.setEditable(false);
@@ -258,6 +259,16 @@ public class Customer {
         CreateListener savingsCL = new CreateListener("Savings");
         savingsC.addActionListener(savingsCL);
 
+        JButton checkingClose = new JButton("Checking");
+        JButton savingsClose = new JButton("Savings");
+        JPanel close = new JPanel();
+        close.setBackground(Color.PINK);
+        close.add(checkingClose);
+        close.add(savingsClose);
+        AccountListener checkCLose = new AccountListener("Checking", "Deposit");
+        AccountListener savingsCLose = new AccountListener("Savings", "Deposit");
+        checkingClose.addActionListener(checkCLose);
+        savingsClose.addActionListener(savingsCLose);
 
         JPanel loan = new JPanel();
         loan.setBackground(Color.PINK);
