@@ -1,7 +1,6 @@
  // package bank;
 
-import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -15,10 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 
-public class SavecheckFrame {
+ public class SavecheckFrame {
  JFrame savecheckframe,halfframe,justframe;
  JLabel Gosaving,gochecking;
  private JTextField deposite_amount;
@@ -52,11 +49,12 @@ public class SavecheckFrame {
 
  private void init(Account savechecking,boolean flag) {
   justframe = new JFrame();
-  justframe.setBackground(Color.PINK);
   justframe.setResizable(false);
   justframe.setBounds(100, 100, 450, 300);
   justframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   justframe.getContentPane().setLayout(null);
+  justframe.getContentPane().setBackground(Color.PINK);
+
 
   JScrollPane scrollPane_1 = new JScrollPane(null,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
   scrollPane_1.setBounds(0, 0, 450, 278);
@@ -93,14 +91,14 @@ public class SavecheckFrame {
  private void half_init(Account savechecking, String action ) {
   halfframe = new JFrame();
   halfframe.setResizable(false);
-  halfframe.setBounds(100, 100, 450, 300);
+  halfframe.setBounds(100, 100, 475, 325);
   halfframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   halfframe.getContentPane().setLayout(null);
-  halfframe.setBackground(Color.PINK);
+  halfframe.getContentPane().setBackground(Color.PINK);
 
 
   JLabel lblNewLabel = new JLabel(action);
-//  lblNewLabel.setForeground(Color.WHITE);
+  lblNewLabel.setForeground(Color.WHITE);
   lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
   lblNewLabel.setBounds(105, 6, 210, 77);
   halfframe.getContentPane().add(lblNewLabel);
@@ -239,6 +237,7 @@ public class SavecheckFrame {
   amout_money.setColumns(10);
 
   JLabel lblEnterTheAmount = new JLabel("Enter the amount:");
+  lblEnterTheAmount.setForeground(Color.WHITE);
   lblEnterTheAmount.setBounds(37, 100, 117, 16);
   halfframe.getContentPane().add(lblEnterTheAmount);
 
@@ -257,12 +256,12 @@ public class SavecheckFrame {
  }
  private void initialize(Account savechecking) {
   savecheckframe = new JFrame();
-  savecheckframe.setBackground(Color.PINK);
   savecheckframe.setResizable(false);
   savecheckframe.setBounds(100, 100, 450, 300);
   savecheckframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-  savecheckframe.getContentPane().setBackground(Color.PINK);
   savecheckframe.getContentPane().setLayout(null);
+  savecheckframe.getContentPane().setBackground(Color.PINK);
+
 
   JLabel lblIWanTo = new JLabel("I want to deposit:");
   lblIWanTo.setBounds(20, 18, 117, 52);
