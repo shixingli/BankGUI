@@ -18,11 +18,14 @@ public abstract class Account {
     // *add withdraw to account of opening fee *
   }
 
-void withDraw(double amount,String currency){
+void withDraw(double amount,String currency) throws Exception{
     for (Currency curr : Bank.currencies) {
       if (curr.getCountry().equals(currency)) {
         double rate = curr.getRate();
         double newAmount = amount * rate;
+        if(this.balance<newAmount) {
+        	throw new Exception("low balance");
+        }
         this.balance -= newAmount;
         Withdrawal w = new Withdrawal(amount);
         this.txns.add(w);

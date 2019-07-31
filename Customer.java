@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.*;
- 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -18,15 +18,15 @@ public class Customer {
   private String name;
   private String id;
   private String pwd;
-  
+
   private List<Loan> loans;
   private List<Account> accounts;
   private double totalBalance; // unnecessary?
-  
+
   private List<String> collateralItems = Arrays.asList("House", "Business", "Car", "Stocks");
-  private Stack<String> collateral = new Stack<String>();// make a list of strings that is collateral and each time they take out a loan you remove an item from the list 
+  private Stack<String> collateral = new Stack<String>();// make a list of strings that is collateral and each time they take out a loan you remove an item from the list
   // if the list is empty then we can't take out a loan
-  
+
   /* no arg */
   public Customer() {
     this.totalBalance = 0;
@@ -37,7 +37,7 @@ public class Customer {
     this.loans = new LinkedList<Loan>();
     Bank.customers.put(this.id, this);
   }
-  
+
   /* adding a default customer w/ account dependent on money in that account */
   public Customer(Account accAdd) {
     this();
@@ -45,7 +45,7 @@ public class Customer {
     this.accounts.add(accAdd);
     this.collateral.addAll(this.collateralItems);
   }
-  
+
   /* as above, but with name, id, and pwd */
   public Customer(Account accAdd, String name, String uid, String pwd) {
     this(accAdd);
@@ -53,15 +53,15 @@ public class Customer {
     this.id = uid;
     this.pwd = pwd;
   }
-  
- /* adding default cust multiple accounts */ 
+
+ /* adding default cust multiple accounts */
   public Customer(List<Account> accounts) {
     this.accounts = new LinkedList<Account>();
     this.totalBalance = 0;
     this.name = "DEFAULT";
     this.id = "username";
     this.pwd = "pwd";
-    
+
     double bal = 0;
     for (Account account : accounts) {
       this.accounts.add(account);
@@ -72,7 +72,7 @@ public class Customer {
     this.loans = new LinkedList<Loan>();
     Bank.customers.put(this.id, this);
   }
-  
+
   /* as above but with custom name, id, and pwd */
   public Customer(List<Account> accounts, String name, String uid, String pwd) {
     this(accounts);
@@ -80,7 +80,7 @@ public class Customer {
     this.id = uid;
     this.pwd = pwd;
   }
- 
+
   /* only needed if the ACCOUNT creation is dependent on the customer, if not the total amount is determined in the above constructor */
   public Customer(List<Account> accounts, double openAmount) {
     this(accounts);
@@ -91,17 +91,17 @@ public class Customer {
   public String getName() {
     return this.name;
   }
-  
+
   /* getter for customerUserName */
   public String getUsername() {
     return this.id;
   }
-  
+
   /* getter for Loans */
   public List<Loan> getLoan() {
     return this.loans;
   }
-  
+
   /* setter for Loans */
   public boolean setLoan(Loan moneyDue) {
     if (collateral.isEmpty()) {
@@ -112,7 +112,7 @@ public class Customer {
       return true;
     }
   }
-  
+
   /* accesses the accounts for the customer and updates the total balance */
   public void updateBalance() {
     double bal = 0;
@@ -121,13 +121,13 @@ public class Customer {
     }
     this.totalBalance = bal;
   }
-  
+
   /* returns the total balance for all accounts for a customer */
   public double getTotalBalance() {
     this.updateBalance();
     return this.totalBalance;
   }
-  
+
   /* getter for accounts */
   public List<Account> getAccounts() {
     return this.accounts;
@@ -136,17 +136,17 @@ public class Customer {
   public void addAccount(Account add) {
     this.accounts.add(add);
   }
-  
+
   /* setter for accounts */
   public void setAccounts(List<Account> setAcc) {
     this.accounts = setAcc;
   }
-  
+
   /* adder for multiple accounts */
   public void addAccounts(List<Account> accs) {
     this.accounts.addAll(accs);
   }
-  
+
   /* gets all history for accs w/out differentiation */
   public List<Transaction> getHistoryAllAcc() {
     if (this.accounts == null) {
@@ -159,14 +159,14 @@ public class Customer {
       return txnHistory;
     }
   }
-  
+
   //  /* gets history for a given account */
 //  public List<Transaction> getHistoryForAcc(Account account) {
 //    List<Transaction> txnHistory = new LinkedList<Transaction>();
 //    txnHistory.addAll(account.view_txns());
 //    return txnHistory;
 //  }
-  
+
   public void makeFrame() {
       JFrame customerFrame = new JFrame("Rich Man's Bank — " + Customer.this.name + " Financial Summary");
       customerFrame.setLayout(new GridLayout(4, 1));
@@ -175,41 +175,41 @@ public class Customer {
       CustomerFrame frame = new CustomerFrame();
       JLabel header = frame.title(this.name);
       customerFrame.add(header);
-            
+
       JLabel schpeel = new JLabel("How may we be of service?", JLabel.CENTER);
       schpeel.setForeground(Color.WHITE);
       customerFrame.add(schpeel);
-      
+
       frame.addToPane(customerFrame.getContentPane());
-      
+
       customerFrame.setSize(500, 300);
       customerFrame.setLocation(200, 100);
       customerFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       customerFrame.setVisible(true);
     }
-   
-  
+
+
   /*
-   * THE CUSTOMER FRAME  ! 
+   * THE CUSTOMER FRAME  !
    */
   public class CustomerFrame extends JFrame implements ItemListener {
     JPanel options;
-    
+
     public void addToPane(Container pane) {
         JPanel menu = new JPanel();
         menu.setBackground(Color.PINK);
-        String banking[] = { "View Account Summary", 
-          "Withdraw", 
-          "Deposit", 
-          "Open a New Account", 
+        String banking[] = { "View Account Summary",
+          "Withdraw",
+          "Deposit",
+          "Open a New Account",
           "View Transaction History",
           "Take Out a Loan"};
-        
+
         JComboBox dropDown = new JComboBox(banking);
         dropDown.setEditable(false);
         dropDown.addItemListener(this);
         menu.add(dropDown);
-        
+
         JButton checkingSum = new JButton("Checking");
         JButton savingsSum = new JButton("Savings");
         JPanel summary = new JPanel();
@@ -220,7 +220,7 @@ public class Customer {
         SummaryListener savingsSumL = new SummaryListener("Savings");
         checkingSum.addActionListener(checkSumL);
         savingsSum.addActionListener(savingsSumL);
-        
+
         JButton checkingW = new JButton("Checking");
         JButton savingsW = new JButton("Savings");
         JPanel withdraw = new JPanel();
@@ -231,7 +231,7 @@ public class Customer {
         AccountListener savingsWL = new AccountListener("Savings", "Withdraw");
         checkingW.addActionListener(checkWL);
         savingsW.addActionListener(savingsWL);
-        
+
         JButton checkingD = new JButton("Checking");
         JButton savingsD = new JButton("Savings");
         JPanel deposit = new JPanel();
@@ -242,7 +242,7 @@ public class Customer {
         AccountListener savingsDL = new AccountListener("Savings", "Deposit");
         checkingD.addActionListener(checkDL);
         savingsD.addActionListener(savingsDL);
-        
+
         JButton checkingC = new JButton("Checking");
         JButton savingsC = new JButton("Savings");
         JPanel create = new JPanel();
@@ -250,16 +250,16 @@ public class Customer {
         create.add(checkingC);
         create.add(savingsC);
         CreateListener checkCL = new CreateListener("Checking");
-        checkingC.addActionListener(checkCL); 
+        checkingC.addActionListener(checkCL);
         CreateListener savingsCL = new CreateListener("Savings");
         savingsC.addActionListener(savingsCL);
-        
-     
+
+
         JPanel loan = new JPanel();
         loan.setBackground(Color.PINK);
         JTextField loanAmount = new JTextField(7);
         JTextField loanCurr = new JTextField(3);
-        
+
         if (Customer.this.collateral.isEmpty()) {
           loan.add(new JLabel("Insufficient collateral to take out a loan."));
         } else {
@@ -269,18 +269,18 @@ public class Customer {
               hasChecking = true;
               loan.add(new JLabel("Amount:")).setForeground(Color.WHITE);
               loan.add(loanAmount);
-              
+
               loan.add(new JLabel("Curr. Country Code:")).setForeground(Color.WHITE);
               loan.add(loanCurr);
               JButton sub = new JButton("Submit");
               loan.add(sub);
-              
+
               sub.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                   String loan = loanAmount.getText();
                   String curr = loanCurr.getText();
-                  
+
                   boolean success = false;
                   for (Currency allowed : Bank.currencies) {
                     if (curr.equals(allowed.getCountry())) {
@@ -300,21 +300,21 @@ public class Customer {
               LoanPanel loanWindow = new LoanPanel(loan, success);
             }
           });
-          
+
               break;
             }
           } if (!hasChecking) {
             loan.add(new JLabel("Only customers with Checking accounts can take out loans."));
           }
         }
-        
+
         JButton display = new JButton("Show");
         JPanel history = new JPanel();
         history.setBackground(Color.PINK);
         history.add(display);
         TransactionHistoryListener historyL = new TransactionHistoryListener();
         display.addActionListener(historyL);
-         
+
         // creating the drop down menu
         options = new JPanel(new CardLayout());
         options.setBackground(Color.PINK);
@@ -324,17 +324,17 @@ public class Customer {
         options.add(create, "Open a New Account");
         options.add(loan, "Take Out a Loan"); // pop up window for this?
         options.add(history, "View Transaction History"); // buttons here and then depending on which will get pop up window
-        
+
         pane.add(menu, BorderLayout.PAGE_START);
         pane.add(options, BorderLayout.CENTER);
-  
+
     }
-     
+
     public void itemStateChanged(ItemEvent evt) {
         CardLayout cl = (CardLayout)(options.getLayout());
         cl.show(options, (String)evt.getItem());
     }
-    
+
     /* creates the title and border for the frame */
   public JLabel title (String customerName) {
     JLabel welcome = new JLabel("", JLabel.CENTER);
@@ -342,9 +342,9 @@ public class Customer {
     Calendar c = Calendar.getInstance();
     int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
     String greeting;
-    
+
     if(timeOfDay >= 0 && timeOfDay < 12){
-      greeting = " Good Morning, ";       
+      greeting = " Good Morning, ";
     } else if(timeOfDay >= 12 && timeOfDay < 16){
       greeting = " Good Afternoon, ";
     } else {
@@ -354,10 +354,10 @@ public class Customer {
     SimpleDateFormat df = new SimpleDateFormat("EEEE, MMMM d 'at' h:mm a z ");
     Date now = new Date();
     welcome.setText(greeting + customerName + ". It is " + df.format(now) + ".");
-    
+
     return welcome;
   }
-  
+
   class AccountListener implements ActionListener {
     String accType;
     String transaction;
@@ -365,10 +365,10 @@ public class Customer {
      this.accType = type;
      this.transaction = txn;
     }
-    
+
     public void actionPerformed( ActionEvent e ) {
       System.out.println("Open the customer's checking account, if it exists.");
-      
+
       boolean success = false;
       if (Customer.this.accounts != null) {
         for (Account account : Customer.this.accounts) {
@@ -385,13 +385,13 @@ public class Customer {
       }
     }
   }
-  
+
   class SummaryListener implements ActionListener {
     String accType;
     public SummaryListener(String type) {
       this.accType = type;
     }
-    
+
     public void actionPerformed( ActionEvent e ) {
       boolean success = false;
       if (Customer.this.accounts != null) {
@@ -408,16 +408,16 @@ public class Customer {
       }
     }
   }
-      
+
   class CreateListener implements ActionListener {
     String accType;
-    
+
     public CreateListener(String type) {
       this.accType = type;
     }
     public void actionPerformed( ActionEvent e ) {
       System.out.println("Here to create a customer's " + this.accType + " account!");
-      
+
       boolean success = false;
       for (Account account : Customer.this.accounts) {
         if (account.getType().equals(accType)) {
@@ -426,14 +426,14 @@ public class Customer {
           break;
         }
       }
-      
+
       if (!success) {
         if (accType.equals("Checking")) {
           Checking newCheck = new Checking();
           SavecheckFrame window = new SavecheckFrame(newCheck, "Deposit");
           window.halfframe.setVisible(true);
           Customer.this.accounts.add(newCheck);
-          
+
         } else if (accType.equals("Savings")) {
           Savings newSavings = new Savings();
           SavecheckFrame window = new SavecheckFrame(newSavings, "Deposit");
@@ -443,7 +443,7 @@ public class Customer {
       }
     }
   }
-  
+
     class TransactionHistoryListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
         System.out.println("Here to display a customer's transaction history!");
@@ -451,37 +451,37 @@ public class Customer {
       }
     }
   }
-  
+
   /*
-   * COLLATERAL DNE PANEL 
+   * COLLATERAL DNE PANEL
    */
   public class CollateralDNEPanel extends JPanel {
      public CollateralDNEPanel() {
       JOptionPane.showMessageDialog(this, "Insufficent collateral to take out a loan", "Invalid Request", JOptionPane.ERROR_MESSAGE);
     }
   }
-  
-  /* 
+
+  /*
    *  ACCOUNT DNE PANEL
    */
   public class AccountDNEPanel extends JPanel {
-    
+
     public AccountDNEPanel(String accType, String customer) {
       JOptionPane.showMessageDialog(this, customer + " does not have a '" + accType + "' account", "Invalid Request", JOptionPane.ERROR_MESSAGE);
     }
   }
-  
+
   /*
    * ACCOUNT ALREADY EXISTS FRAME
    */
     public class AccountEPanel extends JPanel {
-    
+
     public AccountEPanel(String accType, String customer) {
       JOptionPane.showMessageDialog(this, customer + " already has a '" + accType + "' account", "Invalid Request", JOptionPane.ERROR_MESSAGE);
     }
   }
 
-  /* 
+  /*
    * TRANSACTION HISTORY FRAME
    */
   public class TransactionHistoryFrame extends JFrame {
@@ -496,7 +496,7 @@ public class Customer {
       JLabel schpeel = new JLabel("        Transaction history acquired " + curr + "         ", JLabel.CENTER);
       schpeel.setForeground(Color.WHITE);
       this.add(schpeel);
-      
+
       JPanel panel = new JPanel();
       List<Transaction> history = Customer.this.getHistoryAllAcc();
       panel.setBackground(Color.PINK);
@@ -505,7 +505,7 @@ public class Customer {
 
         panel.add(new JLabel("No recent transactions.", JLabel.CENTER)).setBackground(Color.WHITE);
         this.add(panel);
-        
+
       } else {
         panel.setLayout(new GridLayout(0, 2));
         for (Account acc : Customer.this.accounts) {
@@ -529,9 +529,9 @@ public class Customer {
       this.setVisible(true);
     }
   }
-  
-  /* 
-   * TAKE OUT A LOAN FRAME 
+
+  /*
+   * TAKE OUT A LOAN FRAME
    */
   public class LoanPanel extends JPanel {
     public LoanPanel(String amnt, boolean validCurr) {
@@ -547,8 +547,8 @@ public class Customer {
       }
     }
   }
-  
-  public static void test() {
+
+  public static void test() throws Exception{
     Bank richMan = new Bank();
     Checking check = new Checking(100.0);
     check.deposit(900, "USD");
@@ -562,5 +562,3 @@ public class Customer {
     me.makeFrame();
   }
 }
-  
-
