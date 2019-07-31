@@ -207,7 +207,8 @@ public class Customer {
           "Deposit",
           "Open a New Account",
           "View Transaction History",
-          "Take Out a Loan"};
+          "Take Out a Loan",
+          "Close an account"};
 
         JComboBox dropDown = new JComboBox(banking);
         dropDown.setEditable(false);
@@ -258,6 +259,18 @@ public class Customer {
         CreateListener savingsCL = new CreateListener("Savings");
         savingsC.addActionListener(savingsCL);
 
+        
+        //i added close options here
+        JButton checkingClose = new JButton("Checking");
+        JButton savingsClose = new JButton("Savings");
+        JPanel close = new JPanel();
+        close.setBackground(Color.PINK);
+        close.add(checkingClose);
+        close.add(savingsClose);
+        CloseListener checkCLose = new CloseListener("Checking");
+        CloseListener savingsCLose = new CloseListener("Savings");
+        checkingClose.addActionListener(checkCLose);
+        savingsClose.addActionListener(savingsCLose);
 
         JPanel loan = new JPanel();
         loan.setBackground(Color.PINK);
@@ -328,6 +341,7 @@ public class Customer {
         options.add(create, "Open a New Account");
         options.add(loan, "Take Out a Loan"); // pop up window for this?
         options.add(history, "View Transaction History"); // buttons here and then depending on which will get pop up window
+        options.add(close,"Close an account");
 
         pane.add(menu, BorderLayout.PAGE_START);
         pane.add(options, BorderLayout.CENTER);
@@ -447,6 +461,28 @@ public class Customer {
       }
     }
   }
+  //i am closing it.
+  class CloseListener implements ActionListener {
+	    String accType;
+	    public CloseListener(String type) {
+	      this.accType = type;
+	    }
+	    public void actionPerformed( ActionEvent e ) {
+	      System.out.println("Here to close a customer's " + this.accType + " account!");
+	      boolean success = false;
+	      for (Account account : Customer.this.accounts) {
+	        if (account.getType().equals(accType)) {
+		 		       JOptionPane.showMessageDialog(null, "you closed "+account.getType());
+	        	accounts.remove(account);
+	          success = true;
+	          break;
+	        }
+	      }
+	      if(!success) {
+		 	      JOptionPane.showMessageDialog(null, " does not have a '" + accType + "' account");
+	      }
+	    }
+	  }
 
     class TransactionHistoryListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
