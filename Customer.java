@@ -385,13 +385,11 @@ public class Customer {
     }
 
     public void actionPerformed( ActionEvent e ) {
-      System.out.println("Open the customer's checking account, if it exists.");
 
       boolean success = false;
       if (Customer.this.accounts != null) {
         for (Account account : Customer.this.accounts) {
           if (account.getType().equals(this.accType)) {
-            System.out.println(account.getType() + "        " + this.transaction);
             SavecheckFrame window = new SavecheckFrame(account, this.transaction);
             window.halfframe.setVisible(true);
             success = true;
@@ -434,7 +432,6 @@ public class Customer {
       this.accType = type;
     }
     public void actionPerformed( ActionEvent e ) {
-      System.out.println("Here to create a customer's " + this.accType + " account!");
 
       boolean success = false;
       for (Account account : Customer.this.accounts) {
@@ -468,7 +465,6 @@ public class Customer {
 	      this.accType = type;
 	    }
 	    public void actionPerformed( ActionEvent e ) {
-	      System.out.println("Here to close a customer's " + this.accType + " account!");
 	      boolean success = false;
 	      for (Account account : Customer.this.accounts) {
 	        if (account.getType().equals(accType)) {
@@ -486,7 +482,6 @@ public class Customer {
 
     class TransactionHistoryListener implements ActionListener {
       public void actionPerformed( ActionEvent e ) {
-        System.out.println("Here to display a customer's transaction history!");
         TransactionHistoryFrame tf = new TransactionHistoryFrame();
       }
     }
