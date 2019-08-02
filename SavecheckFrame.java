@@ -53,6 +53,7 @@ import java.awt.event.ActionEvent;
   JPanel panel = new JPanel();
   panel.setBackground(Color.pink);
   justframe.getContentPane().add(panel);
+  panel.add(new JLabel("Your " +savechecking.getType()+"'s current balance is "+savechecking.balance));
 
   if(savechecking instanceof Savings) {
    for(Transaction txn: savechecking.view_txns()) {
